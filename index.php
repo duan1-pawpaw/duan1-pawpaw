@@ -6,9 +6,11 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/HomeController.php';
+require_once './controllers/tinController.php';
 
 // Require toàn bộ file Models
 require_once './models/homeModel.php';
+require_once './models/tinModel.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -18,4 +20,16 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Trang chủ
     '/' => (new HomeController()) -> home(),
+    'quan_ly_tin' => (new controllerCou()) -> get_tin_tuc(),
+    'add_tin' => (new controllerCou()) -> add_tin(),
+    'create' => (new controllerCou()) -> add_tin_tuc(),
+    'update' => (new controllerCou()) -> t_update(),
+    'update_db' => (new controllerCou()) -> update(),
+    'delete' => (new controllerCou()) -> delete_sp(),
+    'td_tt' => (new controllerCou()) -> thay_doi_tt(),
+
+
+
+
+
 };

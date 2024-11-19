@@ -236,6 +236,13 @@
 
                                 </ul>
                             </li>
+                            <li class="">
+                                <a href="?act=quan_ly_tin">
+                                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">News management</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
                         </ul>
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
                         <ul class="pcoded-item pcoded-left-item">
@@ -350,3 +357,4 @@
                         </ul>
                     </div>
                 </nav>
+                

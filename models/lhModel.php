@@ -1,5 +1,5 @@
 <?php
-class YourModel
+class ModelLh
 {
     public $db;
     public function __construct()

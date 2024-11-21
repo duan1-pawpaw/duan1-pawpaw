@@ -6,6 +6,7 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/HomeController.php';
+<<<<<<< HEAD
 // Require file ControllersLienhe
 require_once './controllers/lhController.php';
 // Require file ControllersBaner
@@ -21,6 +22,20 @@ require_once './models/lhModel.php';
 require_once './models/bannerModel.php';
 // Require file ModelsTin
 require_once './models/tinModel.php';
+=======
+require_once './controllers/AdminController.php';
+
+
+// Require toàn bộ file Models
+require_once './models/homeModel.php';
+require_once './models/AdminModel.php';
+
+// =======
+
+// Require toàn bộ file Models
+require_once './models/homeModel.php';
+
+>>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
 
 
 // Route
@@ -31,6 +46,7 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Trang chủ
     '/' => (new HomeController()) -> home(),
+<<<<<<< HEAD
     //Lien he
     'quan_ly_lh' => (new controllerLh()) -> get_lh_ctl(),
     'add_lh' => (new controllerLh()) -> t_add_lh(),
@@ -55,4 +71,15 @@ match ($act) {
     'update_db' => (new controllerTin()) -> update(),
     'delete' => (new controllerTin()) -> delete_sp(),
     'td_tt' => (new controllerTin()) -> thay_doi_tt(),
+=======
+
+    'rating' => (new RatingController())->manageRatings(),
+    'binh_luan' => (new CommnetCotroller())->manageComment(),
+    // 'delete-rating' => (new RatingController())->deleteRatings(),
+
+    'update-visibility' => (new RatingController())->updateVisibility(),
+    'update-Binhluan' => (new CommnetCotroller())->updateBinhluan(),
+
+
+>>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
 };

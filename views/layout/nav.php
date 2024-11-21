@@ -183,7 +183,25 @@
 
                                     <span class="pcoded-mcaret"></span>
                                 </a>
+<<<<<<< HEAD
+                            </li>
+                            <li class="">
+                                <a href="?act=quan_ly_banner">
+                                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Banner Management</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="?act=quan_ly_tin">
+                                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">News management</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+=======
                             </li> -->
+>>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
                         </ul>
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
                         <ul class="pcoded-item pcoded-left-item">

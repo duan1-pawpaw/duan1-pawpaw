@@ -1,15 +1,16 @@
 <?php 
+    class homeController{
+        public $homeModel;
 
-class HomeController
-{
-    public $homeModel;
+        public function __construct()
+        {
+            $this->homeModel = new homeModel();
+        }
 
-    public function __construct(){
-        $this->homeModel = new homeModel();
+        public function home() {
+            $listPets = $this->homeModel->getAllPet();
+            require_once './views/home/home.php';
+        }
     }
 
-    public function home(){
-        require_once './views/home/homePage.php';
-    }
-
-}
+?>

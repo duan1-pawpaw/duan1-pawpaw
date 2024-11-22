@@ -1,12 +1,22 @@
 <?php 
+session_start();
+
+// Require PHP mailer
+require_once './commons/phpmailer/Exception.php';
+require_once './commons/phpmailer/PHPMailer.php';
+require_once './commons/phpmailer/SMTP.php';
 
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
+
+require_once './controllers/auth/registerController.php';
+require_once './controllers/homeController.php';
+
 require_once './controllers/HomeController.php';
-<<<<<<< HEAD
+
 // Require file ControllersLienhe
 require_once './controllers/lhController.php';
 // Require file ControllersBaner
@@ -14,7 +24,9 @@ require_once './controllers/bannerController.php';
 // Require file ControllersTin
 require_once './controllers/tinController.php';
 
+
 // Require toàn bộ file Models
+require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
 // Require file ModelsLienhe
 require_once './models/lhModel.php';
@@ -22,7 +34,7 @@ require_once './models/lhModel.php';
 require_once './models/bannerModel.php';
 // Require file ModelsTin
 require_once './models/tinModel.php';
-=======
+
 require_once './controllers/AdminController.php';
 
 
@@ -30,23 +42,32 @@ require_once './controllers/AdminController.php';
 require_once './models/homeModel.php';
 require_once './models/AdminModel.php';
 
-// =======
 
 // Require toàn bộ file Models
 require_once './models/homeModel.php';
 
->>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
 
 
 // Route
 $act = $_GET['act'] ?? '/';
 
-// Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
-
+// mọi yêu cầu POST có thể được xử lý ngay lập tức khi handleRequest() được gọi.
+$controller =  new registerController();
+$controller->handleRequest();
 match ($act) {
+
+    
+    '/' => (new homeController()) -> home(),
+
+    'registers' => (new registerController()) -> registers(),
+    'comfirm_registers' => (new registerController()) -> comfirm_registers(),
+    'logins' => (new registerController()) -> logins(),
+    'logout' => (new registerController())->logout(),
+
+
     // Trang chủ
     '/' => (new HomeController()) -> home(),
-<<<<<<< HEAD
+
     //Lien he
     'quan_ly_lh' => (new controllerLh()) -> get_lh_ctl(),
     'add_lh' => (new controllerLh()) -> t_add_lh(),
@@ -71,7 +92,7 @@ match ($act) {
     'update_db' => (new controllerTin()) -> update(),
     'delete' => (new controllerTin()) -> delete_sp(),
     'td_tt' => (new controllerTin()) -> thay_doi_tt(),
-=======
+
 
     'rating' => (new RatingController())->manageRatings(),
     'binh_luan' => (new CommnetCotroller())->manageComment(),
@@ -81,5 +102,4 @@ match ($act) {
     'update-Binhluan' => (new CommnetCotroller())->updateBinhluan(),
 
 
->>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
 };

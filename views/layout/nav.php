@@ -1,136 +1,148 @@
-<div id="pcoded" class="pcoded">
-    <div class="pcoded-overlay-box"></div>
-    <div class="pcoded-container navbar-wrapper">
-        <nav class="navbar header-navbar pcoded-header">
-            <div class="navbar-wrapper">
+<div class="container-fluid">
+    <hr class="m-0">
+</div>
 
-                <div class="navbar-logo">
-                    <a class="mobile-menu" id="mobile-collapse" href="#!">
-                        <i class="ti-menu"></i>
+<div class="container">
+    <nav class="main-menu d-flex navbar navbar-expand-lg ">
+
+        <div class="d-flex d-lg-none align-items-end mt-3">
+            <ul class="d-flex justify-content-end list-unstyled m-0">
+                <li>
+                    <a href="account.html" class="mx-3">
+                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                     </a>
-                    <a class="mobile-search morphsearch-search" href="#">
-                        <i class="ti-search"></i>
+                </li>
+                <li>
+                    <a href="wishlist.html" class="mx-3">
+                        <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                     </a>
-                    <a href="index.html">
-                        <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                </li>
+
+                <li>
+                    <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                        aria-controls="offcanvasCart">
+                        <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                        <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                            03
+                        </span>
                     </a>
-                    <a class="mobile-options">
-                        <i class="ti-more"></i>
+                </li>
+
+                <li>
+                    <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                        aria-controls="offcanvasSearch">
+                        <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
+                        </span>
                     </a>
-                </div>
+                </li>
+            </ul>
 
-                <div class="navbar-container container-fluid">
-                    <ul class="nav-left">
-                        <li>
-                            <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                        </li>
+        </div>
 
-                        <li>
-                            <a href="#!" onclick="javascript:toggleFullScreen()">
-                                <i class="ti-fullscreen"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-right">
-                        <li class="header-notification">
-                            <a href="#!">
-                                <i class="ti-bell"></i>
-                                <span class="badge bg-c-pink"></span>
-                            </a>
-                            <ul class="show-notification">
-                                <li>
-                                    <h6>Notifications</h6>
-                                    <label class="label label-danger">New</label>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">John Doe</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">Joseph William</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">Sara Soudein</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                        <li class="user-profile header-notification">
-                            <a href="#!">
-                                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
-                                <i class="ti-angle-down"></i>
-                            </a>
-                            <ul class="show-notification profile-notification">
-                                <li>
-                                    <a href="#!">
-                                        <i class="ti-settings"></i> Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-user"></i> Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-email"></i> My Messages
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-lock"></i> Lock Screen
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="auth-normal-sign-in.html">
-                                        <i class="ti-layout-sidebar-left"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
-                </div>
+            <div class="offcanvas-header justify-content-center">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-        </nav>
+
+            <div class="offcanvas-body justify-content-between">
+                <select class="filter-categories border-0 mb-0 me-5">
+                    <option>Shop by Category</option>
+                    <option>Clothes</option>
+                    <option>Food</option>
+                    <option>Food</option>
+                    <option>Toy</option>
+                </select>
+
+                <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
+                            aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu" aria-labelledby="pages">
+                            <li><a href="about.html" class="dropdown-item">About Us<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="shop.html" class="dropdown-item">Shop<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="single-product.html" class="dropdown-item">Single Product<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="cart.html" class="dropdown-item">Cart<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="wishlist.html" class="dropdown-item">Wishlist<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="checkout.html" class="dropdown-item">Checkout<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="blog.html" class="dropdown-item">Blog<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="single-post.html" class="dropdown-item">Single Post<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="contact.html" class="dropdown-item">Contact<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="faqs.html" class="dropdown-item">FAQs<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="account.html" class="dropdown-item">Account<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="error.html" class="dropdown-item">Error 404<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            <li><a href="styles.html" class="dropdown-item">Styles<span
+                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html" class="nav-link">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Others</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://templatesjungle.gumroad.com/l/waggy-pet-shop-ecommerce-html-website-template" class="nav-link fw-bold text-dark" target="_blank">GET PRO</a>
+                    </li>
+                </ul>
+
+                <div class="d-none d-lg-flex align-items-end">
+                    <ul class="d-flex justify-content-end list-unstyled m-0">
+                        <li>
+                            <a href="account.html" class="mx-3">
+                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="wishlist.html" class="mx-3">
+                                <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                aria-controls="offcanvasCart">
+                                <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                                <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                    03
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
 
 
-        <div class="pcoded-main-container">
-            <div class="pcoded-wrapper">
-                <nav class="pcoded-navbar">
-                    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                    <div class="pcoded-inner-navbar main-menu">
-                        <div class="">
-                            <div class="main-menu-header">
-                                <img class="img-40 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
-                                <div class="user-details">
-                                    <span>John Doe</span>
-                                    <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
-                                </div>
-                            </div>
-
-                            <div class="main-menu-content">
+            </div>
+          <div class="main-menu-content">
                                 <ul>
                                     <li class="more-details">
                                         <a href="#"><i class="ti-user"></i>View Profile</a>
@@ -183,7 +195,7 @@
 
                                     <span class="pcoded-mcaret"></span>
                                 </a>
-<<<<<<< HEAD
+
                             </li>
                             <li class="">
                                 <a href="?act=quan_ly_banner">
@@ -199,9 +211,9 @@
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
-=======
+
                             </li> -->
->>>>>>> d9380070fded4bca92b1125369b0e8fccc09aa07
+
                         </ul>
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Forms &amp; Tables</div>
                         <ul class="pcoded-item pcoded-left-item">
@@ -220,100 +232,19 @@
                                 </a>
                             </li>
 
-                        </ul>
 
-                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart &amp; Maps</div>
-                        <ul class="pcoded-item pcoded-left-item">
-                            <li>
-                                <a href="chart.html">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Chart</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="map-google.html">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Maps</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="pcoded-hasmenu">
-                                <a href="javascript:void(0)">
-                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Pages</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class=" ">
-                                        <a href="auth-normal-sign-in.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="auth-sign-up.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Register</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="sample-page.html">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+        </div>
 
-                        </ul>
+    </nav>
 
-                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
-                        <ul class="pcoded-item pcoded-left-item">
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)">
-                                    <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Menu Levels</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Menu Level 2.1</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="pcoded-hasmenu ">
-                                        <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.main">Menu Level 2.2</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                        <ul class="pcoded-submenu">
-                                            <li class="">
-                                                <a href="javascript:void(0)">
-                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                    <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Menu Level 3.1</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="javascript:void(0)">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-23">Menu Level 2.3</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
+
+
+</div>
+</header>
 
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                
+

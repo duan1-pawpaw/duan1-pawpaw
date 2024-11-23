@@ -163,20 +163,20 @@
                             </li>
                             <li>
                                 <a href="<?= BASE_URL_ADMIN . '?act=list_order' ?>">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-micon"><i class="fa-regular fa-folder"></i></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Đơn Hàng</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
-                            <li class="pcoded-hasmenu pcoded-trigger">
+                            <li class="pcoded-hasmenu ">
                                 <a href="#">
-                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-micon"><i class="fa-regular fa-user"></i></span>
                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Quản Lý Tài Khoản</span>
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class=" ">
                                         <a href="<?= BASE_URL_ADMIN . '?act=users-khachHang' ?>">
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Tài Khoản Khách Hàng</span>
+                                            <span><i class="fa-solid fa-user-gear"></i>Tài Khoản Khách Hàng</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
@@ -188,14 +188,43 @@
                                     </li> -->
                                     <li class=" ">
                                         <a href="<?= BASE_URL_ADMIN . '?act=users-admin' ?>">
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Tài Khoản Cá Nhân</span>
+                                            <span><i class="fa-solid fa-user-pen"></i>Tài Khoản Cá Nhân</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                            <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=rating' ?>">
+                                <span class="pcoded-micon"><i class="fa-solid fa-star-half-stroke"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Đánh Giá</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
                         </li>
+                        <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=binh_luan' ?>">
+                                <span class="pcoded-micon"><i class="fa-regular fa-comments"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Bình Luận</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_tin' ?>">
+                                <span class="pcoded-micon"><i class="fa-solid fa-newspaper"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Tin Tức</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_banner' ?>">
+                                <span class="pcoded-micon"><i class="fa-regular fa-images"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Banner</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        </li>
+                        </ul>
+                        
                         <div style="width: 100%; height: 3px; background-color: white; border-radius: 50%;" class="mt-5">
                             <hr>
                         </div>

@@ -11,6 +11,10 @@ require_once './controllers/donHangController.php';
 require_once './controllers/danhMucController.php'; // Danh mục
 require_once './controllers/sanPhamController.php';
 require_once './controllers/taiKhoanController.php';
+require_once './controllers/AdminController.php';
+require_once './controllers/bannerController.php';
+require_once './controllers/tinController.php';
+require_once './controllers/lhController.php';
 
 // Require toàn bộ file Models
 require_once './models/homeModel.php';
@@ -20,6 +24,10 @@ require_once './models/danhMucModel.php';
 require_once './models/sanPhamModel.php';
 require_once './models/binhLuanModel.php';
 require_once './models/taiKhoanModel.php';
+require_once './models/AdminModel.php';
+require_once './models/bannerModel.php';
+require_once './models/tinModel.php';
+require_once './models/lhModel.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -66,4 +74,36 @@ match ($act) {
     'users-admin' => (new UserController()) -> profileShow(),
     'update-admin' => (new UserController()) -> profileShow(),
     'update-password-admin' => (new UserController()) -> changePasswordAdmin(),
+    //Lien he
+    'quan_ly_lh' => (new controllerLh()) -> get_lh_ctl(),
+    'add_lh' => (new controllerLh()) -> t_add_lh(),
+    'create_lh' => (new controllerLh()) -> add_lh_ctl(),
+    'update_lh' => (new controllerLh()) -> t_update_lh(),
+    'update_db_lh' => (new controllerLh()) -> update_lh_ctl(),
+    'delete_lh' => (new controllerLh()) -> delete_lh_ctl(),
+    'td_tt_lh' => (new controllerLh()) -> td_tt_lh_ctl(),
+    //Banner
+    'quan_ly_banner' => (new controllerBanner()) -> get_banner_ctl(),
+    'add_banner' => (new controllerBanner()) -> t_add_banner(),
+    'create_banner' => (new controllerBanner()) -> add_banner_ctl(),
+    'update_banner' => (new controllerBanner()) -> t_update_banner(),
+    'update_db_banner' => (new controllerBanner()) -> update_banner_ctl(),
+    'delete_banner' => (new controllerBanner()) -> delete_banner_ctl(),
+    'td_tt_banner' => (new controllerBanner()) -> td_tt_banner_ctl(),
+    //tin
+    'quan_ly_tin' => (new controllerTin()) -> get_tin_tuc(),
+    'add_tin' => (new controllerTin()) -> add_tin(),
+    'create' => (new controllerTin()) -> add_tin_tuc(),
+    'update' => (new controllerTin()) -> t_update(),
+    'update_db' => (new controllerTin()) -> update(),
+    'delete' => (new controllerTin()) -> delete_sp(),
+    'td_tt' => (new controllerTin()) -> thay_doi_tt(),
+
+
+    'rating' => (new RatingController())->manageRatings(),
+    'binh_luan' => (new CommnetCotroller())->manageComment(),
+    // 'delete-rating' => (new RatingController())->deleteRatings(),
+
+    'update-visibility' => (new RatingController())->updateVisibility(),
+    'update-Binhluan' => (new CommnetCotroller())->updateBinhluan(),
 };

@@ -76,10 +76,10 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="hinh_anh">Hình ảnh</label>
-                                        <input type="file" class="form-control" id="hinh_anh" name="hinh_anh">
+                                        <input type="file" class="form-control" id="input" name="hinh_anh">
                                         <?php if (!empty($product['hinh_anh'])) { ?>
                                             <div class="mt-2">
-                                                <img src="<?= BASE_URL . $product['hinh_anh'] ?>" alt="Hình ảnh pet" width="100">
+                                                <img src="<?= BASE_URL . $product['hinh_anh'] ?>" id="img" alt="Hình ảnh pet" width="100">
                                             </div>
                                         <?php } ?>
                                         <?php if (isset($_SESSION['error']['hinh_anh'])) { ?>

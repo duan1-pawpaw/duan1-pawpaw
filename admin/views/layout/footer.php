@@ -15,5 +15,12 @@
     <script src="../assets/js/demo-12.js"></script>
     <script src="../assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 </body>
+<script>
+        const img = document.querySelector('#img');
+    const input = document.querySelector('#input');
 
+    input.addEventListener("change", () => {
+        img.src = URL.createObjectURL(input.files[0])
+    })
+</script>
 </html>

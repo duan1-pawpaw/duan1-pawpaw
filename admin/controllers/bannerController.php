@@ -39,7 +39,7 @@ class controllerBanner
         $id = $_GET['id'];
         if (isset($_POST['update_banner'])) {
             $tieu_de = $_POST['tieu_de'];
-            $url_hinh=$_FILES['url_hinh']['name'];
+            $url_hinh=$_FILES['url_hinh'];
             $file_thumb = uploadFile($url_hinh, './uploads/imgTinTuc/');
             $su = $this->controllerBanner->update_banner($id, $tieu_de, $file_thumb);
             if ($su) {

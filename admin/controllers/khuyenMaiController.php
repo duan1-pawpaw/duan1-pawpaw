@@ -2,10 +2,12 @@
 class khuyenMaiController
 {
     public $khuyenMaiModel;
+    public $productModel;
 
     public function __construct()
     {
         $this->khuyenMaiModel = new khuyenMaiModel();
+        $this->productModel = new Product();
     }
 
     // Danh sách khuyến mãi
@@ -21,6 +23,7 @@ class khuyenMaiController
     {
 
         $listStatusVouchers = $this->khuyenMaiModel->getAllStatusVoucher();
+        $listProducts = $this->productModel->getAllProducts();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id_san_pham = $_POST['id_san_pham'] ?? '';
             $ten_khuyen_mai = $_POST['ten_khuyen_mai'] ?? '';
@@ -82,7 +85,7 @@ class khuyenMaiController
         $voucher_id = $_GET['voucher_id'];
         $detailVoucher = $this->khuyenMaiModel->getDetailVoucher($voucher_id);
         $listStatusVouchers = $this->khuyenMaiModel->getAllStatusVoucher();
-
+        $listProducts = $this->productModel->getAllProducts();
         require_once 'views/khuyenMai/updateKhuyenMai.php';
     }
 

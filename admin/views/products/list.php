@@ -43,11 +43,12 @@
                         }
                         ?>
                         <!-- Thêm danh mục -->
-                        <div class="card-header">
+                        <div class="card-header ">
                             <a href="<?= BASE_URL_ADMIN . '?act=add-product' ?>" class="btn btn-success">Thêm sản phẩm</a>
+                            <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm sản phẩm..." style="width: 300px; margin-left: 75%;">
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped display">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
@@ -146,3 +147,4 @@
 <!-- Footer  -->
 <?php include './views/layout/footer.php'; ?>
 <!-- End footer  -->
+

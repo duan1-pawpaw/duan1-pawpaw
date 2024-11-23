@@ -46,8 +46,9 @@ class ProductController
             $hinh_anh = $_FILES['hinh_anh'] ?? '';
             // var_dump($hinh_anh);die();
             // Lưu hình ảnh vào 
-            $file_thumb = uploadFile($hinh_anh, './uploads/imgSanPham');
+            $file_thumb = uploadFile($hinh_anh, './uploads/imgSanPham/');
             // Mảng hình ảnh
+            // var_dump($file_thumb);die;
             $img_array = $_FILES['img_array'] ?? null;
 
             // Tạo 1 mảng trống để chứa dữ liệu
@@ -63,9 +64,6 @@ class ProductController
             }
             if (empty($do_tuoi)) {
                 $errors['do_tuoi'] = 'Độ tuổi pet không được để trống';
-            }
-            if (empty($mau_sac)) {
-                $errors['mau_sac'] = 'Màu sắc pet không được để trống';
             }
             if (empty($gioi_tinh)) {
                 $errors['gioi_tinh'] = 'Giới tính pet không được để trống';
@@ -121,7 +119,7 @@ class ProductController
                             'error' => $img_array['error'][$key],
                             'size' => $img_array['size'][$key],
                         ];
-                        $link_hinh_anh = uploadFile($file, './uploads/imgSanPham');
+                        $link_hinh_anh = uploadFile($file, './uploads/imgSanPham/');
                         $this->productModel->insertAlbumProduct($san_pham_id, $link_hinh_anh);
                     }
                 }

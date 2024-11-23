@@ -87,11 +87,11 @@
                                                 <label>Sản Phẩm Khuyến Mãi</label>
                                                 <select name="id_san_pham" class="form-control" id="">
                                                     <?php
-                                                    //  foreach ($listCinemas as $listCinema) {
+                                                    foreach ($listProducts as $listProduct) {
                                                     ?>
-                                                    <option value="<?= $detailVoucher['id_san_pham'] ?>"><?= $detailVoucher['ten_san_pham'] ?></option>
+                                                        <option <?php $listProduct['id'] == $detailVoucher['id_san_pham'] ? 'selected' : '' ?> value="<?= $listProduct['id'] ?>"><?= $listProduct['ten_san_pham'] ?></option>
                                                     <?php
-                                                    // }
+                                                    }
                                                     ?>
                                                 </select>
                                                 <?php if (isset($errors['id_san_pham'])) {
@@ -177,7 +177,7 @@
                                 // nếu voucher đã chưa hoạt động thì admin chỉ có quyền sửa tất cả các dữ liệu của voucher 
                                 else { ?>
                                     <form action="<?= BASE_URL_ADMIN . '?act=update_Voucher_case_2&voucher_id=' . $detailVoucher['id'] ?>" method="POST">
-                                        <select  name="trang_thai_khuyen_mai" id="">
+                                        <select name="trang_thai_khuyen_mai" id="">
                                             <?php foreach ($listStatusVouchers as $key => $listStatusVoucher) { ?>
                                                 <option <?= $listStatusVoucher['id'] == $detailVoucher['trang_thai_khuyen_mai_id'] ? 'selected' : '' ?> value="<?= $listStatusVoucher['id'] ?>"><?= $listStatusVoucher['ten_trang_thai_khuyen_mai'] ?> </option>
                                             <?php } ?>

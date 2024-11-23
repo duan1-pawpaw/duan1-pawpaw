@@ -45,6 +45,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a href="<?= BASE_URL_ADMIN . '?act=add-category' ?>" class="btn btn-success">Thêm danh mục</a>
+                                <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm danh mục..." style="width: 300px; margin-left: 75%;">
                             </div>
                             <?php
                             if (isset($_SESSION['success'])) {

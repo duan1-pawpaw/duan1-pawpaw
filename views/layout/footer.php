@@ -151,7 +151,7 @@
 </footer>
 </body>
 <script>
-    var swiper = new Swiper('.tf-sw-slideshow', {
+    var swipers = new Swiper('.tf-sw-slideshow', {
     slidesPerView: 1,
     spaceBetween: 0,
     loop: true,
@@ -164,6 +164,32 @@
         clickable: true,
     },
     speed: 1000,
+});
+// Lấy element của menu
+const header = document.getElementById('header');
+
+// Khi người dùng cuộn trang
+window.addEventListener('scroll', () => {
+    // Kiểm tra nếu cuộn trang xuống dưới 50px
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');  // Thêm lớp 'scrolled'
+    } else {
+        header.classList.remove('scrolled');  // Xóa lớp 'scrolled'
+    }
+});
+const swiper = new Swiper('.tf-sw-collection', {
+    slidesPerView: 4,  // Hiển thị 3 slide mặc định
+    spaceBetween: 30,   // Khoảng cách giữa các slide
+    loop: true,         // Lặp lại các slide
+    autoplay: true,     // Tự động phát
+    pagination: {       // Thêm phân trang nếu cần
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {       // Thêm điều hướng nếu cần
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    }
 });
 </script>
 </html>

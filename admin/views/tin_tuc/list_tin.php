@@ -40,9 +40,10 @@
                             <div class="card-body">
                                 <div class="card-header">
                                     <a href="<?= BASE_URL_ADMIN . '?act=add_tin' ?>"><button class="btn btn-success">Thêm Tin Tức</button></a>
+                                    <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm tin tức..." style="width: 300px; margin-left: 75%;">
                                 </div>
                                 <table class="table table-bordered table-striped">
-                                    <thead >
+                                    <thead>
                                         <tr>
                                             <th>STT</th>
                                             <th>Tiêu đề</th>

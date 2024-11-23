@@ -60,10 +60,10 @@ function deleteFile($file){
 // Upload - Update album ảnh
 function uploadFileAlbum($file, $folderUpload, $key) {
 	// Kiểm tra kích thước tệp (giới hạn 2MB)
-    $maxSize = 2 * 1024 * 1024; // 2MB
-    if ($file['size'][$key] > $maxSize) {
-        return null; // Kích thước tệp vượt quá giới hạn
-    }
+    // $maxSize = 2 * 1024 * 1024; // 2MB
+    // if ($file['size'][$key] > $maxSize) {
+    //     return null; // Kích thước tệp vượt quá giới hạn
+    // }
 
     $pathStorage = $folderUpload . time() . $file['name'][$key];
 
@@ -94,7 +94,7 @@ function uploadFile($file, $folderUpload)
     }
 
     // Kiểm tra loại tệp
-    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     if (!in_array($file['type'], $allowedMimeTypes)) {
         return null; // Loại tệp không được phép
 	}

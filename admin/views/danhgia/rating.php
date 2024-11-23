@@ -5,6 +5,7 @@
 <?php require_once './views/layout/nav.php' ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,9 @@
                     <h2>Quản lý Đánh giá</h2>
                 </div>
                 <div class="card-block ">
+                    <div class="card-header">
+                        <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm đánh giá..." style="width: 300px; margin-left: 75%;">
+                    </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -53,7 +57,7 @@
                                                     } else {
                                                         echo '<span style="color: gray;"><i class="fas fa-star"></i></span>';
                                                     }
-                                                } ?>                                                
+                                                } ?>
                                             </td>
                                             <td><?= formartDate($rating['thoi_gian_danh_gia']) ?></td>
                                             <td>

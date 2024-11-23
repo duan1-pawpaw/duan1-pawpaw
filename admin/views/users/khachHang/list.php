@@ -53,7 +53,8 @@
                             }
                             ?>
                             <div class="card-header">
-                                <h4>Danh sách tài khoản người dùng</h4>`
+                                <h4>Danh sách tài khoản người dùng</h4>
+                                <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm Người Dùng..." style="width: 300px; margin-left: 75%;">
                             </div>
 
                             <div class="card-body">

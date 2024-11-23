@@ -11,13 +11,14 @@ require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
-
 require_once './controllers/auth/registerController.php';
 require_once './controllers/homeController.php';
+require_once './controllers/bannerController.php';
 
 // Require toàn bộ file Models
 require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
+require_once './models/bannerModel.php';
 
 
 
@@ -31,6 +32,7 @@ match ($act) {
 
     
     '/' => (new homeController()) -> home(),
+    'banners' => (new bannerController())->banners(),
 
     'registers' => (new registerController()) -> registers(),
     'comfirm_registers' => (new registerController()) -> comfirm_registers(),

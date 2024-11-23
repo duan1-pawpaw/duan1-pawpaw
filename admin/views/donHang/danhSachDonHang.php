@@ -38,6 +38,9 @@
 
                         <div class="card">
                             <!-- /.card-header -->
+                             <div class="card-header">
+                             <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm đơn hàng..." style="width: 300px; margin-left: 75%;">
+                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>

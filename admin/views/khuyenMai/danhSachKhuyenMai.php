@@ -39,6 +39,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a href="<?= BASE_URL_ADMIN . '?act=insert_vouchers' ?>"><button class="btn btn-success">Thêm Mã Khuyễn Mãi</button></a>
+                                <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm mã khuyễn mãi..." style="width: 300px; margin-left: 75%;">
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -65,8 +66,8 @@
                                                 <td><?= $row['ma_khuyen_mai'] ?></td>
                                                 <td><?= $row['ten_san_pham'] ?></td>
                                                 <td><?= $row['gia_tri'] ?></td>
-                                                <td><?= $row['ngay_bat_dau'] ?></td>
-                                                <td><?= $row['ngay_ket_thuc'] ?></td>
+                                                <td><?= formartDate($row['ngay_bat_dau']) ?></td>
+                                                <td><?= formartDate($row['ngay_ket_thuc']) ?></td>
                                                 <td><?= $row['ten_trang_thai_khuyen_mai'] ?></td>
                                                 <td>
                                                     <a href="<?= BASE_URL_ADMIN . '?act=update_Vouchers&voucher_id=' . $row['id'] ?>"><button class="btn btn-warning">Sửa</button></a>

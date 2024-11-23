@@ -53,11 +53,11 @@
                                         <select name="id_san_pham" class="form-control" id="">
                                             <option selected disabled>Chọn Sản Phẩm Khuyến Mãi</option>
                                             <?php
-                                                //  foreach ($listCinemas as $listCinema) {
+                                               foreach($listProducts as $listProduct){
                                             ?>
-                                                <option value="1">Mèo</option>
+                                                <option value="<?= $listProduct['id'] ?>"><?= $listProduct['ten_san_pham'] ?></option>
                                             <?php
-                                                // }
+                                                }
                                             ?>
                                         </select>
                                         <?php if (isset($errors['id_san_pham'])) {

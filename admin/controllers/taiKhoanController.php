@@ -25,7 +25,7 @@ class UserController
         $status = $this->userModel->resetPassword($id, $mat_khau);
         // var_dump($status);die;
 
-        if ($status && $user['chuc_vu_id'] == 1) {
+        if ($status && $user['chuc_vu_id'] == 2) {
             header("Location: " . BASE_URL_ADMIN . '?act=users-khachHang');
             exit();
         } else {

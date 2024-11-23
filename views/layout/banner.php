@@ -1,69 +1,48 @@
-<section id="banner" style="background: #F9F3EC;">
-    <div class="container">
-        <div class="swiper main-swiper">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide py-5">
-                    <div class="row banner-content align-items-center">
-                        <div class="img-wrapper col-md-5">
-                            <img src="images/banner-img.png" class="img-fluid">
+<div class="tf-slideshow slider-effect-fade position-relative"> 
+            <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="1" data-tablet="1" data-mobile="1" data-centered="false" data-space="0" data-loop="true" data-auto-play="false" data-delay="0" data-speed="1000">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="wrap-slider">
+                            <img src="./assets/assets_font/images/slider/fashion-slideshow-01.jpg" alt="fashion-slideshow">
+                            <div class="box-content">
+                                <div class="container">
+                                    <h1 class="fade-item fade-item-1">Glamorous<br>Glam</h1>
+                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
+                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="content-wrapper col-md-7 p-5 mb-5">
-                            <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                                    pets</span>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                shop now
-                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                    <use xlink:href="#arrow-right"></use>
-                                </svg></a>
-                        </div>
-
                     </div>
-                </div>
-                <div class="swiper-slide py-5">
-                    <div class="row banner-content align-items-center">
-                        <div class="img-wrapper col-md-5">
-                            <img src="images//banner-img3.png" class="img-fluid">
+                    <div class="swiper-slide">
+                        <div class="wrap-slider">
+                            <img src="./assets/assets_font/images/slider/fashion-slideshow-02.jpg" alt="fashion-slideshow">
+                            <div class="box-content">
+                                <div class="container">
+                                    <h1 class="fade-item fade-item-1">Simple <br class="md-hidden">Style</h1>
+                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
+                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="content-wrapper col-md-7 p-5 mb-5">
-                            <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                                    pets</span>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                shop now
-                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                    <use xlink:href="#arrow-right"></use>
-                                </svg></a>
-                        </div>
-
                     </div>
-                </div>
-                <div class="swiper-slide py-5">
-                    <div class="row banner-content align-items-center">
-                        <div class="img-wrapper col-md-5">
-                            <img src="images/banner-img4.png" class="img-fluid">
+                    <div class="swiper-slide">
+                        <div class="wrap-slider">
+                            <img src="./assets/assets_font/images/slider/fashion-slideshow-03.jpg" alt="fashion-slideshow">
+                            <div class="box-content">
+                                <div class="container">
+                                    <h1 class="fade-item fade-item-1">Glamorous<br>Glam</h1>
+                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
+                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="content-wrapper col-md-7 p-5 mb-5">
-                            <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                                    pets</span>
-                            </h2>
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                                shop now
-                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                                    <use xlink:href="#arrow-right"></use>
-                                </svg></a>
-                        </div>
-
                     </div>
                 </div>
             </div>
-
-            <div class="swiper-pagination mb-5"></div>
-
+            <div class="wrap-pagination">
+                <div class="container">
+                    <div class="sw-dots sw-pagination-slider justify-content-center"></div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>

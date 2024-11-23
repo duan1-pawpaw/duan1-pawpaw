@@ -46,7 +46,7 @@ class ProductController
             $hinh_anh = $_FILES['hinh_anh'] ?? '';
             // var_dump($hinh_anh);die();
             // Lưu hình ảnh vào 
-            $file_thumb = uploadFile($hinh_anh, './uploads/');
+            $file_thumb = uploadFile($hinh_anh, './uploads/imgSanPham');
             // Mảng hình ảnh
             $img_array = $_FILES['img_array'] ?? null;
 
@@ -121,7 +121,7 @@ class ProductController
                             'error' => $img_array['error'][$key],
                             'size' => $img_array['size'][$key],
                         ];
-                        $link_hinh_anh = uploadFile($file, './uploads/');
+                        $link_hinh_anh = uploadFile($file, './uploads/imgSanPham');
                         $this->productModel->insertAlbumProduct($san_pham_id, $link_hinh_anh);
                     }
                 }
@@ -241,7 +241,7 @@ class ProductController
                 // Logic sửa ảnh
                 if (isset($hinh_anh) && $hinh_anh['error'] === UPLOAD_ERR_OK) {
                     // upload ảnh mới lên
-                    $new_file = uploadFile($hinh_anh, 'uploads/images/');
+                    $new_file = uploadFile($hinh_anh, './uploads/imgSanPham/');
                     if ($new_file && !empty($old_file)) {
                         // Nếu có ảnh cũ thì xóa đi
                         deleteFile($old_file); // Xóa file cũ chỉ khi upload thành công
@@ -274,7 +274,7 @@ class ProductController
                     // Upload ảnh mới hoặc thay thế ảnh cũ
                     foreach ($img_array['name'] as $key => $value) {
                         if ($img_array['error'][$key] == UPLOAD_ERR_OK) {
-                            $new_file = uploadFileAlbum($img_array, 'uploads/images/', $key);
+                            $new_file = uploadFileAlbum($img_array, './uploads/imgSanPham/', $key);
                             if ($new_file) {
                                 $upload_file[] = [
                                     'id' => $current_img_ids[$key] ?? null,

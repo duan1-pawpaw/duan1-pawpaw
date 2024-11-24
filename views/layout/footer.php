@@ -191,5 +191,25 @@ const swiper = new Swiper('.tf-sw-collection', {
         prevEl: '.swiper-button-prev',
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("header");
+
+    // Lấy đường dẫn gốc từ PHP
+    const basePath = "<?= rtrim(parse_url(BASE_URL, PHP_URL_PATH), '/'); ?>";
+    const currentPath = window.location.pathname;
+    const currentSearch = window.location.search;
+
+    console.log("Base Path:", basePath);
+    console.log("Current Path:", currentPath);
+
+    // Nếu là trang chủ
+    if ((currentPath === basePath || currentPath === `${basePath}/`) && currentSearch === "") {
+        header.classList.add("home"); // Thêm lớp cho trang chủ
+    } else {
+        header.classList.remove("home"); // Xóa lớp nếu không phải trang chủ
+    }
+});
+
 </script>
 </html>

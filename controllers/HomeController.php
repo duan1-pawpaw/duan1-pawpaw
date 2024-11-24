@@ -13,6 +13,8 @@
         {
             $listBanners = $this->bannerModel->getAllBanner();
             $listPets = $this->homeModel->getAllPet();
+            $top5Pets = $this->homeModel->top5Pet();
+            // var_dump($top5Pets);die;
             require_once './views/home/home.php';
         }
     }

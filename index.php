@@ -14,11 +14,13 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './controllers/auth/registerController.php';
 require_once './controllers/homeController.php';
 require_once './controllers/bannerController.php';
+require_once './controllers/danhMucSanPhamController.php';
 
 // Require toàn bộ file Models
 require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
 require_once './models/bannerModel.php';
+require_once './models/danhMucSanPhamModel.php';
 
 
 
@@ -39,5 +41,7 @@ match ($act) {
     'logins' => (new registerController()) -> logins(),
     'logout' => (new registerController())->logout(),
 
+    'category' => (new danhMucSanPhamController()) -> productByCategorys(),
+    
 
 };

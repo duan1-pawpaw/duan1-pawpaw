@@ -25,22 +25,31 @@
 
 </head>
 <style>
-    .header-default {
-        background-color: transparent;
-        top: 0;
-        left: 0;
-        width: 100%;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        z-index: 1000;
-    }
+.header-default {
+    background-color: white; /* Mặc định là trắng */
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+.header-default.scrolled {
+    background-color: white; /* Khi cuộn thì vẫn trắng */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-default.home {
+    background-color: transparent; /* Chỉ trong suốt trên trang chủ */
+}
+.header-default.home.scrolled {
+    background-color: white; /* Khi cuộn thì vẫn trắng */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 
-    .header-default.scrolled {
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-    
+
 </style>
 
 <body class="preload-wrapper popup-loader">

@@ -9,7 +9,7 @@
 
         public function banners(){
             $listBanners = $this->bannerModel->getAllBanner();
-            var_dump($listBanners);die;
+            // var_dump($listBanners);die;
             require_once './views/layout/banner.php';
         }
 

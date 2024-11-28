@@ -53,7 +53,7 @@
                   <form action="?act=update_db&id=<?= $products["id_tin"] ?>" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Tiêu đề</label>
-                      <input type="text" class="form-control" id="tieu_de" name="tieu_de" value="<?= $products["tieu_de"] ?>">
+                      <input type="text" class="form-control" id="title" name="tieu_de" value="<?= $products["tieu_de"] ?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">File hình ảnh</label>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Nội Dung</label>
-                      <textarea class="form-control" id="mo_ta" name="mo_ta" rows="3" ><?= $products["mo_ta"] ?></textarea>
+                      <textarea class="form-control" id="content" name="mo_ta" rows="3" ><?= $products["mo_ta"] ?></textarea>
                     </div>
                     <button type="submit" name="update" class="btn btn-success">Cập nhật</button>
                   </form>

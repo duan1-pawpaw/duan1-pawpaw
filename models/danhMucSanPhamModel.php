@@ -17,5 +17,16 @@
                 echo "Lỗi: " . $th->getMessage();
             }
         }
+
+        public function getAllCategory($id) {
+            try {
+                $sql = 'SELECT * FROM danh_mucs WHERE id = :id';
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute([':id' => $id]);
+                return $stmt->fetch();
+            }  catch (PDOException $th) {
+                echo "Lỗi: " . $th->getMessage();
+            }
+        }
     }
 ?>

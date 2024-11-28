@@ -45,7 +45,7 @@
                   <form action="?act=create" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Tiêu đề</label>
-                      <input type="text" class="form-control" id="tieu_de" name="tieu_de" placeholder="Tiêu đề tin tức">
+                      <input type="text" class="form-control" id="title" name="tieu_de" placeholder="Tiêu đề tin tức">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">URL hình ảnh</label>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Mô tả</label>
-                      <textarea class="form-control" id="mo_ta" name="mo_ta" rows="3"></textarea>
+                      <textarea class="form-control" id="content"  rows="10" cols="50" name="mo_ta" rows="3"></textarea>
                     </div>
                     <button type="submit" name="add" class="btn btn-success">Thêm</button>
                   </form>

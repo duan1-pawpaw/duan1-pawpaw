@@ -9,6 +9,7 @@ class controllerTin
     public function get_tin_tuc()
     {
         $products = $this->controllerCou->get_tin();
+        // var_dump($products);die;
         require_once './views/tin_tuc/list_tin.php';
     }
     public function add_tin()

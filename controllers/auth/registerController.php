@@ -103,6 +103,7 @@ class registerController
                         'chuc_vu_id' => $account['chuc_vu_id'],
                         'trang_thai' => $account['trang_thai'],
                     ];
+                    // var_dump($_SESSION['user']);die;
                     if ($_SESSION['user']['chuc_vu_id'] == 3 && $_SESSION['user']['trang_thai'] == 1) {
                         header('location: ' . BASE_URL);
                         exit();

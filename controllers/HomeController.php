@@ -11,10 +11,17 @@
 
         public function home() 
         {
+            // lấy tất cả banner
             $listBanners = $this->bannerModel->getAllBanner();
-            $listPets = $this->homeModel->getAllPet();
+            // lấy  top 5 pet có lượt xem cao nhất
             $top5Pets = $this->homeModel->top5Pet();
-            // var_dump($top5Pets);die;
+            // lấy danh sách thú cưng
+            $listProducts = $this->homeModel->getAllProduct();
+            // lấy  top 4 đánh giá có sao cao nhất
+            $top4DanhGias = $this->homeModel->top4DanhGia();
+            // lấy danh sách tin tức
+            $listNews = $this->homeModel->getAllTinTuc();
+            // var_dump($top4DanhGias);die;
             require_once './views/home/home.php';
         }
     }

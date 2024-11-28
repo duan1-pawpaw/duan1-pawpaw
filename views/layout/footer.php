@@ -149,67 +149,94 @@
         </div>
     </div>
 </footer>
+<script>
+    // Lấy element của menu
+    const header = document.getElementById('header');
+
+    // Khi người dùng cuộn trang
+    window.addEventListener('scroll', () => {
+        // Kiểm tra nếu cuộn trang xuống dưới 50px
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled'); // Thêm lớp 'scrolled'
+        } else {
+            header.classList.remove('scrolled'); // Xóa lớp 'scrolled'
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        const header = document.getElementById("header");
+
+        // Lấy đường dẫn gốc từ PHP
+        const basePath = "<?= rtrim(parse_url(BASE_URL, PHP_URL_PATH), '/'); ?>";
+        const currentPath = window.location.pathname;
+        const currentSearch = window.location.search;
+
+        console.log("Base Path:", basePath);
+        console.log("Current Path:", currentPath);
+
+        // Nếu là trang chủ
+        if ((currentPath === basePath || currentPath === `${basePath}/`) && currentSearch === "") {
+            header.classList.add("home"); // Thêm lớp cho trang chủ
+        } else {
+            header.classList.remove("home"); // Xóa lớp nếu không phải trang chủ
+        }
+    });
+</script>
+<script type="text/javascript" src="./assets/assets_font/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/jquery.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/carousel.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/lazysize.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/count-down.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/wow.min.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/multiple-modal.js"></script>
+<script type="text/javascript" src="./assets/assets_font/js/main.js"></script>
 </body>
 <script>
-    var swipers = new Swiper('.tf-sw-slideshow', {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: '.sw-pagination-slider',
-        clickable: true,
-    },
-    speed: 1000,
-});
-// Lấy element của menu
-const header = document.getElementById('header');
+    $(document).ready(function() {
+        //Lấy tỉnh thành
+        $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
+            if (data_tinh.error == 0) {
+                $.each(data_tinh.data, function(key_tinh, val_tinh) {
+                    $("#tinh").append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
+                });
+                $("#tinh").change(function(e) {
+                    var idtinh = $(this).val();
+                    $("#ten_tinh").val($("#tinh option:selected").text()); // Đặt tên tỉnh vào input ẩn
 
-// Khi người dùng cuộn trang
-window.addEventListener('scroll', () => {
-    // Kiểm tra nếu cuộn trang xuống dưới 50px
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');  // Thêm lớp 'scrolled'
-    } else {
-        header.classList.remove('scrolled');  // Xóa lớp 'scrolled'
-    }
-});
-const swiper = new Swiper('.tf-sw-collection', {
-    slidesPerView: 4,  // Hiển thị 3 slide mặc định
-    spaceBetween: 30,   // Khoảng cách giữa các slide
-    loop: true,         // Lặp lại các slide
-    autoplay: true,     // Tự động phát
-    pagination: {       // Thêm phân trang nếu cần
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {       // Thêm điều hướng nếu cần
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    }
-});
+                    //Lấy quận huyện
+                    $.getJSON('https://esgoo.net/api-tinhthanh/2/' + idtinh + '.htm', function(data_quan) {
+                        if (data_quan.error == 0) {
+                            $("#quan").html('<option value="0">Quận Huyện</option>');
+                            $("#phuong").html('<option value="0">Phường Xã</option>');
+                            $.each(data_quan.data, function(key_quan, val_quan) {
+                                $("#quan").append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
+                            });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const header = document.getElementById("header");
+                            $("#quan").change(function(e) {
+                                var idquan = $(this).val();
+                                $("#ten_quan").val($("#quan option:selected").text()); // Đặt tên quận vào input ẩn
 
-    // Lấy đường dẫn gốc từ PHP
-    const basePath = "<?= rtrim(parse_url(BASE_URL, PHP_URL_PATH), '/'); ?>";
-    const currentPath = window.location.pathname;
-    const currentSearch = window.location.search;
+                                //Lấy phường xã  
+                                $.getJSON('https://esgoo.net/api-tinhthanh/3/' + idquan + '.htm', function(data_phuong) {
+                                    if (data_phuong.error == 0) {
+                                        $("#phuong").html('<option value="0">Phường Xã</option>');
+                                        $.each(data_phuong.data, function(key_phuong, val_phuong) {
+                                            $("#phuong").append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
+                                        });
 
-    console.log("Base Path:", basePath);
-    console.log("Current Path:", currentPath);
-
-    // Nếu là trang chủ
-    if ((currentPath === basePath || currentPath === `${basePath}/`) && currentSearch === "") {
-        header.classList.add("home"); // Thêm lớp cho trang chủ
-    } else {
-        header.classList.remove("home"); // Xóa lớp nếu không phải trang chủ
-    }
-});
-
+                                        $("#phuong").change(function(e) {
+                                            $("#ten_phuong").val($("#phuong option:selected").text()); // Đặt tên phường vào input ẩn
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    });
 </script>
+
 </html>

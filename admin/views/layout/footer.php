@@ -44,4 +44,13 @@
         });
     });
 </script>
+<script src="../assets/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#content',
+        plugins: 'image link lists',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        menubar: false
+    });
+</script>
 </html>

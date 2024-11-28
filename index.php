@@ -15,12 +15,14 @@ require_once './controllers/auth/registerController.php';
 require_once './controllers/homeController.php';
 require_once './controllers/bannerController.php';
 require_once './controllers/danhMucSanPhamController.php';
+require_once './controllers/order/checkoutController.php';
 
 // Require toàn bộ file Models
 require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
 require_once './models/bannerModel.php';
 require_once './models/danhMucSanPhamModel.php';
+require_once './models/order/checkoutModel.php';
 
 
 
@@ -34,6 +36,7 @@ match ($act) {
 
     
     '/' => (new homeController()) -> home(),
+    'category' => (new danhMucSanPhamController()) -> productByCategorys(),
     'banners' => (new bannerController())->banners(),
 
     'registers' => (new registerController()) -> registers(),
@@ -41,7 +44,9 @@ match ($act) {
     'logins' => (new registerController()) -> logins(),
     'logout' => (new registerController())->logout(),
 
-    'category' => (new danhMucSanPhamController()) -> productByCategorys(),
+    // thanh toán
+    'checkout' => (new checkoutController()) ->checkout(),
+
     
 
 };

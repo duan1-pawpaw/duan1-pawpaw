@@ -15,6 +15,23 @@
             background-color: #f2f2f2;
             opacity: 0.6;
         }
+
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            word-wrap: break-word;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        td:nth-child(2),
+        td:nth-child(4) {
+            max-width: 180px;
+        }
     </style>
 </head>
 

@@ -12,9 +12,9 @@ class ModelTin
         $resua = $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
         return $resua;
     }
-    public function insert($tieu_de, $mo_ta, $url_hinh)
+    public function insert($tieu_de, $mo_ta, $url_hinh,$tin_date,$loai_tin)
     {
-        $query = "INSERT INTO tin_tucs(tieu_de,mo_ta,url_hinh) VALUES ('$tieu_de','$mo_ta','$url_hinh')";
+        $query = "INSERT INTO tin_tucs(tieu_de,mo_ta,url_hinh,tin_date,loai_tin) VALUES ('$tieu_de','$mo_ta','$url_hinh','$tin_date','$loai_tin')";
         if ($this->db->exec($query)) {
             return true;
         }
@@ -25,12 +25,12 @@ class ModelTin
         $res = $this->db->query($query)->fetch();
         return $res;
     }
-    public function update($id, $tieu_de, $mo_ta, $url_hinh)
+    public function update($id, $tieu_de, $mo_ta, $url_hinh,$tin_date,$loai_tin)
     {
         if (empty($url_hinh)) {
-            $query = "UPDATE tin_tucs SET tieu_de='$tieu_de', mo_ta='$mo_ta'  WHERE id_tin=$id";
+            $query = "UPDATE tin_tucs SET tieu_de='$tieu_de', mo_ta='$mo_ta' ,tin_date='$tin_date',loai_tin='$loai_tin' WHERE id_tin=$id";
         } else {
-            $query = "UPDATE tin_tucs SET tieu_de='$tieu_de', mo_ta='$mo_ta', url_hinh='$url_hinh'  WHERE id_tin=$id";
+            $query = "UPDATE tin_tucs SET tieu_de='$tieu_de', mo_ta='$mo_ta', url_hinh='$url_hinh' ,tin_date='$tin_date',loai_tin='$loai_tin' WHERE id_tin=$id";
         }
         if ($this->db->exec($query)) {
             return true;

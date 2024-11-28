@@ -48,6 +48,8 @@
                                             <th>STT</th>
                                             <th>Tiêu đề</th>
                                             <th>Nội Dung</th>
+                                            <th>Ngày đăng</th>
+                                            <th>Loại tin</th>
                                             <th>Hình ảnh</th>
                                             <th>Ẩn/Hiện</th>
                                             <th>Thao Tác</th>
@@ -58,17 +60,15 @@
 
                                             <tr>
                                                 <th scope="row"><?= $index + 1 ?></th>
-                                                <th> <?= $ds["tieu_de"] ?> </th>
-                                                <th> <?= $ds["mo_ta"] ?> </th>
+                                                <th style="width: 20%; white-space: normal; word-wrap:break-word;"> <?= $ds["tieu_de"] ?> </th>
+                                                <th style="white-space: normal; word-wrap:break-word;" > <?= $ds["mo_ta"] ?> </th>
+                                                <th style="white-space: normal; word-wrap:break-word;" > <?= $ds["tin_date"] ?> </th>
+                                                <th style="white-space: normal; word-wrap:break-word;" > <?= $ds["loai_tin"]?'Thường':'Nổi bật' ?> </th>
                                                 <th><img style="width: 100px; height: 100px" src="<?= BASE_URL . $ds['url_hinh'] ?>" alt=""></th>
                                                 <th>
-                                                    <a class="btn btn-secondary" href="?act=td_tt&id=<?= $ds['id_tin'] ?>"><?php
-                                                                                                                            if ($ds["trang_thai"] == true) {
-                                                                                                                                echo "Hiện";
-                                                                                                                            } else {
-                                                                                                                                echo "Ẩn";
-                                                                                                                            }
-                                                                                                                            ?> </a>
+                                                    <a class="btn btn-secondary" href="?act=td_tt&id=<?= $ds['id_tin'] ?>">
+                                                    <?=$ds["trang_thai"]?'Hiện':'Ẩn' ?>
+                                                    </a>
                                                 </th>
                                                 <TH>
                                                     <a class="btn btn-warning" href="?act=update&id=<?= $ds['id_tin'] ?>">

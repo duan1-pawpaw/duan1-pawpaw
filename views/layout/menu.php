@@ -367,10 +367,10 @@
                                 </div>
                             </li>
                             <li class="menu-item position-relative">
-                                <a href="#" class="item-link"><i class="fa-solid fa-newspaper"></i>Bài Viết</a>
+                                <a href="?act=bai_viet" class="item-link"><i class="fa-solid fa-newspaper"></i>Bài Viết</a>
                             </li>
                             <li class="menu-item position-relative">
-                                <a href="#" class="item-link"><i class="fa-solid fa-square-phone-flip"></i>Liên Hệ</a>
+                                <a href="?act=contact" class="item-link"><i class="fa-solid fa-square-phone-flip"></i>Liên Hệ</a>
                             </li>
                         </ul>
                     </nav>

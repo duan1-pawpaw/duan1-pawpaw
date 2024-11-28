@@ -81,7 +81,6 @@ match ($act) {
     'update_lh' => (new controllerLh()) -> t_update_lh(),
     'update_db_lh' => (new controllerLh()) -> update_lh_ctl(),
     'delete_lh' => (new controllerLh()) -> delete_lh_ctl(),
-    'td_tt_lh' => (new controllerLh()) -> td_tt_lh_ctl(),
     //Banner
     'quan_ly_banner' => (new controllerBanner()) -> get_banner_ctl(),
     'add_banner' => (new controllerBanner()) -> t_add_banner(),

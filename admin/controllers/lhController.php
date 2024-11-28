@@ -22,8 +22,9 @@ class controllerLh
             $email = $_POST['email'];
             $ngay_tao = $_POST['ngay_tao'];
             $noi_dung = $_POST['noi_dung'];
-
-            $su = $this->controllerLh->insert_lh($email, $noi_dung,$ngay_tao);
+            $sdt = $_POST['sdt'];
+            $name = $_POST['name'];
+            $su = $this->controllerLh->insert_lh($email, $noi_dung,$ngay_tao,$sdt,$name);
             if ($su) {
                 // header('location:?action=loai_hang');
                 echo '<script> alert("Thêm thành công"); 
@@ -44,7 +45,9 @@ class controllerLh
             $email = $_POST['email'];
             $noi_dung = $_POST['noi_dung'];
             $ngay_tao = $_POST['ngay_tao'];
-            $su = $this->controllerLh->update_lh($id,$email, $noi_dung,$ngay_tao);
+            $sdt = $_POST['sdt'];
+            $name = $_POST['name'];
+            $su = $this->controllerLh->update_lh($id,$email, $noi_dung,$ngay_tao,$sdt,$name);
             if ($su) {
                 echo '<script> alert("Cập nhật thành công"); 
                 window.location.href = "?act=quan_ly_lh"; </script>';
@@ -65,11 +68,5 @@ class controllerLh
     //     $products = $this->controllerLh->get_tin();
     //     $products["trang_thai"]= !$products["trang_thai"];
     // }
-    public function td_tt_lh_ctl(){
-        $id = $_GET['id'];
-        $su=$this->controllerLh->td_tt_lh($id);
-        if ($su) {
-                header('location:?act=quan_ly_lh');
-        }
-    }
+
 }

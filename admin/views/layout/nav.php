@@ -216,6 +216,13 @@
                             </a>
                         </li>
                         <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_lh' ?>">
+                                <span class="pcoded-micon"><i class="fa-regular fa-images"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Liên Hệ</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_banner' ?>">
                                 <span class="pcoded-micon"><i class="fa-regular fa-images"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Banner</span>

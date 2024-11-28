@@ -15,12 +15,22 @@ require_once './controllers/auth/registerController.php';
 require_once './controllers/homeController.php';
 require_once './controllers/bannerController.php';
 require_once './controllers/danhMucSanPhamController.php';
+//Bai Viet(tin)
+require_once './controllers/baiVietController.php';
+//Contact
+require_once './controllers/contactController.php';
+
 
 // Require toàn bộ file Models
 require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
 require_once './models/bannerModel.php';
 require_once './models/danhMucSanPhamModel.php';
+//Bai Viet(tin)
+require_once './models/baiVietModel.php';
+//Contact
+require_once './models/contactModel.php';
+
 
 
 
@@ -42,6 +52,13 @@ match ($act) {
     'logout' => (new registerController())->logout(),
 
     'category' => (new danhMucSanPhamController()) -> productByCategorys(),
+    'bai_viet' => (new baiVietController()) -> homeBaiViet(),
+    'ct_tin' => (new baiVietController()) -> ct_tin(),
+
+    'contact' => (new contactController()) -> homeContact(),
+    'add_contact' => (new contactController()) -> add_contact_ctl(),
+
+
     
 
 };

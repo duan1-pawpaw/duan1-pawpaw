@@ -61,12 +61,23 @@
                       <img width="90" id="img" src="<?= BASE_URL . $products["url_hinh"] ?>" class="mt-1" alt="">
                     </div>
                     <div class="form-group">
+                      <label for="exampleFormControlInput1">Ngày đăng</label>
+                      <input type="date" class="form-control" id="tieu_de" name="tin_date" placeholder="Tiêu đề tin tức" value="<?= $products["tin_date"] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Loại tin</label>
+                      <select name="loai_tin" class="form-control" id="">
+                        <option value="1" <?= $products["loai_tin"] ? 'selected' : '' ?>>Tin thường</option>
+                        <option value="0" <?= !$products["loai_tin"] ? 'selected' : '' ?>>Tin nổi bật</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="exampleFormControlTextarea1">Nội Dung</label>
-                      <textarea class="form-control" id="mo_ta" name="mo_ta" rows="3" ><?= $products["mo_ta"] ?></textarea>
+                      <textarea class="form-control" id="mo_ta" name="mo_ta" rows="3"><?= $products["mo_ta"] ?></textarea>
                     </div>
                     <button type="submit" name="update" class="btn btn-success">Cập nhật</button>
                   </form>
-                  
+
                 </div>
               </div>
             </div>

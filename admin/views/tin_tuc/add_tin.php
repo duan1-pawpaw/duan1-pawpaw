@@ -48,9 +48,20 @@
                       <input type="text" class="form-control" id="tieu_de" name="tieu_de" placeholder="Tiêu đề tin tức">
                     </div>
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">URL hình ảnh</label>
+                      <label for="exampleFormControlInput1">File hình ảnh</label>
                       <!-- <input type="text" class="form-control" id="img" name="url_hinh" placeholder="url"> -->
                       <input type="file" class="form-control" id="img" name="url_hinh" placeholder="url">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Ngày đăng</label>
+                      <input type="date" class="form-control" id="tieu_de" name="tin_date" placeholder="Tiêu đề tin tức">
+                    </div>
+                    <div class="form-group">
+                    <label for="exampleFormControlInput1">Loại tin</label>
+                    <select name="loai_tin" class="form-control" id="">
+                                            <option value="0">Tin nổi bật</option>
+                                            <option value="1">Tin thường</option>
+                                        </select>
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Mô tả</label>

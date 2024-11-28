@@ -18,13 +18,14 @@ class controllerTin
     public function add_tin_tuc()
     {
         if (isset($_POST['add'])) {
-            // $id= $_POST["ma_loai"];
+            $tin_date= $_POST["tin_date"];
+            $loai_tin= $_POST["loai_tin"];
             $tieu_de = $_POST['tieu_de'];
             $mo_ta = $_POST['mo_ta'];
             // $url_hinh = $_POST['url_hinh'];
             $url_hinh=$_FILES['url_hinh'];
             $file_thumb = uploadFile($url_hinh, './uploads/imgTinTuc/');
-            $su = $this->controllerCou->insert($tieu_de, $mo_ta, $file_thumb);
+            $su = $this->controllerCou->insert($tieu_de, $mo_ta, $file_thumb,$tin_date,$loai_tin);
             if ($su) {
                 // header('location:?action=loai_hang');
                 echo '<script>window.location.href = "?act=quan_ly_tin"; </script>';
@@ -41,11 +42,13 @@ class controllerTin
     {
         $id = $_GET['id'];
         if (isset($_POST['update'])) {
+            $tin_date= $_POST["tin_date"];
+            $loai_tin= $_POST["loai_tin"];
             $tieu_de = $_POST['tieu_de'];
             $mo_ta = $_POST['mo_ta'];
             $url_hinh=$_FILES['url_hinh'];
             $file_thumb = uploadFile($url_hinh, './uploads/imgTinTuc/');
-            $su = $this->controllerCou->update($id, $tieu_de, $mo_ta, $file_thumb);
+            $su = $this->controllerCou->update($id, $tieu_de, $mo_ta, $file_thumb,$tin_date,$loai_tin);
             if ($su) {
                 echo '<script> window.location.href = "?act=quan_ly_tin"; </script>';
                 // header('location:?act=quan_ly_tin');

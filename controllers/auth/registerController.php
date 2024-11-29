@@ -88,14 +88,14 @@ class registerController
     public function logins()
     {
         // var_dump(123);die;
-        if ($_SERVER['REQUEST_METHOD'] = 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $mat_khau = $_POST['mat_khau'];
             // var_dump($_POST);die;
             $accounts = $this->registerModel->login($email, ($mat_khau));
             // var_dump($accounts);die;
             foreach ($accounts as $account) {
-                if ($email = $account['email'] && ($mat_khau) === $account['mat_khau']) {
+                if ($email === $account['email'] && ($mat_khau) === $account['mat_khau']) {
                     $_SESSION['user'] = [
                         'id' => $account['id'],
                         'ho_ten' => $account['ho_ten'],
@@ -104,7 +104,7 @@ class registerController
                         'trang_thai' => $account['trang_thai'],
                     ];
                     if ($_SESSION['user']['chuc_vu_id'] == 3 && $_SESSION['user']['trang_thai'] == 1) {
-                        header('location: ' . BASE_URL);
+                        header('location: ' . BASE_URL );
                         exit();
                     } else if ($_SESSION['user']['chuc_vu_id'] == 1 && $_SESSION['user']['trang_thai'] == 1) {
                         header('location: ' . BASE_URL_ADMIN);

@@ -9,6 +9,7 @@
                 <div class="col-xl-6 tf-md-hidden">
                     <nav class="box-navigation text-center">
                         <ul class="box-nav-ul d-flex align-items-center justify-content-center gap-30">
+                            
                             <li class="menu-item">
                                 <a href="#" class="item-link"><i class="fa-solid fa-house" style="color: black;"></i>Trang Chủ</a>
                             </li>
@@ -22,16 +23,16 @@
                                                 <div class="mega-menu-item">
                                                     <div class="menu-heading">Product layouts</div>
                                                     <ul class="menu-list">
-                                                        <li><a href="product-detail.html" class="menu-link-text link">Product default</a></li>
-                                                        <li><a href="product-grid-1.html" class="menu-link-text link">Product grid 1</a></li>
-                                                        <li><a href="product-grid-2.html" class="menu-link-text link">Product grid 2</a></li>
-                                                        <li><a href="product-stacked.html" class="menu-link-text link">Product stacked</a></li>
+                                                        <li><a href="?act=productlist" class="menu-link-text link">Product default</a></li>
+                                                        <li><a href="?act=productlist" class="menu-link-text link">Product grid 1</a></li>
+                                                        <li><a href="?act=productlist" class="menu-link-text link">Product grid 2</a></li>
+                                                        <!-- <li><a href="product-stacked.html" class="menu-link-text link">Product stacked</a></li>
                                                         <li><a href="product-right-thumbnails.html" class="menu-link-text link">Product right thumbnails</a></li>
                                                         <li><a href="product-bottom-thumbnails.html" class="menu-link-text link">Product bottom thumbnails</a></li>
                                                         <li><a href="product-drawer-sidebar.html" class="menu-link-text link">Product drawer sidebar</a></li>
                                                         <li><a href="product-description-accordion.html" class="menu-link-text link">Product description accordion</a></li>
                                                         <li><a href="product-description-list.html" class="menu-link-text link">Product description list</a></li>
-                                                        <li><a href="product-description-vertical.html" class="menu-link-text link">Product description vertical</a></li>
+                                                        <li><a href="product-description-vertical.html" class="menu-link-text link">Product description vertical</a></li> -->
                                                     </ul>
                                                 </div>
                                             </div>
@@ -377,9 +378,9 @@
                 </div>
                 <div class="col-xl-3 col-md-4 col-3">
                     <ul class="nav-icon d-flex justify-content-end align-items-center gap-20">
-                        <li class="nav-search"><a href="#canvasSearch" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="nav-icon-item"><i class="icon icon-search"></i></a></li>
-                        <li class="nav-account"><a href="#login" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-account"></i></a></li>
-                        <li class="nav-wishlist"><a href="wishlist.html" class="nav-icon-item"><i class="icon icon-heart"></i><span class="count-box">0</span></a></li>
+                        <li class="nav-search"><a href="?act=search" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="nav-icon-item"><i class="icon icon-search"></i></a></li>
+                        <li class="nav-account"><a href="" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-account"></i></a></li>
+                        <li class="nav-wishlist"><a href="?act=wishlist" class="nav-icon-item"><i class="icon icon-heart"></i><span class="count-box">0</span></a></li>
                         <li class="nav-cart"><a href="#shoppingCart" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-bag"></i><span class="count-box">0</span></a></li>
                     </ul>
                 </div>

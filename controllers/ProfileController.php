@@ -15,17 +15,17 @@ class ProfileController
         $user = $this->profileModel->getByIdUser($id_user);
         // var_dump($user);die;
 
-        require_once './Views/users/profile/show.php';
+        require_once './views/profile/show.php';
     }
 
     public function profileFormUpdate()
     {
         $id_user = $_SESSION['user']['id'];
         // var_dump($id_user);die;
-        $user = $this->profileModel->abc($id_user);
+        $user = $this->profileModel->userFromEmail($id_user);
         // var_dump($user);die;
         if ($user) {
-            require_once './Views/users/profile/update.php';
+            require_once './views/profile/update.php';
             deleteSessionError();
         } else {
             header("Location: " . BASE_URL_ADMIN . '?act=show-profile');
@@ -116,7 +116,7 @@ class ProfileController
             $new_pass = $_POST['new_pass'];
             $confirm_pass = $_POST['confirm_pass'];
 
-            $user = $this->profileModel->abc($id_user);
+            $user = $this->profileModel->userFromEmail($id_user);
             // var_dump($user);die;
             $checkPass = password_verify($old_pass, $user['mat_khau']);
 

@@ -9,8 +9,7 @@ class Cart
         $this->conn = connectDB();
     }
     
-    
-    public function getGioHangFromId($id)
+    public function getByIdCart($id)
     {
         try {
             $sql = 'SELECT * FROM gio_hangs WHERE tai_khoan_id = :tai_khoan_id';
@@ -42,7 +41,7 @@ class Cart
             echo "Lõi" . $e->getMessage();
         }
     }
-    public function addGioHang($id)
+    public function createCart($id)
     {
         try {
             $sql = 'INSERT INTO gio_hangs (tai_khoan_id) VALUES (:id)';
@@ -99,5 +98,10 @@ class Cart
         } catch (Exception $e) {
             echo "lỗi" . $e->getMessage();
         }
+    }
+    // Hủy kết nối CSDL
+    public function __destruct()
+    {
+        $this->conn = null;
     }
 }

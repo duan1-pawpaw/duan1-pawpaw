@@ -38,4 +38,9 @@ class Product
             die($e->getMessage());
         }
     }
+    // Hủy kết nối CSDL
+    public function __destruct()
+    {
+        $this->conn = null;
+    }
 }

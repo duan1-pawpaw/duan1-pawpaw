@@ -8,15 +8,6 @@ class ProfileController
     {
         $this->profileModel = new Profile();
     }
-    public function profileShow()
-    {
-        $id_user = $_SESSION['user']['id'];
-
-        $user = $this->profileModel->getByIdUser($id_user);
-        // var_dump($user);die;
-
-        require_once './views/profile/show.php';
-    }
 
     public function profileFormUpdate()
     {
@@ -28,7 +19,7 @@ class ProfileController
             require_once './views/profile/update.php';
             deleteSessionError();
         } else {
-            header("Location: " . BASE_URL_ADMIN . '?act=show-profile');
+            header("Location: " . BASE_URL . '?act=show-profile');
             exit();
         }
     }
@@ -88,7 +79,7 @@ class ProfileController
 
                 // Sau khi thêm sản phẩm thành công
                 $_SESSION['success'] = 'Cập nhật thành công.';
-                header('location: ' . BASE_URL_ADMIN . '?act=form-update-profile');
+                header('location: ' . BASE_URL . '?act=form-update-profile');
                 exit();
             } else {
                 // Trả về form và lỗi
@@ -102,7 +93,7 @@ class ProfileController
                     'dia_chi' => $dia_chi,
                     'trang_thai' => $trang_thai,
                 ];
-                header('location: ' . BASE_URL_ADMIN . '?act=form-update-profile');
+                header('location: ' . BASE_URL . '?act=form-update-profile');
                 exit();
             }
         }
@@ -147,13 +138,13 @@ class ProfileController
                 // var_dump(status);die;
                 if ($status) {
                     $_SESSION['password'] = "Đã đổi mật khẩu thành công";
-                    header("location: " . BASE_URL_ADMIN . '?act=form-update-profile');
+                    header("location: " . BASE_URL . '?act=form-update-profile');
                     exit();
                 }
             } else {
                 $_SESSION['error'] = $errors;
                 $_SESSION['old_data'] = $_POST;
-                header('location: ' . BASE_URL_ADMIN . '?act=form-update-profile');
+                header('location: ' . BASE_URL . '?act=form-update-profile');
                 exit();
             }
         }

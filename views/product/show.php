@@ -265,7 +265,7 @@
                                         </a>
                                     </div>
                                     <div class="size-list">
-                                    <div class="variant-picker-label">
+                                        <div class="variant-picker-label">
                                             Độ tuổi: <?= $product['do_tuoi'] ?>
                                         </div>
                                     </div>

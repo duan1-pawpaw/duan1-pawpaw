@@ -24,10 +24,10 @@ class OrderController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $trang_thai_id = $_POST['trang_thai_id'] ?? '';
              if($this->orderModel->updateDonHang($order_id,$trang_thai_id )){;
-                header("location: " . BASE_URL_ADMIN . '?act=orders');
+                header("location: " . BASE_URL . '?act=orders');
                 exit();
             } else {
-                header("location: " . BASE_URL_ADMIN . '?act=update-order&order_id=' . $order_id);
+                header("location: " . BASE_URL . '?act=update-order&order_id=' . $order_id);
                 exit();
             }
         }

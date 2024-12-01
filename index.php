@@ -61,7 +61,6 @@ match ($act) {
     'create-cart' => (new CartController())->cartCreate(),
     'carts' => (new CartController())->cartIndex(),
     // show profile 
-    'show-profile'          => (new ProfileController())->profileShow(),
     'form-update-profile'   => (new ProfileController())->profileFormUpdate(),
     'update-profile'        => (new ProfileController())->profileUpdate(),
     'update-password-profile' => (new ProfileController())->passwordProfileUpdate(),

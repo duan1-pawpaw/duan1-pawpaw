@@ -1,7 +1,7 @@
 <!-- header  -->
-<?php require './views/layout/header.php'; ?>
+<?php require_once './views/layout/header.php'; ?>
 <!-- Navbar -->
-<?php include './views/layout/nav.php'; ?>
+<?php require_once './views/layout/nav.php'; ?>
 <!-- /.navbar -->
 
 <div class="content-wrapper">
@@ -65,7 +65,12 @@
     </section>
     <!-- /.content -->
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- Footer  -->
-<?php include './views/layout/footer.php'; ?>
+<?php require_once './views/layout/footer.php'; ?>
 <!-- End footer  -->

@@ -23,7 +23,9 @@ function connectDB()
     }
 
 }
-
+function formatPrice($price){
+    return number_format($price, 0, ',', '.');
+}
 function formartDate($date)
 {
     return date("d-m-Y", strtotime($date));
@@ -40,20 +42,27 @@ function deleteSession_user()
 function deleteSessionError()
 {
 	// Hủy sesion sau khi đã tải trang
-	if (isset($_SESSION['old_data'])) {
-		// Hủy session `old_data`
-		unset($_SESSION['old_data']);
-	}
-	if (isset($_SESSION['error'])) {
-		// Hủy session `error`
-		unset($_SESSION['error']);
-	}
+	 // Hủy sesion sau khi đã tải trang
+     if (isset($_SESSION['old_data'])) {
+        // Hủy session `old_data`
+        unset($_SESSION['old_data']);
+    }
+    if (isset($_SESSION['flash'])) {
+        // Hủy session `flash`
+        unset($_SESSION['flash']);
+    }
+    if (isset($_SESSION['error'])) {
+        // Hủy session `error`
+        unset($_SESSION['error']);
+    }
 }
 
 function deleteFile($file){
-    $pathDelete = PATH_ROOT . $file;
-    if($pathDelete && file_exists($pathDelete)) {
-        unlink($pathDelete);
+    if ($file) { // Kiểm tra $file trước khi sử dụng
+        $pathDelete = PATH_ROOT . $file;
+        if (file_exists($pathDelete)) {
+            unlink($pathDelete);
+        }
     }
 }
 
@@ -143,7 +152,7 @@ function sendMail($to, $subject, $content)
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('vuhailam2112@gmail.com', 'Siêu Thị Thú Cưng PawPaw');
+        $mail->setFrom('vuhailam2112@gmail.com', 'Website Thú Cưng PawPaw');
         $mail->addAddress($to);
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
@@ -153,6 +162,6 @@ function sendMail($to, $subject, $content)
         $mail->send();
         // echo 'Gửi thành công';
     } catch (Exception $e) {
-        echo "Gửi masil thật bại. Mailer Error: {$mail->ErrorInfo}";
+        echo "Gửi mail thất bại. Mailer Error: {$mail->ErrorInfo}";
     }
 }

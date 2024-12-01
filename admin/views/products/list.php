@@ -1,7 +1,7 @@
 <!-- header  -->
-<?php require './views/layout/header.php'; ?>
+<?php require_once './views/layout/header.php'; ?>
 <!-- Navbar -->
-<?php include './views/layout/nav.php'; ?>
+<?php require_once './views/layout/nav.php'; ?>
 <!-- /.navbar -->
 
 <div class="content-wrapper">
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản Lý Khuyễn Mãi</h1>
+                    <h1>Quản Lý Sản phẩm</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -43,12 +43,12 @@
                         }
                         ?>
                         <!-- Thêm danh mục -->
-                        <div class="card-header ">
+                        <div class="card-header">
                             <a href="<?= BASE_URL_ADMIN . '?act=add-product' ?>" class="btn btn-success">Thêm sản phẩm</a>
-                            <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm sản phẩm..." style="width: 300px; margin-left: 75%;">
+                            <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm bình luận..." style="max-width: 300px; margin-left: 65%;">
                         </div>
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped display">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
@@ -100,7 +100,7 @@
                                                     </button>
                                                     <div class="dropdown-menu dropleft" x-placement="left-start" style="position: absolute; transform: translate3d(-202px, 0px, 0px); top: 0px; left: 0px; will-change: transform; border: 1px solid black;">
                                                         <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=show-product&id=' . $value['id'] ?>"><i class="fa-regular fa-eye" style="color: #ababab;"></i><span style="margin-left: 0.5rem">Xem</span></a>
-                                                        <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=update-product&id=' . $value['id'] ?>"><i class="fa-regular fa-pen-to-square" style="color: #FFD43B;"></i><span style="margin-left: 0.5rem">Sửa</span></a>
+                                                        <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=form-update-product&id=' . $value['id'] ?>"><i class="fa-regular fa-pen-to-square" style="color: #FFD43B;"></i><span style="margin-left: 0.5rem">Sửa</span></a>
                                                         <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=delete-product&id=' . $value['id'] ?>" onclick="return confirm('Bạn có đồng ý xóa hay không?')"><i class="fa-solid fa-trash" style="color: #f50529;"></i><span style="margin-left: 0.5rem">Xóa</span></a>
                                                     </div>
                                                 </div>
@@ -144,7 +144,12 @@
     <!-- /.content -->
 </div>
 <!-- /.card-body -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- Footer  -->
-<?php include './views/layout/footer.php'; ?>
+<?php require_once './views/layout/footer.php'; ?>
 <!-- End footer  -->
-

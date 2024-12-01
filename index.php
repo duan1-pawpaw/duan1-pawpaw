@@ -17,12 +17,17 @@ require_once './controllers/bannerController.php';
 require_once './controllers/danhMucSanPhamController.php';
 require_once './controllers/order/checkoutController.php';
 
+require_once './controllers/ProductController.php';
+
 // Require toàn bộ file Models
 require_once './models/auth/registerModel.php';
 require_once './models/homeModel.php';
 require_once './models/bannerModel.php';
 require_once './models/danhMucSanPhamModel.php';
 require_once './models/order/checkoutModel.php';
+
+require_once './models/Product.php';
+require_once './models/Comment.php';
 
 
 
@@ -46,6 +51,8 @@ match ($act) {
 
     // thanh toán
     'checkout' => (new checkoutController()) ->checkout(),
+    // chi tiết sản phẩm
+    'product' => (new ProductController())->productShow(),
 
     
 

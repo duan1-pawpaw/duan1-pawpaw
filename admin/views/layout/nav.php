@@ -78,12 +78,12 @@
                         <li class="user-profile header-notification">
                             <a href="#!">
                                 <img src="../assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
+                                <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                 <i class="ti-angle-down"></i>
                             </a>
                             <ul class="show-notification profile-notification">
                                 <li>
-                                    <a href="<?= BASE_URL_ADMIN . '?act=users-admin' ?>">
+                                    <a href="<?= BASE_URL_ADMIN . '?act=show-profile' ?>">
                                         <i class="ti-user"></i> Profile
                                     </a>
                                 </li>
@@ -99,8 +99,6 @@
                 </div>
             </div>
         </nav>
-
-
         <div class="pcoded-main-container">
             <div class="pcoded-wrapper">
                 <nav class="pcoded-navbar">
@@ -118,7 +116,7 @@
                             <div class="main-menu-content">
                                 <ul>
                                     <li class="more-details">
-                                        <a href="<?= BASE_URL_ADMIN . '?act=users-admin' ?>"><i class="ti-user"></i>View Profile</a>
+                                        <a href="<?= BASE_URL_ADMIN . '?act=show-profile' ?>"><i class="ti-user"></i>View Profile</a>
                                         <a href="<?= BASE_URL_ADMIN . '?act=logout' ?>"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                     </li>
                                 </ul>
@@ -127,7 +125,7 @@
                         <div class="pcoded-search">
                             <span class="searchbar-toggle"> </span>
                             <div class="pcoded-search-box ">
-                                <input type="text" placeholder="Search">
+                                <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm">
                                 <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
                             </div>
                         </div>
@@ -162,7 +160,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= BASE_URL_ADMIN . '?act=list_order' ?>">
+                                <a href="<?= BASE_URL_ADMIN . '?act=orders' ?>">
                                     <span class="pcoded-micon"><i class="fa-regular fa-folder"></i></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Đơn Hàng</span>
                                     <span class="pcoded-mcaret"></span>
@@ -175,7 +173,7 @@
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class=" ">
-                                        <a href="<?= BASE_URL_ADMIN . '?act=users-khachHang' ?>">
+                                        <a href="<?= BASE_URL_ADMIN . '?act=users' ?>">
                                             <span><i class="fa-solid fa-user-gear"></i>Tài Khoản Khách Hàng</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
@@ -187,7 +185,7 @@
                                         </a>
                                     </li> -->
                                     <li class=" ">
-                                        <a href="<?= BASE_URL_ADMIN . '?act=users-admin' ?>">
+                                        <a href="<?= BASE_URL_ADMIN . '?act=show-profile' ?>">
                                             <span><i class="fa-solid fa-user-pen"></i>Tài Khoản Cá Nhân</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
@@ -195,48 +193,64 @@
                                 </ul>
                             </li>
                             <li>
-                            <a href="<?= BASE_URL_ADMIN . '?act=rating' ?>">
-                                <span class="pcoded-micon"><i class="fa-solid fa-star-half-stroke"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Đánh Giá</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL_ADMIN . '?act=binh_luan' ?>">
-                                <span class="pcoded-micon"><i class="fa-regular fa-comments"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Bình Luận</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_tin' ?>">
-                                <span class="pcoded-micon"><i class="fa-solid fa-newspaper"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Tin Tức</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_banner' ?>">
-                                <span class="pcoded-micon"><i class="fa-regular fa-images"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Banner</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        </li>
-                        </ul>
-                        
-                        <div style="width: 100%; height: 3px; background-color: white; border-radius: 50%;" class="mt-5">
-                            <hr>
-                        </div>
-                        <li class="d-flex">
-                            <a onclick="return confirm('Bạn chắc chắn muốn đăng xuất không???')" href="<?= BASE_URL . '?act=logout' ?>" class="nav-link">
-                                <p><i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</p>
-                            </a>
-                        </li>
-                        </ul>
+                                <a href="<?= BASE_URL_ADMIN . '?act=ratings' ?>">
+                                    <span class="pcoded-micon"><i class="fa-solid fa-star-half-stroke"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Đánh Giá</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= BASE_URL_ADMIN . '?act=comments' ?>">
+                                    <span class="pcoded-micon"><i class="fa-regular fa-comments"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Bình Luận</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_tin' ?>">
+                                    <span class="pcoded-micon"><i class="fa-solid fa-newspaper"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Tin Tức</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_banner' ?>">
+                                    <span class="pcoded-micon"><i class="fa-regular fa-images"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Banner</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
 
+                            <div style="width: 100%; height: 3px; background-color: white; border-radius: 50%;" class="mt-5">
+                                <hr>
+                            </div>
+                            <li class="d-flex">
+                                <a onclick="return confirm('Bạn chắc chắn muốn đăng xuất không???')" href="<?= BASE_URL . '?act=logout' ?>" class="nav-link">
+                                    <p><i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</p>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-
                 </nav>
+                <script>
+                    // Lắng nghe sự kiện input khi người dùng gõ trong ô tìm kiếm
+                    document.getElementById('searchProduct').addEventListener('input', function() {
+                        // Lấy giá trị từ ô tìm kiếm và chuyển thành chữ thường để tìm kiếm không phân biệt hoa/thường
+                        const query = this.value.toLowerCase();
+
+                        // Lấy tất cả các dòng trong bảng
+                        const rows = document.querySelectorAll('#example1 tbody tr');
+
+                        // Lặp qua tất cả các dòng để kiểm tra tên sản phẩm có chứa từ khóa tìm kiếm không
+                        rows.forEach(row => {
+                            const productName = row.cells[1].textContent.toLowerCase(); // Lấy tên sản phẩm từ cột thứ 2
+                            if (productName.includes(query)) {
+                                row.style.display = ''; // Hiển thị dòng nếu tên sản phẩm chứa từ khóa tìm kiếm
+                            } else {
+                                row.style.display = 'none'; // Ẩn dòng nếu không chứa từ khóa
+                            }
+                        });
+                    });
+                </script>
                 <div class="pcoded-content">
                     <div class="pcoded-inner-content">

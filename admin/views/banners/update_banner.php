@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
   <?php require_once './views/layout/header.php' ?>
   <?php require_once './views/layout/nav.php' ?>
   <div class="content-wrapper">
@@ -71,7 +61,10 @@
     </section>
     <!-- /.content -->
   </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
   <?php require_once './views/layout/footer.php' ?>
-</body>
-
-</html>

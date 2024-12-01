@@ -1,7 +1,7 @@
 <!-- header  -->
-<?php require './views/layout/header.php'; ?>
+<?php require_once './views/layout/header.php'; ?>
 <!-- Navbar -->
-<?php include './views/layout/nav.php'; ?>
+<?php require_once './views/layout/nav.php'; ?>
 <!-- /.navbar -->
 
 <section class="section">
@@ -18,29 +18,29 @@
         <div class="row card-body">
             <div class="form-group col-6">
                 <label>Tên pet</label>
-                <input type="text" class="form-control" 
-                value="<?= $_SESSION['old_data']['ten_san_pham'] ?? '' ?>" 
-                name="ten_san_pham" placeholder="Nhập tên pet">
+                <input type="text" class="form-control"
+                    value="<?= $_SESSION['old_data']['ten_san_pham'] ?? '' ?>"
+                    name="ten_san_pham" placeholder="Nhập tên pet">
                 <?php if (isset($_SESSION['error']['ten_san_pham'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['ten_san_pham'] ?></p>
                 <?php } ?>
             </div>
-           
+
             <div class="form-group col-6">
                 <label>Độ tuổi</label>
-                <input type="text" class="form-control" 
-                value="<?= $_SESSION['old_data']['do_tuoi'] ?? '' ?>" 
-                name="do_tuoi" placeholder="Nhập độ tuổi">
+                <input type="text" class="form-control"
+                    value="<?= $_SESSION['old_data']['do_tuoi'] ?? '' ?>"
+                    name="do_tuoi" placeholder="Nhập độ tuổi">
                 <?php if (isset($_SESSION['error']['do_tuoi'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['do_tuoi'] ?></p>
                 <?php } ?>
             </div>
-        
+
             <div class="form-group col-6">
                 <label>Màu sắc</label>
                 <input type="text" class="form-control"
-                  value="<?= $_SESSION['old_data']['mau_sac'] ?? '' ?>"
-                 name="mau_sac" placeholder="Nhập màu sắc">
+                    value="<?= $_SESSION['old_data']['mau_sac'] ?? '' ?>"
+                    name="mau_sac" placeholder="Nhập màu sắc">
                 <?php if (isset($_SESSION['error']['mau_sac'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['mau_sac'] ?></p>
                 <?php } ?>
@@ -51,7 +51,7 @@
                 <select class="form-control" name="gioi_tinh" id="exempleFormControlSelect1">
                     <option selected disabled>Chọn gới tính pet</option>
                     <option value="1" <?= isset($_SESSION['old_data']['gioi_tinh']) && $_SESSION['old_data']['gioi_tinh'] == "1" ? 'selected' : '' ?>>Đực</option>
-                    <option value="2"  <?= isset($_SESSION['old_data']['gioi_tinh']) && $_SESSION['old_data']['gioi_tinh'] == "2" ? 'selected' : '' ?>>Cái</option>
+                    <option value="2" <?= isset($_SESSION['old_data']['gioi_tinh']) && $_SESSION['old_data']['gioi_tinh'] == "2" ? 'selected' : '' ?>>Cái</option>
                 </select>
                 <?php if (isset($_SESSION['error']['gioi_tinh'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['gioi_tinh'] ?></p>
@@ -71,12 +71,12 @@
                     <p class="text-danger"><?= $_SESSION['error']['mo_ta'] ?></p>
                 <?php } ?>
             </div>
-           
+
             <div class="form-group col-6">
                 <label>Số lượng</label>
-                <input type="number" class="form-control"                  
-                value="<?= $_SESSION['old_data']['so_luong'] ?? '' ?>"
-                name="so_luong" placeholder="Nhập số lượng">
+                <input type="number" class="form-control"
+                    value="<?= $_SESSION['old_data']['so_luong'] ?? '' ?>"
+                    name="so_luong" placeholder="Nhập số lượng">
                 <?php if (isset($_SESSION['error']['so_luong'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['so_luong'] ?></p>
                 <?php } ?>
@@ -85,8 +85,8 @@
             <div class="form-group col-6">
                 <label>Ngày nhập</label>
                 <input type="date" class="form-control"
-                value="<?= $_SESSION['old_data']['ngay_nhap'] ?? '' ?>"
-                name="ngay_nhap">
+                    value="<?= $_SESSION['old_data']['ngay_nhap'] ?? '' ?>"
+                    name="ngay_nhap">
                 <?php if (isset($_SESSION['error']['ngay_nhap'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['ngay_nhap'] ?></p>
                 <?php } ?>
@@ -96,7 +96,7 @@
                 <select class="form-control" name="danh_muc_id" id="exempleFormControlSelect1">
                     <option selected disabled>Chọn danh mục pet</option>
                     <?php foreach ($categorys as $category) : ?>
-                        <option value="<?= $category['id'] ?>"  <?= isset($_SESSION['old_data']['danh_muc_id']) && $_SESSION['old_data']['danh_muc_id'] == $category['id'] ? 'selected' : '' ?>><?= $category['ten_danh_muc'] ?></option>
+                        <option value="<?= $category['id'] ?>" <?= isset($_SESSION['old_data']['danh_muc_id']) && $_SESSION['old_data']['danh_muc_id'] == $category['id'] ? 'selected' : '' ?>><?= $category['ten_danh_muc'] ?></option>
                     <?php endforeach; ?>
                 </select>
                 <?php if (isset($_SESSION['error']['danh_muc_id'])) { ?>
@@ -105,9 +105,9 @@
             </div>
             <div class="form-group col-6">
                 <label>Trạng thái</label>
-                <select  class="form-control" name="trang_thai" id="exempleFormControlSelect1">
+                <select class="form-control" name="trang_thai" id="exempleFormControlSelect1">
                     <option selected disabled>Chọn trạng thái pet</option>
-                    <option value="1"  <?= isset($_SESSION['old_data']['trang_thai']) && $_SESSION['old_data']['trang_thai'] == "1" ? 'selected' : '' ?>>Còn bán</option>
+                    <option value="1" <?= isset($_SESSION['old_data']['trang_thai']) && $_SESSION['old_data']['trang_thai'] == "1" ? 'selected' : '' ?>>Còn bán</option>
                     <option value="2" <?= isset($_SESSION['old_data']['trang_thai']) && $_SESSION['old_data']['trang_thai'] == "2" ? 'selected' : '' ?>>Dừng bán</option>
                 </select>
                 <?php if (isset($_SESSION['error']['trang_thai'])) { ?>
@@ -116,19 +116,19 @@
             </div>
             <div class="form-group col-6">
                 <label>Giá pet</label>
-                <input type="number" class="form-control" 
-                value="<?= $_SESSION['old_data']['gia_san_pham'] ?? '' ?>"
-                name="gia_san_pham" placeholder="Nhập giá pet">
+                <input type="number" class="form-control"
+                    value="<?= $_SESSION['old_data']['gia_san_pham'] ?? '' ?>"
+                    name="gia_san_pham" placeholder="Nhập giá pet">
                 <?php if (isset($_SESSION['error']['gia_san_pham'])) { ?>
                     <p class="text-danger"><?= $_SESSION['error']['gia_san_pham'] ?></p>
                 <?php } ?>
-            </div> 
-           
+            </div>
+
             <div class="form-group col-6">
                 <label>Album ảnh</label>
                 <input type="file" class="form-control" name="img_array[]" multiple>
             </div>
-           
+
         </div>
 
         <div class="card-footer">
@@ -136,6 +136,12 @@
         </div>
     </form>
 </section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- Footer  -->
-<?php include './views/layout/footer.php'; ?>
+<?php require_once './views/layout/footer.php'; ?>
 <!-- End footer  -->

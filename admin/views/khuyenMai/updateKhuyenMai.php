@@ -128,6 +128,15 @@
                                                 } ?>
                                             </div>
                                             <div class="form-group">
+                                                <label>Số Lượt Sử Dụng:</label>
+                                                <input type="text" class="form-control" name="so_luong_su_dung_con_lai" value="<?= $detailVoucher['so_luong_su_dung_con_lai'] ?>">
+                                                <?php if (isset($errors['so_luong_su_dung_con_lai'])) {
+                                                ?>
+                                                    <p class="text-danger mt-2"><?= $errors['so_luong_su_dung_con_lai']  ?></p>
+                                                <?php
+                                                } ?>
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Ngày Bắt Đầu:</label>
                                                 <input type="text" class="form-control" name="ngay_bat_dau" value="<?= ($detailVoucher['ngay_bat_dau']) ?>">
                                                 <?php if (isset($errors['ngay_bat_dau'])) {

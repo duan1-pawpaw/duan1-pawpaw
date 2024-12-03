@@ -23,7 +23,9 @@ function connectDB()
     }
 
 }
-
+function formatPrice($price){
+    return number_format($price, 0, ',', '.');
+}
 function formartDate($date)
 {
     return date("d-m-Y", strtotime($date));

@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 // Require file Common
 require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
@@ -70,6 +71,7 @@ match ($act) {
     'update-user-khachHang' => (new UserController())->userUpdate(),
     'show-user-khachHang' => (new UserController())->userShow(),
     'delete-user-khachHang' => (new UserController())->userDelete(),
+    
     // route tài khoản quản trị
     'users-admin' => (new UserController()) -> profileShow(),
     'update-admin' => (new UserController()) -> profileShow(),
@@ -81,7 +83,6 @@ match ($act) {
     'update_lh' => (new controllerLh()) -> t_update_lh(),
     'update_db_lh' => (new controllerLh()) -> update_lh_ctl(),
     'delete_lh' => (new controllerLh()) -> delete_lh_ctl(),
-    'td_tt_lh' => (new controllerLh()) -> td_tt_lh_ctl(),
     //Banner
     'quan_ly_banner' => (new controllerBanner()) -> get_banner_ctl(),
     'add_banner' => (new controllerBanner()) -> t_add_banner(),

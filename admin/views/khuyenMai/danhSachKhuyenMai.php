@@ -6,7 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách khuyễn mãi</title>
 </head>
+<style>
+        table {
+        width: 100%;
+    }
 
+    th,
+    td {
+        word-wrap: break-word;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* td:nth-child(3), */
+    td:nth-child(4) {
+        max-width: 100px;
+    }
+</style>
 <body>
     <?php require_once './views/layout/header.php' ?>
     <?php require_once './views/layout/nav.php' ?>
@@ -53,6 +70,7 @@
                                             <th>Giá Trị(%)</th>
                                             <th>Ngày Bắt Đầu</th>
                                             <th>Ngày Kết Thúc</th>
+                                            <th>Số Lượt Áp Dụng </th>
                                             <th>Trạng Thái</th>
                                             <th>Thao Tác</th>
                                         </tr>
@@ -64,11 +82,23 @@
                                                 <td><?= ++$key ?></td>
                                                 <td><?= $row['ten_khuyen_mai'] ?></td>
                                                 <td><?= $row['ma_khuyen_mai'] ?></td>
-                                                <td><?= $row['ten_san_pham'] ?></td>
+                                                <td ><?= $row['ten_san_pham'] ?></td>
                                                 <td><?= $row['gia_tri'] ?></td>
                                                 <td><?= formartDate($row['ngay_bat_dau']) ?></td>
                                                 <td><?= formartDate($row['ngay_ket_thuc']) ?></td>
-                                                <td><?= $row['ten_trang_thai_khuyen_mai'] ?></td>
+                                                <td><?= $row['so_luong_su_dung_con_lai'] ?></td>
+                                                <td>
+                                                <?php
+                                                    if ($row['trang_thai_khuyen_mai_id'] == 1) {
+                                                        $colorAlert = 'success';
+                                                    } else if ($row['trang_thai_khuyen_mai_id'] == 2) {
+                                                        $colorAlert = 'danger';
+                                                    } else {
+                                                        $colorAlert = 'warning';
+                                                    }
+                                                    ?>
+                                                    <div class="badge badge-<?= $colorAlert; ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px;"><?= $row['ten_trang_thai_khuyen_mai'] ?></div>
+                                                </td>
                                                 <td>
                                                     <a href="<?= BASE_URL_ADMIN . '?act=update_Vouchers&voucher_id=' . $row['id'] ?>"><button class="btn btn-warning">Sửa</button></a>
 
@@ -88,6 +118,7 @@
                                             <th>Giá Trị (%)</th>
                                             <th>Ngày Bắt Đầu</th>
                                             <th>Ngày Kết Thúc</th>
+                                            <th>Số Lượt Áp Dụng </th>
                                             <th>Trạng Thái</th>
                                             <th>Thao Tác</th>
                                         </tr>

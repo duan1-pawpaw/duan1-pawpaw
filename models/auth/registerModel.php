@@ -88,4 +88,59 @@ class registerModel
             echo "Lỗi: " . $th->getMessage();
         }
     }
+
+    public function getAccountByEmail($email) {
+        try {
+            $sql = 'SELECT * FROM tai_khoans WHERE email = :email';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':email' => $email]);
+            return $stmt->fetch();
+        } catch (PDOException $th) {
+            echo "Lỗi: " . $th->getMessage();
+        }
+    }
+
+    public function getByEmailUser($email)
+    {
+        try {
+            $sql = 'SELECT tai_khoans .*, chuc_vus.ten_chuc_vu
+                    FROM tai_khoans
+                    INNER JOIN chuc_vus ON chuc_vus.id = tai_khoans.chuc_vu_id
+                    WHERE tai_khoans.email = :email';
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':email' => $email
+            ]);
+
+            return $stmt->fetch();
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    public function resetPassword($email, $mat_khau)
+    {
+        try {
+            // var_dump($email);die;
+            $sql = 'UPDATE tai_khoans 
+                    SET
+                        mat_khau = :mat_khau
+                    WHERE email = :email';
+            // var_dump($sql);die;
+
+            $stmt = $this->conn->prepare($sql);
+
+            // var_dump($stmt);die;
+            $stmt->execute([
+                ':mat_khau' => $mat_khau,
+                ':email' => $email
+            ]);
+
+            // Lấy id vừa thêm
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 }

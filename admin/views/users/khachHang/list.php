@@ -82,7 +82,16 @@
                                                 </td>
                                                 <td><?= $value['email'] ?></td>
                                                 <td><?= $value['so_dien_thoai'] ?></td>
-                                                <td><?= $value['trang_thai'] == 1 ? 'Active' : 'Inactive' ?></td>
+                                                <td>
+                                                <?php
+                                                    if ($value['trang_thai'] == 1) {
+                                                        $colorAlert = 'success';
+                                                    } else {
+                                                        $colorAlert = 'danger';
+                                                    } 
+                                                    ?>
+                                                    <div class="badge badge-<?= $colorAlert; ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px;"><?= $value['trang_thai'] = 1 ? "Đang Hoạt Động" : "Đã Bị Khóa" ?></div>
+                                                </td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="<?= BASE_URL_ADMIN . '?act=show-user-khachHang&id=' . $value['id'] ?>" class="btn btn-primary">
@@ -90,10 +99,6 @@
                                                         </a>
                                                         <a href="<?= BASE_URL_ADMIN . '?act=update-user-khachHang&id=' . $value['id'] ?>" class="btn btn-warning">
                                                             <i class="fas fa-wrench"></i>
-                                                        </a>
-                                                        <a href="<?= BASE_URL_ADMIN . '?act=reset-password&id=' . $value['id'] ?>" class="btn btn-danger"
-                                                            onclick="return confirm('Bạn có muốn reset password của tài khoản này hay không?')">
-                                                            <i class="fas fa-undo-alt"></i>
                                                         </a>
                                                     </div>
                                                 </td>

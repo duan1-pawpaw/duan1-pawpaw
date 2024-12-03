@@ -58,10 +58,10 @@ class khuyenMaiModel
     }
 
     // truy vấn thêm mới khuyến mãi
-    public function insert_voucher($id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $mo_ta, $trang_thai_khuyen_mai_id) {
+    public function insert_voucher($id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $so_luong_su_dung_con_lai, $mo_ta, $trang_thai_khuyen_mai_id) {
         try {
-            $sql = 'INSERT INTO khuyen_mais (id_san_pham, ten_khuyen_mai, ma_khuyen_mai, gia_tri, ngay_bat_dau, ngay_ket_thuc, mo_ta, trang_thai_khuyen_mai_id)
-                    VALUE (:id_san_pham, :ten_khuyen_mai, :ma_khuyen_mai, :gia_tri, :ngay_bat_dau, :ngay_ket_thuc, :mo_ta, :trang_thai_khuyen_mai_id)';
+            $sql = 'INSERT INTO khuyen_mais (id_san_pham, ten_khuyen_mai, ma_khuyen_mai, gia_tri, ngay_bat_dau, ngay_ket_thuc, so_luong_su_dung_con_lai, mo_ta, trang_thai_khuyen_mai_id)
+                    VALUE (:id_san_pham, :ten_khuyen_mai, :ma_khuyen_mai, :gia_tri, :ngay_bat_dau, :ngay_ket_thuc,:so_luong_su_dung_con_lai, :mo_ta, :trang_thai_khuyen_mai_id)';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':id_san_pham' => $id_san_pham,
@@ -70,19 +70,21 @@ class khuyenMaiModel
                 ':gia_tri' => $gia_tri,
                 ':ngay_bat_dau' => $ngay_bat_dau,
                 ':ngay_ket_thuc' => $ngay_ket_thuc,
+                ':so_luong_su_dung_con_lai' => $so_luong_su_dung_con_lai,
                 ':mo_ta' => $mo_ta,
                 ':trang_thai_khuyen_mai_id' => $trang_thai_khuyen_mai_id,
             ]);
             return true;
         } catch (PDOException $th) {
             echo "Lỗi: " . $th->getMessage();
+            flush();
         }
     }
 
     // truy vấn trường hợp 1: khuyến mãi chưa kích hoạt
-    public function update_Voucher_case_1($id, $id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $mo_ta, $trang_thai_khuyen_mai_id){
+    public function update_Voucher_case_1($id, $id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $so_luong_su_dung_con_lai, $mo_ta, $trang_thai_khuyen_mai_id){
         try {
-            $sql = 'UPDATE khuyen_mais SET id_san_pham = :id_san_pham, ten_khuyen_mai = :ten_khuyen_mai, ma_khuyen_mai = :ma_khuyen_mai, gia_tri = :gia_tri, ngay_bat_dau = :ngay_bat_dau, ngay_ket_thuc = :ngay_ket_thuc, mo_ta = :mo_ta, trang_thai_khuyen_mai_id = :trang_thai_khuyen_mai_id WHERE id = :id';
+            $sql = 'UPDATE khuyen_mais SET id_san_pham = :id_san_pham, ten_khuyen_mai = :ten_khuyen_mai, ma_khuyen_mai = :ma_khuyen_mai, gia_tri = :gia_tri, ngay_bat_dau = :ngay_bat_dau, ngay_ket_thuc = :ngay_ket_thuc, mo_ta = :mo_ta, trang_thai_khuyen_mai_id = :trang_thai_khuyen_mai_id, so_luong_su_dung_con_lai = :so_luong_su_dung_con_lai WHERE id = :id';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':id' => $id,
@@ -93,6 +95,7 @@ class khuyenMaiModel
                 ':ngay_bat_dau' => $ngay_bat_dau,
                 ':ngay_ket_thuc' => $ngay_ket_thuc,
                 ':mo_ta' => $mo_ta,
+                ':so_luong_su_dung_con_lai' => $so_luong_su_dung_con_lai,
                 ':trang_thai_khuyen_mai_id' => $trang_thai_khuyen_mai_id,
             ]);
             return true;

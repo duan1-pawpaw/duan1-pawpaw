@@ -4,71 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Danh sách sản phẩm</title>
 </head>
+<?php require_once './views/layout/header.php' ?>
+<?php require_once './views/layout/menu.php' ?>
 
 <body>
-    <?php require_once './views/layout/header.php' ?>
-    <?php require_once './views/layout/menu.php' ?>
-    <!-- banner theo từng danh mục-->
-     <div>
-     <div class="col-12" >
-        <?php if($id_cate == 8){ ?>
-        <img style="height: 800px; width: 100%;" src="http://www.atyourbusiness.com/blog/wp-content/uploads/2019/07/petsupply.jpg" alt="">
-        <?php }elseif($id_cate == 7){ ?>
-        <img style="height: 800px; width: 100%;" src="https://cdn.webshopapp.com/shops/256009/files/414175514/xiaomi-xiaomi-smart-pet-food-feeder.jpg" alt="">
-        <?php }elseif($id_cate == 11){ ?>
-        <img style="height: 800px; width: 100%;" src="https://naototnhat.com/wp-content/uploads/2020/05/Shop-ban-tho-canh-kieng-tai-tp-hcm-uy-tin-nhat-1.jpg" alt="">
-        <?php }elseif($id_cate == 10){?>
-        <img style="height: 800px; width: 100%;" src="https://www.worldatlas.com/r/w1200/upload/65/c1/fa/shutterstock-1188558835.jpg" alt="">
-        <?php }elseif($id_cate == 9){ ?>
-        <img style="height: 800px; width: 100%;" src="https://img5.thuthuatphanmem.vn/uploads/2021/11/27/anh-chuot-hamster-hd_092432103.jpg" alt="">
-        <?php } ?>
-     </div>
-     </div>
-    <section class="flat-spacing-5 pt_0 flat-seller mt-5">
-        <div class="container">
-            <div class="flat-title">
-                <span class="title wow fadeInUp" data-wow-delay="0s"><?= $listCategory['ten_danh_muc'] ?></span>
-                <p class="sub-title wow fadeInUp" data-wow-delay="0s"><?= $listCategory['mo_ta'] ?? "" ?></p>
-            </div>
-            <div class="grid-layout  wow fadeInUp" data-wow-delay="0s" data-grid="grid-4">
-                <?php foreach ($productByCategorys as $productByCategory) { ?>  
-                    <div class="card-product fl-item">
-                        <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
-                                <img class="lazyload img-product" data-src="<?= BASE_URL . $productByCategory['hinh_anh'] ?>" src="<?= BASE_URL . $productByCategory['hinh_anh'] ?>" alt="image-product">
-                                <img class="lazyload img-hover" data-src="<?= BASE_URL . $productByCategory['hinh_anh'] ?>" src="<?= BASE_URL . $productByCategory['hinh_anh'] ?>" alt="image-product">
-                            </a>
-                            <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
-                                    <span class="icon icon-bag"></span>
-                                    <span class="tooltip">Thêm Giỏ Hàng</span>
-                                </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
-                                    <span class="icon icon-heart"></span>
-                                    <span class="tooltip">Thêm Sản Phẩm Yêu Thích</span>
-                                    <span class="icon icon-delete"></span>
-                                </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                    <span class="icon icon-view"></span>
-                                    <span class="tooltip">Xem Sản Phẩm</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-product-info">
-                            <a href="product-detail.html" class="title link"><?= $productByCategory['ten_san_pham'] ?></a>
-                            <span class="price"><?= number_format( $productByCategory['gia_khuyen_mai'] ?? $productByCategory['gia_san_pham']) ?>vnđ</span>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-            <div class="tf-pagination-wrap view-more-button text-center">
-                <button class="tf-btn-loading tf-loading-default style-2 btn-loadmore "><span class="text">Load more</span></button>
+
+    <div id="header" class="header-default">
+        <div class="px_15 lg-px_40">
+            <div class="row wrapper-header align-items-center">
+                <div class="col-md-4 col-3 tf-lg-hidden">
+                    <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"></a>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="tf-page-title">
+        <div class="container-full">
+            <div class="heading text-center"><?= $listCategory['ten_danh_muc'] ?></div>
+        </div>
+    </div>
+
+    <section class="flat-spacing-1">
+        <div class="container">
+            <div class="tf-shop-control grid-3 align-items-center">
+                <div class="tf-control-filter">
+                    <!-- <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="tf-btn-filter"><span class="icon icon-filter"></span><span class="text">Filter</span></a> -->
+                </div>
+
+            </div>
+            <div class="tf-row-flex">
+                <aside class="tf-shop-sidebar wrap-sidebar-mobile">
+                    <div class="widget-facet wd-categories">
+                        <div class="widget-facet wd-categories">
+                            <div class="facet-title" data-bs-target="#categories" data-bs-toggle="collapse" aria-expanded="true" aria-controls="categories">
+                                <span>Danh Mục Thú Cưng</span>
+                                <span class="icon icon-arrow-up"></span>
+                            </div>
+                            <div id="categories" class="collapse show">
+                                <ul class="list-categoris current-scrollbar mb_36">
+                                    <?php foreach ($listCategorys as $listCategory) { ?>
+                                        <li class="cate-item current"><a href="<?= BASE_URL . '?act=category&id_cate=' . $listCategory['id'] ?>"><span><?= $listCategory['ten_danh_muc'] ?></span>&nbsp;<span></span></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="widget-facet">
+                        <div class="widget-facet">
+                            <div class="facet-title" data-bs-target="#sale-products" data-bs-toggle="collapse" aria-expanded="true" aria-controls="sale-products">
+                                <span>Sale products</span>
+                                <span class="icon icon-arrow-up"></span>
+                            </div>
+                            <div id="sale-products" class="collapse show">
+                                <div class="widget-featured-products mb_36">
+                                    <?php foreach($listProductSales as $listProductSale){ ?>
+                                    <div class="featured-product-item">
+                                        <a href="<?= BASE_URL . '?act=show-product&id=' . $listProductSale['id_san_pham'] ?>" class="card-product-wrapper">
+                                            <img class="img-product ls-is-cached lazyloaded" data-src="<?= BASE_URL . $listProductSale['hinh_anh'] ?>" alt="image-feature" src="<?= BASE_URL . $listProductSale['hinh_anh'] ?>">
+                                        </a>
+                                        <div class="card-product-info">
+                                            <a href="<?= BASE_URL . '?act=show-product&id=' . $listProductSale['id_san_pham'] ?>" class="title link"><?= $listProductSale['ten_san_pham'] ?></a>
+                                            <span class="price"><?= number_format($listProductSale['gia_san_pham'] * $listProductSale['gia_tri'] / 100) ?></span>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </aside>
+                <div class="tf-shop-content">
+                    <div class="grid-layout wrapper-shop" data-grid="grid-3">
+                        <?php foreach ($productByCategorys as $product): ?>
+                            <div class="card-product">
+                                <div class="card-product-wrapper">
+                                    <a href="?act=product_description&product_id=<?php echo $product['id']; ?>" class="product-img">
+                                        <img class="img-product" src="<?php echo $product['hinh_anh']; ?>" alt="<?php echo $product['ten_san_pham']; ?>">
+                                        <img class="img-hover" src="<?php echo $product['hinh_anh']; ?>" alt="<?php echo $product['ten_san_pham']; ?>">
+                                    </a>
+                                    <div class="list-product-btn absolute-2">
+                                        <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
+                                            <span class="icon icon-bag"></span>
+                                            <span class="tooltip">Quick Add</span>
+                                        </a>
+                                        <a href="?act=addtowishlist&product_id=<?php echo $product['id']; ?>" class="box-icon bg_white wishlist btn-icon-action">
+                                            <span class="icon icon-heart"></span>
+                                            <span class="tooltip">Add to Wishlist</span>
+                                            <span class="icon icon-delete"></span>
+                                        </a>
+                                        <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
+                                            <span class="icon icon-compare"></span>
+                                            <span class="tooltip">Add to Compare</span>
+                                            <span class="icon icon-check"></span>
+                                        </a>
+                                        <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
+                                            <span class="icon icon-view"></span>
+                                            <span class="tooltip">Quick View</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-product-info">
+                                    <a href="product-detail.php?id=<?php echo $product['id']; ?>" class="title link"><?php echo $product['ten_san_pham']; ?></a>
+                                    <span class="price"><?php echo number_format($product['gia_san_pham'], 2); ?> VND</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
-    <?php require_once './views/layout/footer.php' ?>
 </body>
+<?php require_once './views/layout/footer.php' ?>
 
 </html>

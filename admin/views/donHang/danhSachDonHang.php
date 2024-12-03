@@ -38,14 +38,15 @@
 
                         <div class="card">
                             <!-- /.card-header -->
-                             <div class="card-header">
-                             <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm đơn hàng..." style="width: 300px; margin-left: 75%;">
-                             </div>
+                            <div class="card-header">
+                                <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm đơn hàng..." style="width: 300px; margin-left: 75%;">
+                            </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>STT</th>
+                                            <th>Mã Đơn Hàng</th>
                                             <th>Người Nhận</th>
                                             <th>Số Điện Thoại Người Nhận</th>
                                             <th>Email Người Nhận</th>
@@ -56,22 +57,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($list_orders as $key => $list_order) ?>
-                                        <tr>
-                                            <td><?= ++$key ?></td>
-                                            <td><?= $list_order['ten_nguoi_nhan'] ?></td>
-                                            <td><?= $list_order['sdt_nguoi_nhan'] ?></td>
-                                            <td><?= $list_order['email_nguoi_nhan'] ?></td>
-                                            <td><?= formartDate($list_order['ngay_dat']) ?></td>
-                                            <td><?= number_format($list_order['tong_tien']) ?></td>
-                                            <td><?= $list_order['ten_trang_thai'] ?></td>
-                                            <td><a href="<?= BASE_URL_ADMIN . '?act=update_order&order_id=' . $list_order['id'] ?>"><button class="btn btn-warning">Sửa</button></a></td>
-                                        </tr>
-
+                                        <?php foreach ($list_orders as $key => $list_order) { ?>
+                                            <tr>
+                                                <td><?= ++$key ?></td>
+                                                <td><?= $list_order['ma_don_hang'] ?></td>
+                                                <td><?= $list_order['ten_nguoi_nhan'] ?></td>
+                                                <td><?= $list_order['sdt_nguoi_nhan'] ?></td>
+                                                <td><?= $list_order['email_nguoi_nhan'] ?></td>
+                                                <td><?= formartDate($list_order['ngay_dat']) ?></td>
+                                                <td><?= number_format($list_order['tong_tien']) ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($list_order['trang_thai_id'] == 2) {
+                                                        $colorAlert = 'warning';
+                                                    } else if ($list_order['trang_thai_id'] == 3) {
+                                                        $colorAlert = 'danger';
+                                                    } else if ($list_order['trang_thai_id'] > 6) {
+                                                        $colorAlert = 'success';
+                                                    } else {
+                                                        $colorAlert = 'warning';
+                                                    }
+                                                    ?>
+                                                    <div class="badge badge-<?= $colorAlert; ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px;"><?= $list_order['ten_trang_thai'] ?></div>
+                                                </td>
+                                                <td><a href="<?= BASE_URL_ADMIN . '?act=update_order&order_id=' . $list_order['id'] ?>"><button class="btn btn-warning">Sửa</button></a></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>STT</th>
+                                            <th>Mã Đơn Hàng</th>
                                             <th>Người Nhận</th>
                                             <th>Số Điện Thoại Người Nhận</th>
                                             <th>Email Người Nhận</th>

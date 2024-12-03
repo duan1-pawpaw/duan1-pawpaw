@@ -48,14 +48,14 @@
                     <!-- Main content -->
                     <div class="card">
                         <?php
-                        if ($detailOrder['trang_thai_id'] == 1) {
-                            $colorAlert = 'primary';
-                        } else if ($detailOrder['trang_thai_id'] >= 2 && $detailOrder['trang_thai_id'] < 9) {
+                        if ($detailOrder['trang_thai_id'] == 2 && $detailOrder['trang_thai_id'] >3 && $detailOrder['trang_thai_id'] < 8 && $detailOrder['trang_thai_id'] >8 ) {
                             $colorAlert = 'warning';
-                        } else if ($detailOrder['trang_thai_id'] == 9 || $detailOrder['trang_thai_id'] == 10) {
+                        } else if ($detailOrder['trang_thai_id'] == 3 || $detailOrder['trang_thai_id'] == 10 ) {
+                            $colorAlert = 'danger';
+                        } else if ($detailOrder['trang_thai_id'] == 8 || $detailOrder['trang_thai_id'] == 12) {
                             $colorAlert = 'success';
                         } else {
-                            $colorAlert = 'danger';
+                            $colorAlert = 'warning';
                         }
                         ?>
                         <div class="alert alert-<?= $colorAlert; ?> mb-3" role="alert">
@@ -145,9 +145,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <th style="width:50%">Thành Tiền:</th>
-                                                    <td><?php foreach ($getProductOrders as $getProductOrder) {
-                                                            echo number_format($getProductOrder['thanh_tien']);
-                                                        } ?>đ</td>
+                                                    <td><?= number_format($detailOrder['tong_tien'] - 30000) ?>VNĐ</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Thuế VAT:</th>
@@ -155,13 +153,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Vận Chuyển:</th>
-                                                    <td>50,000đ</td>
+                                                    <td>30,000VNĐ</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Tổng Tiền:</th>
-                                                    <td><?php foreach ($getProductOrders as $getProductOrder) {
-                                                            echo number_format($getProductOrder['thanh_tien'] + 50000);
-                                                        } ?>đ</td>
+                                                    <td><?= number_format($detailOrder['tong_tien']) ?>VNĐ</td>
                                                 </tr>
                                             </table>
                                         </div>

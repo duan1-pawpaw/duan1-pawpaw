@@ -20,10 +20,10 @@
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Đăng Ký</a>
+                        <a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Đăng Ký</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Đăng Nhập</a>
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Đăng Nhập</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -33,7 +33,7 @@
                     // Xóa thông báo lỗi trong session sau khi hiển thị
                     unset($_SESSION['errors']);
                     ?>
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show " id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Đăng Ký</h3>
                         <form action="<?= BASE_URL . '?act=registers' ?>" method="POST">
                             <input type="hidden" name="action" value="register">
@@ -64,7 +64,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <h3 class="register-heading">Đăng Nhập</h3>
                         <form action="<?= BASE_URL . '?act=logins' ?>" method="POST">
                             <div class="row register-form">
@@ -72,14 +72,21 @@
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="email" placeholder="Nhập Email..." value="">
                                     </div>
+                                    <?php if (isset($errors['email'])): ?>
+                                            <span class="text-danger"><?= $errors['email'] ?></span>
+                                        <?php endif; ?>
                                     <div class="form-group">
                                         <input type="password" class="form-control" name="mat_khau" placeholder="Nhập Mật Khẩu.." value="">
                                     </div>
+                                    <?php if (isset($errors['mat_khau'])): ?>
+                                            <span class="text-danger"><?= $errors['mat_khau'] ?></span>
+                                        <?php endif; ?>
+                                </div>
+                                <div class="col-md-12 ms-2">
+                                    <p>Có Phải Bạn Đang<a href="<?= BASE_URL . '?act=formResest' ?>" style="margin-left: 5px; text-decoration: none;">Quên Mật Khẩu</a>  Đấy Khôngg???</p>
                                 </div>
                                 <div class="col-md-8 mt-3" style="margin-left: 100px;">
                                     <button type="submit" class="btn btn-primary w-100 mb-2">Đăng Nhập</button>
-                                    <p class="text-center">Hoặc</p>
-                                    <button type="button" class="btn btn-secondary w-100">Đăng Nhập Bằng Google</button>
                                 </div>
                             </div>
                         </form>

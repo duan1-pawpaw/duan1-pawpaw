@@ -60,15 +60,14 @@
                                                 <td> <?= $ds["tieu_de"] ?> </td>
                                                 <td><img style="width: 200px; height: 100px" src="<?= BASE_URL .  $ds['hinh_anh'] ?>" alt=""></td>
                                                 <td>
-                                                    <a class="btn btn-secondary" href="?act=td_tt_banner&id=<?= $ds['id'] ?>">
-                                                        <?php
-                                                        if ($ds["trang_thai"] == true) {
-                                                            echo "Hiện";
-                                                        } else {
-                                                            echo "Ẩn";
-                                                        }
-                                                        ?>
-                                                    </a>
+                                                <?php
+                                                    if ($ds['trang_thai'] == 1) {
+                                                        $colorAlert = 'success';
+                                                    } else {
+                                                        $colorAlert = 'danger';
+                                                    } 
+                                                    ?>
+                                                    <div class="badge badge-<?= $colorAlert; ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px; width: 150px;"><?= $ds['trang_thai'] == 1 ? "Hiện" : "Ẩn" ?></div>
                                                 </td>
                                                 <Td>
                                                     <a class="btn btn-warning" href="?act=update_banner&id=<?= $ds['id'] ?>">

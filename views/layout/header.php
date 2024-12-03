@@ -22,40 +22,16 @@
     <link rel="shortcut icon" href="./assets/assets_font/images/logo/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="./assets/assets_font/images/logo/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <!-- Swiper CSS -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Swiper JS -->
-    <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+    <!-- Swiper CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
+
 
 </head>
 <style>
-    .header-default {
-        background-color: white;
-        /* Mặc định là trắng */
-        top: 0;
-        left: 0;
-        width: 100%;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        z-index: 1000;
-    }
 
-    .header-default.scrolled {
-        background-color: white;
-        /* Khi cuộn thì vẫn trắng */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .header-default.home {
-        background-color: transparent;
-        /* Chỉ trong suốt trên trang chủ */
-    }
-
-    .header-default.home.scrolled {
-        background-color: white;
-        /* Khi cuộn thì vẫn trắng */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 </style>
 
 <body class="preload-wrapper popup-loader">

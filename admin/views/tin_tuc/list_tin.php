@@ -72,7 +72,6 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tiêu đề</th>
-                                            <th>Nội Dung</th>
                                             <th>Hình ảnh</th>
                                             <th>Ẩn/Hiện</th>
                                             <th>Thao Tác</th>
@@ -84,16 +83,16 @@
                                             <tr>
                                                 <td scope="row"><?= $index + 1 ?></td>
                                                 <td> <?= $ds["tieu_de"] ?> </td>
-                                                <td> <?= $ds["mo_ta"] ?> </td>
-                                                <td><img style="width: 100px; height: 100px" src="<?= BASE_URL . $ds['url_hinh'] ?>" alt=""></td>
+                                                <td><img style="width: 150px; height: 100px" src="<?= BASE_URL . $ds['url_hinh'] ?>" alt=""></td>
                                                 <td>
-                                                    <a class="btn btn-secondary" href="?act=td_tt&id=<?= $ds['id_tin'] ?>"><?php
-                                                                                                                            if ($ds["trang_thai"] == true) {
-                                                                                                                                echo "Hiện";
-                                                                                                                            } else {
-                                                                                                                                echo "Ẩn";
-                                                                                                                            }
-                                                                                                                            ?> </a>
+                                                <?php
+                                                    if ($ds['trang_thai'] == 1) {
+                                                        $colorAlert = 'success';
+                                                    } else {
+                                                        $colorAlert = 'danger';
+                                                    } 
+                                                    ?>
+                                                    <div class="badge badge-<?= $colorAlert; ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px;"><?= $ds['trang_thai'] == 1 ? "Hiện" : "Ẩn" ?></div>
                                                 </td>
                                                 <Td>
                                                     <a class="btn btn-warning" href="?act=update&id=<?= $ds['id_tin'] ?>">

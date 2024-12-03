@@ -44,17 +44,36 @@ class orderModel
         }
     }
 
-    public function getProductOrder()
+    public function getProductOrder($order_id)
     {
         try {
+            // Câu truy vấn SQL để lấy tất cả sản phẩm trong đơn hàng
             $sql = 'SELECT chi_tiet_don_hangs.*, san_phams.ten_san_pham 
-                FROM chi_tiet_don_hangs
-                INNER JOIN san_phams ON chi_tiet_don_hangs.san_pham_id = san_phams.id';
+                    FROM chi_tiet_don_hangs
+                    INNER JOIN san_phams ON chi_tiet_don_hangs.san_pham_id = san_phams.id
+                    WHERE chi_tiet_don_hangs.don_hang_id = :order_id';
+    
+            // Chuẩn bị câu truy vấn
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll();
+    
+            // Thực thi câu truy vấn với tham số
+            $stmt->execute([':order_id' => $order_id]);
+    
+            // Lấy tất cả kết quả
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            // Kiểm tra nếu có kết quả và trả về
+            if ($result) {
+                return $result;
+            } else {
+                return "Không có sản phẩm cho đơn hàng này.";
+            }
+            
         } catch (Exception $e) {
-            echo "lỗi" . $e->getMessage();
+            // Xử lý lỗi và hiển thị thông báo
+            echo "Lỗi: " . $e->getMessage();
+            flush();
+            return false;
         }
     }
 

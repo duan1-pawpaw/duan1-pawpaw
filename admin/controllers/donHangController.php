@@ -9,7 +9,7 @@
 
         public function list_order(){
             $list_orders = $this->orderModel->getAllOrder();
-            // var_dump($list_order);die;
+            // var_dump($list_orders);die;
             require_once './views/donHang/danhSachDonHang.php';
         }
 
@@ -17,6 +17,7 @@
             $order_id = $_GET['order_id'];
             $getProductOrders = $this->orderModel->getProductOrder($order_id);
             $detailOrder = $this->orderModel->getDetailOrder($order_id);
+            // var_dump($getProductOrders);die;
             $listTrangThaiDonHang = $this->orderModel->getAllTrangThaiDonHang();
             // var_dump($detailOrder);die;
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {

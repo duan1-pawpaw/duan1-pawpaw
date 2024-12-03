@@ -11,7 +11,7 @@
                     <a class="mobile-search morphsearch-search" href="#">
                         <i class="ti-search"></i>
                     </a>
-                    <a href="index.html">
+                    <a onclick="return confirm('Bạn Muốn Vào Website Chứ??')" href="<?= BASE_URL ?>">
                         <img class="img-fluid" width="170" style="margin-left: 10px;" src="../assets/images/logo5.JPG" alt="Theme-Logo" />
                     </a>
                     <a class="mobile-options">
@@ -77,7 +77,7 @@
 
                         <li class="user-profile header-notification">
                             <a href="#!">
-                                <img src="../assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                <img src="<?= BASE_URL . $_SESSION['user']['avata'] ?? 'https://static.vecteezy.com/system/resources/previews/019/879/186/large_2x/user-icon-on-transparent-background-free-png.png' ?>" class="img-radius" alt="User-Profile-Image">
                                 <span>John Doe</span>
                                 <i class="ti-angle-down"></i>
                             </a>
@@ -88,7 +88,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?= BASE_URL_ADMIN . '?act=logout' ?>">
+                                    <a href="<?= BASE_URL . '?act=logout' ?>">
                                         <i class="ti-layout-sidebar-left"></i> Logout
                                     </a>
                                 </li>
@@ -108,7 +108,7 @@
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
-                                <img class="img-40 img-radius" src="../assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                <img class="img-40 img-radius" src="<?= BASE_URL . $_SESSION['user']['avata'] ?>" alt="User-Profile-Image">
                                 <div class="user-details">
                                     <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                     <span id="more-details">Infomation<i class="ti-angle-down"></i></span>
@@ -124,14 +124,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="pcoded-search">
-                            <span class="searchbar-toggle"> </span>
-                            <div class="pcoded-search-box ">
-                                <input type="text" placeholder="Search">
-                                <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
-                            </div>
-                        </div>
-                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Navigation</div>
+                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">QUẢN LÝ</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
                                 <a href="<?= BASE_URL_ADMIN ?>">
@@ -212,6 +205,13 @@
                             <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_tin' ?>">
                                 <span class="pcoded-micon"><i class="fa-solid fa-newspaper"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Tin Tức</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= BASE_URL_ADMIN . '?act=quan_ly_lh' ?>">
+                                <span class="pcoded-micon"><i class="fa-regular fa-address-book"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quản Lý Liên Hệ</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>

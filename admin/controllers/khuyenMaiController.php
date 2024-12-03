@@ -17,14 +17,17 @@ class khuyenMaiController
         // var_dump($listVouchers);die;
         require_once 'views/khuyenMai/danhSachKhuyenMai.php';
     }
-
+    
     // Thêm mới khuyến mãi
     public function insert_vouchers()
     {
-
+        ob_start();
         $listStatusVouchers = $this->khuyenMaiModel->getAllStatusVoucher();
         $listProducts = $this->productModel->getAllProducts();
+        $fromData = []; 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $fromData = $_POST;
+            // var_dump($fromData);die;
             $id_san_pham = $_POST['id_san_pham'] ?? '';
             $ten_khuyen_mai = $_POST['ten_khuyen_mai'] ?? '';
             $ma_khuyen_mai = $_POST['ma_khuyen_mai'] ?? '';
@@ -33,6 +36,7 @@ class khuyenMaiController
             $ngay_ket_thuc = $_POST['ngay_ket_thuc'] ?? '';
             $mo_ta = $_POST['mo_ta'] ?? '';
             $trang_thai_khuyen_mai = $_POST['trang_thai_khuyen_mai'] ?? '';
+            $so_luong_su_dung_con_lai = $_POST['so_luong_su_dung_con_lai'] ?? '' ;
 
             // var_dump($_POST);die;
 
@@ -58,16 +62,20 @@ class khuyenMaiController
             if (empty($id_san_pham)) {
                 $errors['id_san_pham'] = 'Sản Phẩm Không Được Để Trống';
             }
+            if (empty($so_luong_su_dung_con_lai)) {
+                $errors['so_luong_su_dung_con_lai'] = 'Sản Phẩm Không Được Để Trống';
+            }
 
             // Nếu có lỗi, lưu thông báo lỗi vào session
             if (!empty($errors)) {
                 $_SESSION['errors'] = $errors;
+                $_SESSION['fromData'] = $fromData;
                 // var_dump($_SESSION['errors']);die();
                 header("Location: " . BASE_URL_ADMIN . '?act=insert_vouchers');
                 exit();
             }
 
-            if ($this->khuyenMaiModel->insert_voucher($id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $mo_ta, $trang_thai_khuyen_mai)) {
+            if ($this->khuyenMaiModel->insert_voucher($id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai,  $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $so_luong_su_dung_con_lai, $mo_ta, $trang_thai_khuyen_mai)) {
                 header("Location: " . BASE_URL_ADMIN . '?act=list_vouchers');
                 exit();
             } else {
@@ -102,7 +110,7 @@ class khuyenMaiController
             $ngay_ket_thuc = $_POST['ngay_ket_thuc'] ?? '';
             $mo_ta = $_POST['mo_ta'] ?? '';
             $trang_thai_khuyen_mai = $_POST['trang_thai_khuyen_mai'] ?? '';
-
+            $so_luong_su_dung_con_lai = $_POST['so_luong_su_dung_con_lai'] ?? '' ;
             // var_dump($voucher_id, $_POST);die;
 
             $errors = [];
@@ -127,6 +135,9 @@ class khuyenMaiController
             if (empty($id_san_pham)) {
                 $errors['id_san_pham'] = 'Sản Phẩm Không Được Để Trống';
             }
+            if (empty($so_luong_su_dung_con_lai)) {
+                $errors['so_luong_su_dung_con_lai'] = 'Sản Phẩm Không Được Để Trống';
+            }
 
             // Nếu có lỗi, lưu thông báo lỗi vào session
             if (!empty($errors)) {
@@ -136,7 +147,7 @@ class khuyenMaiController
                 exit();
             }
 
-            if ($this->khuyenMaiModel->update_Voucher_case_1($voucher_id, $id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $mo_ta, $trang_thai_khuyen_mai)) {
+            if ($this->khuyenMaiModel->update_Voucher_case_1($voucher_id, $id_san_pham, $ten_khuyen_mai, $ma_khuyen_mai, $gia_tri, $ngay_bat_dau, $ngay_ket_thuc, $so_luong_su_dung_con_lai, $mo_ta, $trang_thai_khuyen_mai)) {
                 header("Location: " . BASE_URL_ADMIN . '?act=list_vouchers');
                 exit();
             } else {

@@ -14,25 +14,7 @@ class UserController
         $this->productModel = new Product();
         $this->commentModel = new binhLuanModel();
     }
-    public function resetPassword()
-    {
-        $id = $_GET['id'];
-        $user = $this->userModel->getByIdUser($id);
-
-        // Đặt password mặc định -123@123abc
-        $mat_khau = password_hash('123456789', PASSWORD_BCRYPT);
-
-        $status = $this->userModel->resetPassword($id, $mat_khau);
-        // var_dump($status);die;
-
-        if ($status && $user['chuc_vu_id'] == 2) {
-            header("Location: " . BASE_URL_ADMIN . '?act=users-khachHang');
-            exit();
-        } else {
-            var_dump('Lỗi khi reset tài khoản');
-            die;
-        }
-    }
+    
 
     public function profileShow()
     {
@@ -54,7 +36,7 @@ class UserController
             // Đảm bảo độ dài là 10
             if (strlen($so_dien_thoai) > 11) {
                 $errors['so_dien_thoai'] = 'Số điện thoại phải có 10 số';
-            } 
+            }
             // Nếu không có lỗi, tiến hành thêm sản phẩm vào database
             if (empty($errors)) {
                 // var_dump('Oke');die;
@@ -92,7 +74,6 @@ class UserController
             }
         }
         require_once './Views/users/quanTri/profile.php';
-       
     }
 
     public function changePasswordAdmin()
@@ -105,14 +86,14 @@ class UserController
             $confirm_pass = $_POST['confirm_pass'];
 
             $user = $this->userModel->getByIdUser($id_user);
-            $checkPass = password_verify($old_pass, $user['mat_khau']);
-
+            $old_pass = md5($user['mat_khau']);
+            $checkPass = $old_pass;
             // Tạo 1 mảng trống để chứa dữ liệu
             $errors = [];
 
             if (empty($old_pass)) {
                 $errors['old_pass'] = 'Vui lòng nhập mật khẩu cũ';
-            } elseif (!$checkPass) {
+            } elseif ($old_pass != $checkPass) {
                 $errors['old_pass'] = 'Mật khẩu cũ không chính xác';
             }
             if (empty($new_pass)) {
@@ -128,7 +109,7 @@ class UserController
                 // var_dump('Oke');die;
 
                 // Thực hiện đổi mật khẩu
-                $hashPass = password_hash($new_pass, PASSWORD_BCRYPT);
+                $hashPass = md5($new_pass);
 
                 $status = $this->userModel->resetPassword($id_user, $hashPass);
                 // var_dump(status);die;
@@ -147,13 +128,12 @@ class UserController
                 exit();
             }
         }
-        
     }
 
 
 
 
-    
+
     // Khách hàng
     public function userIndex()
     {

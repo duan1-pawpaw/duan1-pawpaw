@@ -27,14 +27,15 @@ class User
             die($e->getMessage());
         }
     }
-    public function resetPassword($id, $mat_khau)
+    
+    public function resetPassword($email, $mat_khau)
     {
         try {
-            // var_dump($id);die;
+            // var_dump($email);die;
             $sql = 'UPDATE tai_khoans 
                     SET
                         mat_khau = :mat_khau
-                    WHERE id = :id';
+                    WHERE email = :email';
             // var_dump($sql);die;
 
             $stmt = $this->conn->prepare($sql);
@@ -42,7 +43,7 @@ class User
             // var_dump($stmt);die;
             $stmt->execute([
                 ':mat_khau' => $mat_khau,
-                ':id' => $id
+                ':email' => $email
             ]);
 
             // Lấy id vừa thêm

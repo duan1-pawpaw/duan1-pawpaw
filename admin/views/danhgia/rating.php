@@ -36,12 +36,24 @@
 </head>
 
 <body>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản Lý Đánh Giá</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
     <div class="main-body">
         <div class="page-header">
             <div class="card">
-                <div class="card-header">
-                    <h2>Quản lý Đánh giá</h2>
-                </div>
                 <div class="card-block ">
                     <div class="card-header">
                         <input type="text" id="searchProduct" class="form-control" placeholder="Tìm kiếm đánh giá..." style="width: 300px; margin-left: 75%;">

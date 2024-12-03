@@ -99,21 +99,21 @@
                 <?php foreach ($top5Pets as $top5Pet) { ?>
                     <div class="card-product fl-item">
                         <div class="card-product-wrapper">
-                            <a href="<?= BASE_URL . '?act=checkout&id_san_pham=23' ?>" class="product-img">
+                            <a href="<?= BASE_URL . '?act=show-product&id=' . $top5Pet['id'] ?>" class="product-img">
                                 <img class="lazyload img-product" data-src="<?= BASE_URL . $top5Pet['hinh_anh'] ?>" src="<?= BASE_URL . $top5Pet['hinh_anh'] ?>" alt="image-product">
                                 <img class="lazyload img-hover" data-src="<?= BASE_URL . $top5Pet['hinh_anh'] ?>" src="<?= BASE_URL . $top5Pet['hinh_anh'] ?>" alt="image-product">
                             </a>
                             <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
+                                <a href="<?= BASE_URL . '?act=create-cart&san_pham_id=' . $top5Pet['id'] ?>"  class="box-icon bg_white quick-add tf-btn-loading">
                                     <span class="icon icon-bag"></span>
                                     <span class="tooltip">Thêm Giỏ Hàng</span>
                                 </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
+                                <a href="<?= BASE_URL . '?act=addtowishlist&product_id=' . $top5Pet['id'] ?>" class="box-icon bg_white wishlist btn-icon-action">
                                     <span class="icon icon-heart"></span>
                                     <span class="tooltip">Thêm Sản Phẩm Yêu Thích</span>
                                     <span class="icon icon-delete"></span>
                                 </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
+                                <a href="<?= BASE_URL . '?act=show-product&id=' . $top5Pet['id'] ?>"  class="box-icon bg_white quickview tf-btn-loading">
                                     <span class="icon icon-view"></span>
                                     <span class="tooltip">Xem Sản Phẩm</span>
                                 </a>
@@ -140,21 +140,21 @@
                 <?php foreach ($listProducts as $listProduct) { ?>
                     <div class="card-product fl-item">
                         <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
+                            <a href="<?= BASE_URL . '?act=show-product&id=' . $listProduct['id'] ?>" class="product-img">
                                 <img class="lazyload img-product" data-src="<?= BASE_URL . $listProduct['hinh_anh'] ?>" src="<?= BASE_URL . $listProduct['hinh_anh'] ?>" alt="image-product">
                                 <img class="lazyload img-hover" data-src="<?= BASE_URL . $listProduct['hinh_anh'] ?>" src="<?= BASE_URL . $listProduct['hinh_anh'] ?>" alt="image-product">
                             </a>
                             <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
+                                <a href="<?= BASE_URL . '?act=create-cart&san_pham_id=' . $top5Pet['id'] ?>"  class="box-icon bg_white quick-add tf-btn-loading">
                                     <span class="icon icon-bag"></span>
                                     <span class="tooltip">Thêm Giỏ Hàng</span>
                                 </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
+                                <a href="<?= BASE_URL . '?act=addtowishlist&product_id=' . $listProduct['id'] ?>" class="box-icon bg_white wishlist btn-icon-action">
                                     <span class="icon icon-heart"></span>
                                     <span class="tooltip">Thêm Sản Phẩm Yêu Thích</span>
                                     <span class="icon icon-delete"></span>
                                 </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
+                                <a href="<?= BASE_URL . '?act=show-product&id=' . $listProduct['id'] ?>"  class="box-icon bg_white quickview tf-btn-loading">
                                     <span class="icon icon-view"></span>
                                     <span class="tooltip">Xem Sản Phẩm</span>
                                 </a>
@@ -168,7 +168,7 @@
                 <?php } ?>
             </div>
             <div class="tf-pagination-wrap view-more-button text-center">
-                <button class="tf-btn-loading tf-loading-default style-2 btn-loadmore "><span class="text">Xem Thêm</span></button>
+                <a href="<?= BASE_URL . '?act=productlist' ?>"><button class="tf-btn-loading tf-loading-default style-2 btn-loadmore "><span class="text">Xem Thêm</span></button></a>
             </div>
         </div>
     </section>
@@ -205,17 +205,17 @@
                                     </div>
                                     <div class="product">
                                         <div class="image">
-                                            <a href="product-detail.html">
+                                            <a href="<?= BASE_URL . '?act=show-product&id=' . $top4DanhGia['id'] ?>">
                                                 <img class="lazyload" data-src="<?= BASE_URL . $top4DanhGia['hinh_anh'] ?>" src="<?= BASE_URL . $top4DanhGia['hinh_anh'] ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="content-wrap">
                                             <div class="product-title">
-                                                <a href="product-detail.html"><?= $top4DanhGia['ten_san_pham'] ?></a>
+                                                <a href="<?= BASE_URL . '?act=show-product&id=' . $top4DanhGia['id'] ?>"><?= $top4DanhGia['ten_san_pham'] ?></a>
                                             </div>
                                             <div class="price"><?= number_format($top4DanhGia['gia_khuyen_mai'] ?? $top4DanhGia['gia_san_pham']) ?></div>
                                         </div>
-                                        <a href="product-detail.html" class=""><i class="icon-arrow1-top-left"></i></a>
+                                        <a href="<?= BASE_URL . '?act=show-product&id=' . $top4DanhGia['id'] ?>" class=""><i class="icon-arrow1-top-left"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -242,16 +242,16 @@
                             <div class="swiper-slide" lazy="true">
                                 <div class="blog-article-item">
                                     <div class="article-thumb radius-10">
-                                        <a href="blog-detail.html">
+                                        <a href="<?= BASE_URL . '?act=ct_tin&id=' . $listNew['id_tin'] ?>">
                                             <img class="lazyload" style="width: 430px; height: 240px;" data-src="<?= $listNew['url_hinh'] ?>" src="<?= $listNew['url_hinh'] ?>" alt="img-blog">
                                         </a>
                                     </div>
                                     <div class="article-content">
                                         <div class="article-title">
-                                            <a href="blog-detail.html" class=""><?= substr($listNew['tieu_de'],0,50) . '...' ?></a>
+                                            <a href="<?= BASE_URL . '?act=ct_tin&id=' . $listNew['id_tin'] ?>" class=""><?= substr($listNew['tieu_de'],0,50) . '...' ?></a>
                                         </div>
                                         <div class="article-btn">
-                                            <a href="blog-detail.html" class="tf-btn btn-line fw-6">Đọc Tiếp<i class="icon icon-arrow1-top-left"></i></a>
+                                            <a href="<?= BASE_URL . '?act=ct_tin&id=' . $listNew['id_tin'] ?>" class="tf-btn btn-line fw-6">Đọc Tiếp<i class="icon icon-arrow1-top-left"></i></a>
                                         </div>
                                     </div>
                                 </div>

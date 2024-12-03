@@ -2,37 +2,91 @@
 class checkoutController
 {
     public $checkoutModel;
+    public $cartModel;
 
     public function __construct()
     {
         $this->checkoutModel = new checkoutModel();
+        $this->cartModel = new Cart();
+    }
+    public function Fromcheckout()
+    {
+        $tong_tien = $_POST['tong_gio_hang'] ?? $_SESSION['tong_tien'] ?? $_POST['tong_tien'] ?? $_GET['tong_tien'];
+        // var_dump($tong_tien);die;
+        // Lấy dữ liệu giỏ hàng của người dùng
+        // var_dump($user['id']);die;
+        $cart = $this->cartModel->getByIdCart($_SESSION['user']['id']);
+        if (!$cart) {
+            $cartId = $this->cartModel->createCart($_SESSION['user']['id']);
+            $cart = ['id' => $cartId];
+            $chiTietGioHang = $this->cartModel->getDetailGioHang($cart['id']);
+        } else {
+            $chiTietGioHang = $this->cartModel->getDetailGioHang($cart['id']);
+        }
+        require_once('./views/order/checkout2.php');
     }
 
+    public function voucher()
+    {
+        // $tong_tien = $_POST['tong_gio_hang'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $totalPrice = $_POST['tong_gio_hang'];
+            // $formData = $_POST;
+            // var_dump($formData);die;
+            // Lấy dữ liệu từ form
+            // var_dump($_POST);die;
+            if (isset($_POST['apply_Voucher'])) {
+                $code_Voucher = $_POST['code_Voucher'];
+
+                // var_dump($totalPrice);die;
+                // die;
+                // Gọi hàm applyDiscount
+                $result = $this->applyDiscount($code_Voucher, $totalPrice);
+                // var_dump($result);die;
+                $_SESSION['voucher_message'] = $result['errors']['code_Voucher'];
+                // Kiểm tra nếu kết quả là thông báo giảm giá thành công
+                if (isset($result['errors']['code_Voucher']) && strpos($result['errors']['code_Voucher'], 'Giảm giá thành công') !== false) {
+                    $totalPrice = $result['totalPrice'];
+                    $_SESSION['tong_tien'] = $totalPrice;
+                    var_dump($totalPrice);
+                    // die;
+                } else {
+                    $totalPrice = $result['totalPrice'];
+                    $_SESSION['tong_tien'] = $totalPrice;
+                    // var_dump($totalPrice);die;
+                }
+            }
+            header('Location: ' . BASE_URL . '?act=Fromcheckout');
+            exit();
+        }
+    }
     public function checkout()
     {
-        $id = $_GET['id_san_pham'];
-        // var_dump($id);die;
-        $so_luong = 2;
-        $detailPet = $this->checkoutModel->detailPet($id);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Lấy dữ liệu từ form
+        ob_start();
+        // $id = $_GET['id_san_pham'];
+        // // var_dump($id);die;
+        // $detailPet = $this->checkoutModel->detailPet($id);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             $data = [
-                'ma_don_hang' => "HL-" . rand(10000,99999),
-                'tai_khoan_id' => $_POST['tai_khoan_id'] ?? '',
+                'ma_don_hang' => "HL-" . rand(10000, 99999),
+                'tai_khoan_id' => $_SESSION['user']['id'] ?? '',
                 'ten_nguoi_nhan' => $_POST["ten_nguoi_nhan"] ?? '',
                 'email_nguoi_nhan' => $_POST["email_nguoi_nhan"] ?? '',
                 'sdt_nguoi_nhan' => $_POST["sdt_nguoi_nhan"] ?? '',
                 'ghi_chu' => $_POST["ghi_chu"] ?? '',
-                'dia_chi_nguoi_nhan' =>  $_POST["dia_chi_nguoi_nhan"] . ', ' .  $_POST['ten_phuong'] . ', ' . $_POST['ten_quan']. ', ' .  $_POST['ten_tinh'],
+                'dia_chi_nguoi_nhan' =>  $_POST["dia_chi_nguoi_nhan"] . ', ' .  $_POST['ten_phuong'] . ', ' . $_POST['ten_quan'] . ', ' .  $_POST['ten_tinh'],
                 'tong_tien' => $_POST['tong_tien'],
                 'phuong_thuc_thanh_toan' => $_POST["phuong_thuc_thanh_toan"] ?? '',
-                'trang_thai' => 1,
-                'san_pham_id' => $_GET['id_san_pham'],
-                'so_luong' => $_POST['so_luong'],
-                'don_gia' => $_POST['don_gia'],
+                'san_pham_list' => $_POST['san_pham'],
             ];
+
             $errors = [];
-// var_dump($data);die;
+            if ($_POST['confirmOrder'] != 'on') {
+                $errors['confirmOrder'] = 'Bạn phải xác nhận trước khi đặt hàng ';
+            }
+
+            // var_dump($data['san_pham_list']);die;
             if (empty($data['ten_nguoi_nhan'])) {
                 $errors['ten_nguoi_nhan'] = 'Họ tên không được để trống';
             }
@@ -51,17 +105,18 @@ class checkoutController
             if (empty($data['phuong_thuc_thanh_toan'])) {
                 $errors['phuong_thuc_thanh_toan'] = 'Phương thức thanh toán không được để trống';
             }
-
+            // var_dump($errors);die;
             if (!empty($errors)) {
                 $_SESSION['errors'] = $errors;
-                header("Location: " . BASE_URL . '?act=checkout&id_san_pham=' . $data['san_pham_id']);
+                header("Location: " . BASE_URL . '?act=Fromcheckout&tong_tien=' . $data['tong_tien']);
                 exit();
             }
+
 
             // var_dump($data);die;
             // Kiểm tra phương thức thanh toán
             if ($data['phuong_thuc_thanh_toan'] == 2) { // VNPay
-                $vnp_Returnurl = "http://localhost:81/personal_product/?act=thanks";
+                $vnp_Returnurl = "http://localhost:81/duan1-pawpaw/duan1-pawpaw/?act=thanks";
                 $vnpUrl = $this->createVNPayUrl($data, $vnp_Returnurl);
                 // var_dump($vnpUrl);die;
                 // Lưu thông tin tạm thời vào session
@@ -72,17 +127,65 @@ class checkoutController
                 exit();
             } else {
                 // Thanh toán COD, lưu vào DB
-                $don_hang_id = $this->checkoutModel->buy_product($data['ma_don_hang'], $data['tai_khoan_id'], $data['ten_nguoi_nhan'], $data['email_nguoi_nhan'], $data['sdt_nguoi_nhan'], $data['dia_chi_nguoi_nhan'], $data['tong_tien'], $data['ghi_chu'], $data['phuong_thuc_thanh_toan']);
-                $this->checkoutModel->addDetailDonHang(
-                    $don_hang_id['id'],
-                    $data['san_pham_id'],
-                    $data['don_gia'],
-                    $data['so_luong'],
-                    $data['tong_tien'],
-                );
+                // var_dump(123);die;
+                if (
+                    $don_hang_id = $this->checkoutModel->buy_product($data['ma_don_hang'], $data['tai_khoan_id'], $data['ten_nguoi_nhan'], $data['email_nguoi_nhan'], $data['sdt_nguoi_nhan'], $data['dia_chi_nguoi_nhan'], $data['tong_tien'], $data['ghi_chu'], $data['phuong_thuc_thanh_toan'])
+                ) {
+                    // var_dump($don_hang_id);die;
+                    // Lưu chi tiết sản phẩm vào cơ sở dữ liệu
+                    $detail = $this->checkoutModel->addDetailDonHang(
+                        $don_hang_id['id'],
+                        $data['san_pham_list']
+                    );
+                    // var_dump($detail);die;
+                    header('Location: ' . BASE_URL . '?act=order&vnp_TxnRef=' . $data['ma_don_hang'] . '&id_don_hang=' . $don_hang_id['id']);
+                    exit();
+                } else {
+                    header('Location: ' . BASE_URL . '?act=carts');
+                    exit();
+                }
             }
         }
-        require_once './views/order/checkout.php';
+    }
+
+    public function applyDiscount($code_Voucher, $totalPrice)
+    {
+        // Kiểm tra mã giảm giá từ model
+        $_SESSION['total_price'] = $totalPrice;
+        // var_dump($totalPrice);die;
+        $discount = $this->checkoutModel->check_voucher($code_Voucher);
+        // var_dump($discount);die;
+        if (!isset($_SESSION['used_vouchers'])) {
+            $_SESSION['used_vouchers'] = [];
+        }
+        $errors = [];
+        $_SESSION['discount'] = $_SESSION['total_price'];
+        // Kiểm tra xem mã đã được sử dụng chưa
+        if (in_array($code_Voucher, $_SESSION['used_vouchers'])) {
+            $totalPrice = $_SESSION['discount'];
+            return [
+                'totalPrice' => $totalPrice,
+                'errors' => ['code_Voucher' => "Mã giảm giá này đã được sử dụng trước đó!"]
+            ];
+        }
+        if ($discount) {
+            // Tính toán số tiền giảm giá
+            // var_dump($discount['gia_tri']);die;
+            $discount_amount = ($totalPrice * $discount['gia_tri']) / 100;
+            $totalPrice -= $discount_amount; // Cập nhật tổng tiền sau khi giảm giá
+            $_SESSION['used_vouchers'][] = $code_Voucher;
+            $_SESSION['discount'] = $totalPrice;
+            return [
+                'totalPrice' => $_SESSION['discount'],
+                'errors' => ['code_Voucher' => "Giảm giá thành công! Bạn đã được giảm " . number_format($discount_amount) . " VND."]
+            ];
+        } else if (!$discount) {
+            $totalPrice = isset($_SESSION['discount']) ? $_SESSION['discount'] : $totalPrice;
+            return [
+                'totalPrice' => $totalPrice,
+                'errors' => ['code_Voucher' => "Mã giảm giá không hợp lệ!"]
+            ];
+        }
     }
 
     public function handleVNPayResponse()
@@ -94,18 +197,21 @@ class checkoutController
             $isVerified = $this->verifyVNPayResponse($responseData);
             // var_dump($isVerified);
             // die;
-            if ($isVerified && $responseData['vnp_ResponseCode'] === '00') {
+            if ($isVerified && $responseData['vnp_ResponseCode'] == '00') {
                 // Lưu thông tin đơn hàng sau khi thanh toán thành công
-                $don_hang_id = $this->checkoutModel->buy_product($_GET['vnp_TxnRef'], $_SESSION['order_data']['tai_khoan_id'], $_SESSION['order_data']['ten_nguoi_nhan'], $_SESSION['order_data']['email_nguoi_nhan'], $_SESSION['order_data']['sdt_nguoi_nhan'], $_SESSION['order_data']['dia_chi_nguoi_nhan'], $_SESSION['order_data']['tong_tien'], $_SESSION['order_data']['ghi_chu'], $_SESSION['order_data']['phuong_thuc_thanh_toan'],);
-                $this->checkoutModel->addDetailDonHang(
-                    $don_hang_id['id'],
-                    $_SESSION['order_data']['san_pham_id'],
-                    $_SESSION['order_data']['don_gia'],
-                    $_SESSION['order_data']['so_luong'],
-                    $_SESSION['order_data']['tong_tien'],
-                );
-                header('Location: ' . BASE_URL . '?act=donHang&id_don_hang=' . $don_hang_id['id']);
-                echo "Thanh toán thành công!";
+                // var_dump(1234550);die;
+                if (
+                    $don_hang_id = $this->checkoutModel->buy_product($_GET['vnp_TxnRef'], $_SESSION['order_data']['tai_khoan_id'], $_SESSION['order_data']['ten_nguoi_nhan'], $_SESSION['order_data']['email_nguoi_nhan'], $_SESSION['order_data']['sdt_nguoi_nhan'], $_SESSION['order_data']['dia_chi_nguoi_nhan'], $_SESSION['order_data']['tong_tien'], $_SESSION['order_data']['ghi_chu'], $_SESSION['order_data']['phuong_thuc_thanh_toan'])
+                ) {
+                    $detail = $this->checkoutModel->addDetailDonHang(
+                        $don_hang_id['id'],
+                        $_SESSION['order_data']['san_pham_list']
+                    );
+                    header('Location: ' . BASE_URL . '?act=order&id_don_hang=' . $don_hang_id['id']);
+                    echo "Thanh toán thành công!";
+                } else {
+                    echo "Thanh toán thất bại!";
+                }
             } else {
                 echo "Thanh toán thất bại hoặc bị hủy!";
             }

@@ -7,9 +7,9 @@
                             <img src="<?= BASE_URL . $listBanner['hinh_anh'] ?>" alt="fashion-slideshow">
                             <div class="box-content">
                                 <div class="container">
-                                    <h1 class="fade-item fade-item-1">Glamorous<br>Glam</h1>
-                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
-                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                    <h1 class="fade-item fade-item-1">Siêu Thị Thú Cưng<br>PawPaw</h1>
+                                    <p class="fade-item fade-item-2">Những Chú Thú Cưng Mới Nhất</p>
+                                    <a href="<?= BASE_URL. '?act=productlist' ?>" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Tham Quan Shop</span><i class="icon icon-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản Lý Khuyễn Mãi</h1>
+                    <h1>Quản Lý Sản Phẩm</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -90,7 +90,7 @@
                                             <td><?= $value['so_luong'] ?></td>
                                             <td><?= $value['ten_danh_muc'] ?></td>
                                             <td>
-                                                <div class="badge <?= $checkStyleStatus ?>"><?= $value['trang_thai'] == 1 ? 'Còn bán' : 'Dừng bán'; ?></div>
+                                                <div class="badge <?= $checkStyleStatus ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px; width: 150px;"><?= $value['trang_thai'] == 1 ? 'Còn bán' : 'Dừng bán'; ?></div>
                                             </td>
                                             <td>
                                                 <div class="btn-group dropleft">

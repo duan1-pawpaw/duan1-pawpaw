@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['user']['id'])) {
+if (isset($_SESSION['user']['id']) && $_SESSION['user']['trang_thai'] == 1 && $_SESSION['user']['chuc_vu_id'] == 1) {
     $user_id = $_SESSION['user']['id'];
     // var_dump($user_id);die;
 } else {

@@ -379,7 +379,7 @@
                 <div class="col-xl-3 col-md-4 col-3">
                     <ul class="nav-icon d-flex justify-content-end align-items-center gap-20">
                         <li class="nav-search"><a href="?act=search" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="nav-icon-item"><i class="icon icon-search"></i></a></li>
-                        <li class="nav-account"><a href="" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-account"></i></a></li>
+                        <li class="nav-account"><a href="?act=logout" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-account"></i></a></li>
                         <li class="nav-wishlist"><a href="?act=wishlist" class="nav-icon-item"><i class="icon icon-heart"></i><span class="count-box">0</span></a></li>
                         <li class="nav-cart"><a href="#shoppingCart" data-bs-toggle="modal" class="nav-icon-item"><i class="icon icon-bag"></i><span class="count-box">0</span></a></li>
                     </ul>

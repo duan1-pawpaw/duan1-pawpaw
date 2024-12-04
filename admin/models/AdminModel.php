@@ -5,7 +5,6 @@ class RatingModel {
 
     public function __construct() {
         $this->conn = connectDB();
-        var_dump($this); die;
     }
 
     public function getAllRating() {

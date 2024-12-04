@@ -46,15 +46,13 @@ match ($act) {
     'removefromwishlist' => (new wishlistController())->remove($product_id),
     'product_description' => (new Product_Description_Controller())->index($product_id),
     'addcomment' => (new Product_Description_Controller())->addComment(), 
-    'search' => (new SearchController())->search(), 
-    
+    'search' => (new SearchController())->search(),
+    'addrating' => (new Product_Description_Controller())->addRating(), // Thêm dòng này để xử lý đánh giá
 
     'registers' => (new registerController())->registers(),
     'comfirm_registers' => (new registerController())->comfirm_registers(),
     'logins' => (new registerController())->logins(),
     'logout' => (new registerController())->logout(),
-    default => throw new UnhandledMatchError(),
+    default => (new homeController())->home(), // Thêm xử lý mặc định
 };
 ?>
-
-

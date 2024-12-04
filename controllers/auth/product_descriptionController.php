@@ -20,9 +20,41 @@ class Product_Description_Controller {
         // Lấy bình luận của sản phẩm
         $comments = $this->productModel->getCommentsByProductId($product_id);
 
-        
+        // Lấy đánh giá của sản phẩm
+        $ratings = $this->productModel->getRatingsByProductId($product_id);
+
+        // Kiểm tra xem người dùng đã mua sản phẩm này chưa
+        $hasPurchased = isset($_SESSION['user']['id']) ? $this->productModel->hasPurchased($_SESSION['user']['id']) : false;
+
         require_once('views/auth/product_description.php');
     }
+
+    public function addRating() {
+        if (!isset($_SESSION['user']['id'])) {
+            header("Location: ?act=registers");
+            exit();
+        }
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_id = $_SESSION['user']['id'];
+            $product_id = $_POST['san_pham_id'];
+            $rating = $_POST['rating'];
+            $comment = $_POST['binh_luan'] ?? '';
+    
+            if ($this->productModel->hasPurchased($user_id)) {
+                if ($this->productModel->addRating($user_id, $product_id, $rating, $comment)) {
+                    echo "Đánh giá của bạn đã được lưu.";
+                } else {
+                    echo "Lỗi khi lưu đánh giá.";
+                }
+            } else {
+                echo "Bạn chưa mua sản phẩm này, không thể đánh giá.";
+            }
+            header("Location: ?act=product_description&product_id=" . $product_id);
+            exit();
+        }
+    }
+    
 
     public function addComment() {
         if (!isset($_SESSION['user']['id'])) {
@@ -32,16 +64,13 @@ class Product_Description_Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $tai_khoan_id = $_SESSION['user']['id'];
-            $san_pham_id = $_POST['san_pham_id'];
-            $noi_dung = $_POST['noi_dung'];
+            $user_id = $_SESSION['user']['id'];
+            $product_id = $_POST['san_pham_id'];
+            $content = $_POST['noi_dung'];
 
-            $this->productModel->addComment($san_pham_id, $tai_khoan_id, $noi_dung);
-            header("Location: ?act=product_description&product_id=" . $san_pham_id);
+            $this->productModel->addComment($product_id, $user_id, $content);
+            header("Location: ?act=product_description&product_id=" . $product_id);
         }
     }
 }
 ?>
-
-
-

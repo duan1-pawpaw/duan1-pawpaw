@@ -50,13 +50,17 @@ INSERT INTO `banners` (`id`, `tieu_de`, `hinh_anh`, `trang_thai`) VALUES
 --
 
 CREATE TABLE `binh_luans` (
-  `id` int NOT NULL,
-  `san_pham_id` int NOT NULL,
-  `tai_khoan_id` int NOT NULL,
-  `noi_dung` text NOT NULL,
-  `ngay_dang` date NOT NULL,
-  `trang_thai` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    `id` int NOT NULL AUTO_INCREMENT,
+    `san_pham_id` int NOT NULL,
+    `tai_khoan_id` int NOT NULL,
+    `noi_dung` text NOT NULL,
+    `ngay_dang` datetime NOT NULL,
+    `trang_thai` tinyint(1) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`san_pham_id`) REFERENCES `san_phams`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`tai_khoan_id`) REFERENCES `tai_khoans`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `binh_luans`
@@ -128,14 +132,18 @@ INSERT INTO `chuc_vus` (`id`, `ten_chuc_vu`) VALUES
 --
 
 CREATE TABLE `danh_gias` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `san_pham_id` int NOT NULL,
   `tai_khoan_id` int NOT NULL,
   `binh_luan` text COLLATE utf8mb4_german2_ci NOT NULL,
   `danh_gia_sao` int NOT NULL,
-  `thoi_gian_danh_gia` date NOT NULL,
-  `trang_thai` tinyint NOT NULL DEFAULT '1'
+  `thoi_gian_danh_gia` datetime NOT NULL,
+  `trang_thai` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`san_pham_id`) REFERENCES `san_phams`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`tai_khoan_id`) REFERENCES `tai_khoans`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_german2_ci;
+
 
 --
 -- Dumping data for table `danh_gias`
@@ -190,6 +198,11 @@ CREATE TABLE `don_hangs` (
   `phuong_thuc_thanh_toan_id` int NOT NULL,
   `trang_thai_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `don_hangs` 
+ADD CONSTRAINT `fk_tai_khoan_id` 
+FOREIGN KEY (`tai_khoan_id`) 
+REFERENCES `tai_khoans` (`id`) ON DELETE RESTRICT ON UPDATE
 
 --
 -- Dumping data for table `don_hangs`

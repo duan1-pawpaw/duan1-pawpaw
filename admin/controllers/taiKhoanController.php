@@ -21,6 +21,8 @@ class UserController
         $id_user = $_SESSION['user']['id'];
 
         $user = $this->userModel->getByIdUser($id_user);
+        $Old_file = $user['anh_dai_dien'];
+        // var_dump($user['anh_dai_dien']);die;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Lấy ra dữ liệu
             $ho_ten = $_POST['ho_ten'] ?? '';
@@ -32,7 +34,20 @@ class UserController
             $gioi_tinh = $_POST['gioi_tinh'] ?? null;
             $dia_chi = $_POST['dia_chi'] ?? null;
             $trang_thai = $_POST['trang_thai'] ?? '';
-
+            // $hinh_anh = $_FILES['avata']['name'];
+            // var_dump($hinh_anh);die;
+            if (empty($_FILES['avata']['name'])) {
+                $file_thumb = $Old_file;
+            } else {
+                $anh_dai_dien = $_FILES['avata'];
+                // var_dump($anh_dai_dien);die;
+                //lưu hình ảnh vào 
+                $file_thumb = uploadFile($anh_dai_dien, './uploads/');
+                // nếu có ảnh mới thì xóa ảnh cũ
+                if (!empty($Old_file)) {
+                    deleteFile($Old_file);
+                }
+            }
             // Đảm bảo độ dài là 10
             if (strlen($so_dien_thoai) > 11) {
                 $errors['so_dien_thoai'] = 'Số điện thoại phải có 10 số';
@@ -44,6 +59,7 @@ class UserController
                 $this->userModel->updateProfile(
                     $id_user,
                     $ho_ten,
+                    $file_thumb,
                     $ngay_sinh,
                     $email,
                     $so_dien_thoai,
@@ -159,7 +175,7 @@ class UserController
                 $gioi_tinh = $_POST['gioi_tinh'] ?? '';
                 $dia_chi = $_POST['dia_chi'] ?? null;
                 $trang_thai = $_POST['trang_thai'] ?? '';
-
+                $file_thumb = $user['anh_dai_dien'];
                 // Tạo 1 mảng trống để chứa dữ liệu
                 $errors = [];
 
@@ -176,6 +192,7 @@ class UserController
                     $this->userModel->updateUser(
                         $id,
                         $ho_ten,
+                        $file_thumb,
                         $ngay_sinh,
                         $email,
                         $so_dien_thoai,

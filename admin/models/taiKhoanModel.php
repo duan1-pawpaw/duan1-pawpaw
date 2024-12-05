@@ -138,12 +138,13 @@ class User
             die($e->getMessage());
         }
     }
-    public function updateProfile($id, $ho_ten, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $trang_thai)
+    public function updateProfile($id, $ho_ten, $anh_dai_dien, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $trang_thai)
     {
         try {
             // var_dump($email);die;
             $sql = 'UPDATE tai_khoans SET
             ho_ten = :ho_ten,
+            anh_dai_dien = :anh_dai_dien,
             ngay_sinh = :ngay_sinh,
             so_dien_thoai = :so_dien_thoai,
             gioi_tinh = :gioi_tinh,
@@ -159,6 +160,7 @@ class User
             $stmt->execute([
                 ':id' => $id,
                 ':ho_ten' => $ho_ten,
+                ':anh_dai_dien' => $anh_dai_dien,
                 ':ngay_sinh' => $ngay_sinh,
                 ':email' => $email,
                 ':so_dien_thoai' => $so_dien_thoai,

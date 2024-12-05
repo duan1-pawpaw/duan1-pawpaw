@@ -56,8 +56,7 @@
                                     <!-- left column -->
                                     <div class="col-md-3 mt-5">
                                         <div class="text-center">
-                                            <img src="<?= BASE_URL_ADMIN . $user['anh_dai_dien']; ?>" class="avatar img-circle" alt="avatar" width="300px"
-                                                onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/019/879/186/large_2x/user-icon-on-transparent-background-free-png.png'">
+                                            <img src="<?= isset($user['anh_dai_dien']) && $user['anh_dai_dien'] !== '' ? BASE_URL . $user['anh_dai_dien'] : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220" ?>" class="avatar img-circle" id="img" alt="avatar" width="300px">
                                             <h5 class="mt-2">Họ tên: <strong><?= $user['ho_ten'] ?></strong></h5>
                                             <h5 class="mt-2">Chức vụ: <strong><?= $user['ten_chuc_vu'] ?></strong></h5>
                                         </div>
@@ -76,9 +75,15 @@
                                             unset($_SESSION['success']); // Xóa thông báo sau khi hiển thị
                                         }
                                         ?>
-                                        <form method="post" action="<?= BASE_URL_ADMIN . '?act=update-admin' ?>">
+                                        <form method="post" action="<?= BASE_URL_ADMIN . '?act=update-admin' ?>" enctype="multipart/form-data">
                                             <hr>
                                             <h3>Thông tin cá nhân</h3>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Ảnh Đại Diện:</label>
+                                                <div class="col-lg-12">
+                                                    <input type="file" id="input" class="form-control" name="avata">
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-lg-3 control-label">Họ tên:</label>
                                                 <div class="col-lg-12">

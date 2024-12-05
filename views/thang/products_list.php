@@ -77,7 +77,7 @@
                             <?php foreach ($products as $product): ?>
                                 <div class="card-product">
                                     <div class="card-product-wrapper">
-                                        <a href="?act=product_description&product_id=<?php echo $product['id']; ?>" class="product-img"> 
+                                        <a href="<?= BASE_URL . '?act=show-product&id=' . $product['id'] ?>" class="product-img"> 
                                             <img class="img-product" src="<?php echo $product['hinh_anh']; ?>" alt="<?php echo $product['ten_san_pham']; ?>"> 
                                             <img class="img-hover" src="<?php echo $product['hinh_anh']; ?>" alt="<?php echo $product['ten_san_pham']; ?>"> 
                                         </a>

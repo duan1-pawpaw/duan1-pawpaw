@@ -3,7 +3,31 @@
 <!-- Navbar -->
 <?php include './views/layout/nav.php'; ?>
 <!-- /.navbar -->
+<style>
+    table {
+        width: 100%;
+    }
 
+    th,
+    td {
+        word-wrap: break-word;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3) {
+        max-width: 200px;
+    }
+
+    td:nth-child(3) {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

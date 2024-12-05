@@ -76,9 +76,16 @@
                         </li>
 
                         <li class="user-profile header-notification">
+                        <?php
+                        // var_dump($_SESSION['user']['avata']);
+                            $avatar = isset($_SESSION['user']['avata']) && !empty($_SESSION['user']['avata']) 
+                            ? $_SESSION['user']['avata'] 
+                            : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220";
+                        ?>
+
                             <a href="#!">
-                                <img src="<?= isset($user['anh_dai_dien']) && $user['anh_dai_dien'] !== '' ? BASE_URL . $user['anh_dai_dien'] : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220" ?>" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
+                                <img src="<?= BASE_URL . $avatar ?>" class="img-radius" alt="User-Profile-Image">
+                                <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                 <i class="ti-angle-down"></i>
                             </a>
                             <ul class="show-notification profile-notification">
@@ -108,7 +115,7 @@
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
-                                <img class="img-40 img-radius" src="<?= isset($user['anh_dai_dien']) && $user['anh_dai_dien'] !== '' ? BASE_URL . $user['anh_dai_dien'] : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220" ?>" alt="User-Profile-Image">
+                                <img class="img-40 img-radius" src="<?= BASE_URL . $avatar ?>" alt="User-Profile-Image">
                                 <div class="user-details">
                                     <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                     <span id="more-details">Infomation<i class="ti-angle-down"></i></span>

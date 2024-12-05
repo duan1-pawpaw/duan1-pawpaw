@@ -24,7 +24,7 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Xác Thực Đăng Ký</h3>
+                        <h3 class="register-heading">Quên Mật Khẩu</h3>
                         <?php
                         // Lấy thông báo lỗi từ session
                         $errors = $_SESSION['errors'] ?? [];

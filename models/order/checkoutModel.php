@@ -20,6 +20,18 @@ class checkoutModel
         }
     }
 
+    public function check_soLuongTonKho($id){
+        try {
+            $sql = 'SELECT so_luong FROM san_phams WHERE id = :id';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return $stmt->fetchColumn();
+
+        }  catch (PDOException $th) {
+            echo "Lỗi: " . $th->getMessage();
+        }
+    }
+
     public function buy_product($ma_don_hang, $tai_khoan_id, $ten_nguoi_nhan, $email_nguoi_nhan, $sdt_nguoi_nhan, $dia_chi_nguoi_nhan, $tong_tien, $ghi_chu, $phuong_thuc_thanh_toan_id)
     {
         try {

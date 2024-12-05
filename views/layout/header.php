@@ -23,6 +23,8 @@
     <link rel="apple-touch-icon-precomposed" href="./assets/assets_font/images/logo/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Thêm SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Swiper CSS -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">

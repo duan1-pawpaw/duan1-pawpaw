@@ -7,6 +7,7 @@ class CartController
     public $orderModel;
     public $productModel;
     public $categoryModel;
+    public $checkoutModel;
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class CartController
         $this->profileModel = new Profile();
         $this->productModel = new Product();
         $this->categoryModel = new Category();
+        $this->checkoutModel = new checkoutModel();
     }
     public function cartCreate()
     {
@@ -24,19 +26,38 @@ class CartController
 
             // Lấy dữ liệu giỏ hàng của người dùng
             // var_dump($user['id']);die;
-            $cart = $this->cartModel->getByIdCart($user['id']);
+            $cart = $this->cartModel->getByIdCart($_SESSION['user']['id']);
             // var_dump($cart['id']);die;
             if (!$cart) {
                 // var_dump(123);die;
-                $cartId = $this->cartModel->createCart($user['id']);
+                $cartId = $this->cartModel->createCart($_SESSION['user']['id']);
                 $cart = ['id' => $cartId];
                 $chiTietGioHang = $this->cartModel->getDetailGioHang($cart['id']);
             } else {
                 $chiTietGioHang = $this->cartModel->getDetailGioHang($cart['id']);
             }
-            $san_pham_id = $_GET['san_pham_id'];
-            $so_luong = $_POST['so_luong'] ?? 1;
+            $san_pham_id = $_POST['san_pham_id'];
+            $so_luong = $_POST['so_luong'];
             // var_dump($san_pham_id);die;
+            // var_dump($_POST);die;
+            $check_soLuong = $this->checkoutModel->check_soLuongTonKho($san_pham_id);
+            if($so_luong > $check_soLuong){
+                // var_dump(123);die;
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Không Đủ Số Lượng Tồn Kho',
+                            text: 'Vui lòng kiểm tra lại số lượng bạn muốn mua.',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                </script>";
+                // die;
+                header("Refresh: 1; URL=" . BASE_URL. '?act=show-product&id='. $san_pham_id);
+                exit();
+            }
 
             $checkSanPham = false;
             foreach ($chiTietGioHang as $detail) {
@@ -66,9 +87,9 @@ class CartController
 
             // Lấy dữ liệu giỏ hàng của người dùng
             // var_dump($user['id']);die;
-            $cart = $this->cartModel->getByIdCart($user['id']);
+            $cart = $this->cartModel->getByIdCart($_SESSION['user']['id']);
             if (!$cart) {
-                $cartId = $this->cartModel->createCart($user['id']);
+                $cartId = $this->cartModel->createCart($_SESSION['user']['id']);
                 $cart = ['id' => $cartId];
                 $chiTietGioHang = $this->cartModel->getDetailGioHang($cart['id']);
             } else {

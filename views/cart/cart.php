@@ -11,93 +11,96 @@
 <!-- page-cart -->
 <section class="flat-spacing-11">
     <div class="container">
-        <div class="tf-page-cart-wrap">
-            <div class="tf-page-cart-item">
-                <table class="tf-table-page-cart">
-                    <thead>
-                        <tr>
-                            <th class="pro-thumbnail">Ảnh sản phẩm</th>
-                            <th class="pro-title">Tên sản phẩm</th>
-                            <th class="pro-price">Giá tiền</th>
-                            <th class="pro-quantity">Số lượng</th>
-                            <th class="pro-subtotal">Tổng tiền</th>
-                            <th class="pro-remove">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $tongGioHang = 0;
-                        foreach ($chiTietGioHang as $key => $sanPham) :
-                        ?>
-                            <tr class="tf-cart-item file-delete">
-                                <td class="tf-cart-item_product">
-                                    <a href="<?= BASE_URL . '?act=show-product&id=' . $sanPham['san_pham_id'] ?>" class="img-box">
-                                        <img src="<?= BASE_URL . $sanPham['hinh_anh'] ?>" alt="img-product">
-                                    </a>
-
-                                </td>
-                                <td class="tf-cart-item">
-                                    <div class="cart-info">
-                                        <a href="<?= BASE_URL . '?act=show-product&id=' . $sanPham['san_pham_id'] ?>" class="cart-title link"><?= $sanPham['ten_san_pham'] ?></a>
-                                        <div class="cart-meta-variant">Giới tính: <?= $sanPham['gioi_tinh'] = 1 ? 'Đực' : 'Cái' ?></div>
-                                    </div>
-                                </td>
-                                <td class="tf-cart-item_price">
-                                    <div class="cart-price">
-                                        <?php if ($sanPham['gia_khuyen_mai']) { ?>
-                                            <input type="hidden" class="don_gia" value="<?= $sanPham['gia_khuyen_mai'] ?>">
-                                            <span><?= formatPrice($sanPham['gia_khuyen_mai']) . 'VND'; ?></span>
-                                        <?php } else { ?>
-                                            <input type="hidden" class="don_gia" value="<?= $sanPham['gia_san_pham'] ?>">
-                                            <span><?= formatPrice($sanPham['gia_san_pham']) . 'VND'; ?></span>
-                                        <?php } ?>
-                                    </div>
-                                </td>
-                                <td class="tf-cart-item_quantity" cart-data-title="Quantity">
-                                    <div class="cart-quantity">
-                                        <div class="wg-quantity">
-                                            <span class="btn-quantity minus-btn">
-                                                <button type="text" class="decrease" style="width: 20px; border: 0;">-</button>
-                                            </span>
-                                            <input type="text" class="quantity" data-dongia="<?= $sanPham['gia_khuyen_mai'] ?? $sanPham['gia_san_pham'] ?>" name="number" value="<?= $sanPham['so_luong'] ?>" data-product-id="<?= $sanPham['id'] ?>">
-                                            <span class="btn-quantity plus-btn">
-                                                <button type="text" class="increase" style="width: 20px; border: 0;">+</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="tf-cart-item_total" cart-data-title="Total">
-                                    <div class="cart-total">
-                                        <?php
-                                        $tongTien = 0;
-                                        if ($sanPham['gia_khuyen_mai']) {
-                                            $tongTien = $sanPham['gia_khuyen_mai'] * $sanPham['so_luong'];
-                                        } else {
-                                            $tongTien = $sanPham['gia_san_pham'] * $sanPham['so_luong'];
-                                        }
-                                        $tongGioHang += $tongTien;
-
-                                        ?>
-                                        <span id="totalPrice"><?= number_format($tongTien) ?>Đ</span>
-                                    </div>
-                                </td>
-                                <td class="tf-cart-item">
-                                    <a href="<?= BASE_URL . '?act=cartDeletes&id_cart=' . $sanPham['id'] ?>"><button style="border: 0;"><i class="fa-regular fa-trash-can"></i></button></a>
-                                </td>
+        <form action="<?= BASE_URL . '?act=Fromcheckout' ?>" method="POST">
+        <div class="tf-page-cart-wrap ">
+                <div class="tf-page-cart-item">
+                    <table class="tf-table-page-cart">
+                        <thead>
+                            <tr>
+                                <th class="pro-thumbnail">Ảnh sản phẩm</th>
+                                <th class="pro-title">Tên sản phẩm</th>
+                                <th class="pro-price">Giá tiền</th>
+                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-subtotal">Tổng tiền</th>
+                                <th class="pro-remove">Thao tác</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="tf-page-cart-footer">
-                <div class="tf-cart-footer-inner mt-3">
-                    <div class="tf-page-cart-checkout">
-                        <div class="shipping-calculator">
-                            <summary class="accordion-shipping-header d-flex justify-content-between align-items-center collapsed" data-bs-target="#shipping" data-bs-toggle="collapse" aria-controls="shipping">
-                                <h2 class="shipping-calculator-title">Tổng:</h2>
-                            </summary>
-                        </div>
-                        <form action="<?= BASE_URL . '?act=Fromcheckout' ?>" method="POST" >
+                        </thead>
+                        <tbody>
+                            <?php
+                            $tongGioHang = 0;
+                            foreach ($chiTietGioHang as $key => $sanPham) :
+                            ?>
+                            <input type="hidden" name="san_pham[<?= $key ?>][san_pham_id]" value="<?= $sanPham['san_pham_id'] ?>">
+                            <input type="hidden" name="san_pham[<?= $key ?>][so_luong]" value="<?= $sanPham['so_luong'] ?>">
+                                <tr class="tf-cart-item file-delete">
+                                    <td class="tf-cart-item_product">
+                                        <a href="<?= BASE_URL . '?act=show-product&id=' . $sanPham['san_pham_id'] ?>" class="img-box">
+                                            <img src="<?= BASE_URL . $sanPham['hinh_anh'] ?>" alt="img-product">
+                                        </a>
+
+                                    </td>
+                                    <td class="tf-cart-item">
+                                        <div class="cart-info">
+                                            <a href="<?= BASE_URL . '?act=show-product&id=' . $sanPham['san_pham_id'] ?>" class="cart-title link"><?= $sanPham['ten_san_pham'] ?></a>
+                                            <div class="cart-meta-variant">Giới tính: <?= $sanPham['gioi_tinh'] = 1 ? 'Đực' : 'Cái' ?></div>
+                                        </div>
+                                    </td>
+                                    <td class="tf-cart-item_price">
+                                        <div class="cart-price">
+                                            <?php if ($sanPham['gia_khuyen_mai']) { ?>
+                                                <input type="hidden" class="don_gia" value="<?= $sanPham['gia_khuyen_mai'] ?>">
+                                                <span><?= formatPrice($sanPham['gia_khuyen_mai']) . 'VND'; ?></span>
+                                            <?php } else { ?>
+                                                <input type="hidden" class="don_gia" value="<?= $sanPham['gia_san_pham'] ?>">
+                                                <span><?= formatPrice($sanPham['gia_san_pham']) . 'VND'; ?></span>
+                                            <?php } ?>
+                                        </div>
+                                    </td>
+                                    <td class="tf-cart-item_quantity" cart-data-title="Quantity">
+                                        <div class="cart-quantity">
+                                            <div class="wg-quantity">
+                                                <span class="btn-quantity minus-btn">
+                                                    <button type="text" class="decrease" style="width: 20px; border: 0;">-</button>
+                                                </span>
+                                                <input type="text" class="quantity" name="so_luong" value="<?= $sanPham['so_luong'] ?>" >
+                                                <span class="btn-quantity plus-btn">
+                                                    <button type="text" class="increase" style="width: 20px; border: 0;">+</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tf-cart-item_total" cart-data-title="Total">
+                                        <div class="cart-total">
+                                            <?php
+                                            $tongTien = 0;
+                                            if ($sanPham['gia_khuyen_mai']) {
+                                                $tongTien = $sanPham['gia_khuyen_mai'] * $sanPham['so_luong'];
+                                            } else {
+                                                $tongTien = $sanPham['gia_san_pham'] * $sanPham['so_luong'];
+                                            }
+                                            $tongGioHang += $tongTien;
+
+                                            ?>
+                                            <span id="totalPrice"><?= number_format($tongTien) ?>Đ</span>
+                                        </div>
+                                    </td>
+                                    <td class="tf-cart-item">
+                                        <a href="<?= BASE_URL . '?act=cartDeletes&id_cart=' . $sanPham['id'] ?>"><i style="border: 0;" class="fa-regular fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tf-page-cart-footer">
+                    <div class="tf-cart-footer-inner mt-3">
+                        <div class="tf-page-cart-checkout">
+                            <div class="shipping-calculator">
+                                <summary class="accordion-shipping-header d-flex justify-content-between align-items-center collapsed" data-bs-target="#shipping" data-bs-toggle="collapse" aria-controls="shipping">
+                                    <h2 class="shipping-calculator-title">Tổng:</h2>
+                                </summary>
+                            </div>
+
                             <div class="tf-cart-totals-discounts">
                                 <h3>Tạm Tính: </h3>
                                 <span class="total-value"><?= number_format($tongGioHang) ?>đ</span>
@@ -108,7 +111,7 @@
                             </div>
                             <div class="tf-cart-totals-discounts">
                                 <h3>Thành Tiền:</h3>
-                                <input type="hidden" name="tong_gio_hang" value="<?= $tongGioHang + 30000 ?>"> 
+                                <input type="hidden" name="tong_gio_hang" value="<?= $tongGioHang + 30000 ?>">
                                 <span class="total-value"><?= number_format($tongGioHang + 30000) ?>đ</span>
                             </div>
                             <div class=" mt-5">
@@ -116,13 +119,13 @@
                                     Check out
                                 </button>
                             </div>
-                        </form>
-                    </div>
 
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
     </div>
 </section>
 <!-- page-cart -->

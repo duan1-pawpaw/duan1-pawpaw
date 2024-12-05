@@ -152,9 +152,15 @@
                             <div class="box-checkbox fieldset-radio mb_20">
                                 <input type="checkbox" name="confirmOrder" id="check-agree" class="tf-check">
                                 <label for="check-agree" class="text_black-2">Xác Nhận Đặt Hàng</label>
-                                <?php if (isset($errors['confirmOrder'])) { ?>
-                                        <script>alert("<?= $errors['confirmOrder']  ?>")</script>
-                                    <?php } ?>
+                                <?php if (isset($errors['confirmOrder'])) {
+                                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                                    echo "<script>
+                                             Swal.fire({
+                                            title: 'Bạn Chưa Xác Nhận Đặt hàng',
+                                            confirmButtonText: 'OK'
+                                                });
+                                    </script>";
+                                } ?>
                             </div>
                             <button class="tf-btn radius-3 mt-4 btn-fill btn-icon animate-hover-btn justify-content-center">Place order</button>
                         </form>

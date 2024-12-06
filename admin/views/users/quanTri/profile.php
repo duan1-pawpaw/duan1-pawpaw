@@ -56,7 +56,7 @@
                                     <!-- left column -->
                                     <div class="col-md-3 mt-5">
                                         <div class="text-center">
-                                            <img src="<?= isset($user['anh_dai_dien']) && $user['anh_dai_dien'] !== '' ? BASE_URL . $user['anh_dai_dien'] : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220" ?>" class="avatar img-circle" id="img" alt="avatar" width="300px">
+                                            <img src="<?= isset($user['anh_dai_dien']) && $user['anh_dai_dien'] !== '' ? BASE_URL . $user['anh_dai_dien'] : "https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" ?>" class="avatar img-circle" id="img" alt="avatar" width="300px">
                                             <h5 class="mt-2">Họ tên: <strong><?= $user['ho_ten'] ?></strong></h5>
                                             <h5 class="mt-2">Chức vụ: <strong><?= $user['ten_chuc_vu'] ?></strong></h5>
                                         </div>
@@ -151,20 +151,6 @@
                                                     <?php if (isset($_SESSION['error']['dia_chi'])) { ?>
                                                         <p class="text-danger"><?= $_SESSION['error']['dia_chi'] ?></p>
                                                     <?php } ?>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-3 control-label">Trạng thái tài khoản:</label>
-                                                <div class="col-lg-12">
-                                                    <div class="ui-select">
-                                                        <select id="inoutStatus" name="trang_thai" class="form-control custom-select">
-                                                            <option <?= ($_SESSION['old_data']['trang_thai'] ?? $user['trang_thai']) == 1 ? 'selected' : '' ?> value="1">Active</option>
-                                                            <option <?= ($_SESSION['old_data']['trang_thai'] ?? $user['trang_thai']) != 1 ? 'selected' : '' ?> value="2">Inactive</option>
-                                                        </select>
-                                                        <?php if (isset($_SESSION['error']['trang_thai'])) { ?>
-                                                            <p class="text-danger"><?= $_SESSION['error']['trang_thai'] ?></p>
-                                                        <?php } ?>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">

@@ -1,5 +1,79 @@
 <?php require_once './views/layout/header.php' ?>
 <?php require_once './views/layout/menu.php' ?>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+/* Bố cục tổng thể */
+.thumbs-slider {
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    align-items: center;
+}
+
+/* Ảnh nhỏ (Thumbnail) - Dọc */
+#gallery-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 500px; /* Giới hạn chiều cao */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd #f0f0f0;
+}
+
+/* Thanh cuộn tuỳ chỉnh */
+#gallery-thumbs::-webkit-scrollbar {
+    width: 8px;
+}
+#gallery-thumbs::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 4px;
+}
+#gallery-thumbs::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+/* Ảnh nhỏ (Thumbnail) */
+#gallery-thumbs .swiper-slide {
+    width: 100px; /* Kích thước thumbnail */
+    height: 80px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: transform 0.3s, border 0.3s;
+    cursor: pointer;
+}
+#gallery-thumbs .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+#gallery-thumbs .swiper-slide:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+#gallery-thumbs .swiper-slide-thumb-active {
+    border-color: #007bff;
+    transform: scale(1.2);
+}
+
+/* Ảnh chính */
+#gallery-main {
+    flex: 1;
+    max-width: 700px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+#gallery-main .swiper-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+</style>
 <div id="header" class="header-default">
     <div class="px_15 lg-px_40">
         <div class="row wrapper-header align-items-center">
@@ -30,26 +104,34 @@
                 <div class="col-md-6">
                     <div class="tf-product-media-wrap sticky-top">
                         <div class="thumbs-slider">
-                            <div dir="ltr" class="swiper tf-product-media-thumbs other-image-zoom" data-direction="vertical">
-                                <div class="swiper-wrapper stagger-wrap">
-                                    <div class="swiper-slide stagger-item stagger-finished" data-color="beige" style="transition-delay: 0.2s;">
-                                        <div class="item">
-                                            <?php foreach ($albumProduct as $key => $imgPrduct): ?>
-                                                <img class="ls-is-cached lazyloaded" data-src="<?= BASE_URL . $imgPrduct['link_hinh_anh']; ?>" src="<?= BASE_URL . $imgPrduct['link_hinh_anh']; ?>" alt="img-product">
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div dir="ltr" class="swiper tf-product-media-main" id="gallery-swiper-started">
+                            <!-- Danh sách ảnh nhỏ (Thumbnail) -->
+                            <div class="swiper tf-product-media-thumbs other-image-zoom" id="gallery-thumbs">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide" data-color="beige">
-                                        <a href="<?= BASE_URL . $product['hinh_anh']; ?>" target="_blank" class="item" data-pswp-width="770px" data-pswp-height="1075px">
-                                            <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?= BASE_URL . $product['hinh_anh']; ?>" data-src="<?= BASE_URL . $product['hinh_anh']; ?>" src="<?= BASE_URL . $product['hinh_anh']; ?>" alt="">
-                                        </a>
-                                    </div>
+                                    <?php foreach ($albumProduct as $key => $imgPrduct): ?>
+                                        <div class="swiper-slide">
+                                            <img
+                                                src="<?= BASE_URL . $imgPrduct['link_hinh_anh']; ?>"
+                                                alt="Thumbnail <?= $key; ?>">
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
+
+                            <!-- Ảnh chính -->
+                            <div class="swiper tf-product-media-main" id="gallery-main">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($albumProduct as $key => $imgPrduct): ?>
+                                        <div class="swiper-slide">
+                                            <a href="<?= BASE_URL . $imgPrduct['link_hinh_anh']; ?>" target="_blank">
+                                                <img
+                                                    src="<?= BASE_URL . $imgPrduct['link_hinh_anh']; ?>"
+                                                    alt="Main Image <?= $key; ?>">
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -105,7 +187,7 @@
                                     <div class="quantity-title fw-6">Số lượng</div>
                                     <div class="wg-quantity">
                                         <span class="btn-quantity btn-decrease">-</span>
-                                        <input type="number" class="quantity-product" name="so_luong" value="1" min="1"  required>
+                                        <input type="number" class="quantity-product" name="so_luong" value="1" min="1" required>
                                         <span class="btn-quantity btn-increase">+</span>
                                     </div>
                                 </div>
@@ -147,7 +229,7 @@
                                         <div class="reply-comment-item">
                                             <div class="user">
                                                 <div class="image">
-                                                    <img src="<?= $comment['anh_dai_dien']; ?>" alt="">
+                                                    <img src="<?= isset($comment['anh_dai_dien']) ? $comment['anh_dai_dien'] : 'https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg' ?>" alt="">
                                                 </div>
                                                 <div>
                                                     <p><?= $comment['ho_ten']; ?></p>
@@ -263,3 +345,25 @@
 </section>
 <!-- /product -->
 <?php require_once './views/layout/footer.php' ?>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+const galleryThumbs = new Swiper('#gallery-thumbs', {
+    direction: 'vertical', // Hiển thị ảnh con theo chiều dọc
+    spaceBetween: 10,
+    slidesPerView: 4, // Số ảnh con hiển thị cùng lúc
+    freeMode: true,
+    watchSlidesProgress: true,
+});
+
+const galleryMain = new Swiper('#gallery-main', {
+    spaceBetween: 10,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+        swiper: galleryThumbs,
+    },
+});
+</script>

@@ -138,7 +138,7 @@ class User
             die($e->getMessage());
         }
     }
-    public function updateProfile($id, $ho_ten, $anh_dai_dien, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $trang_thai)
+    public function updateProfile($id, $ho_ten, $anh_dai_dien, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi)
     {
         try {
             // var_dump($email);die;
@@ -149,7 +149,6 @@ class User
             so_dien_thoai = :so_dien_thoai,
             gioi_tinh = :gioi_tinh,
             dia_chi = :dia_chi,
-            trang_thai = :trang_thai,
             email = :email            
             WHERE id = :id';
             // var_dump($sql);die;
@@ -165,8 +164,7 @@ class User
                 ':email' => $email,
                 ':so_dien_thoai' => $so_dien_thoai,
                 ':gioi_tinh' => $gioi_tinh,
-                ':dia_chi' => $dia_chi,
-                ':trang_thai' => $trang_thai,
+                ':dia_chi' => $dia_chi
             ]);
 
             // Lấy id đơn hàng vừa thêm

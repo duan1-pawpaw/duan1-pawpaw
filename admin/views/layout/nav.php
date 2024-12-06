@@ -4,7 +4,7 @@
         <nav class="navbar header-navbar pcoded-header">
             <div class="navbar-wrapper">
 
-                <div class="navbar-logo">
+                <div class="navbar-logo" style="background-color: white; border-right: 1px solid grey; box-shadow: 0 0 3px 0 ;">
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="ti-menu"></i>
                     </a>
@@ -12,7 +12,7 @@
                         <i class="ti-search"></i>
                     </a>
                     <a onclick="return confirm('Bạn Muốn Vào Website Chứ??')" href="<?= BASE_URL ?>">
-                        <img class="img-fluid" width="170" style="margin-left: 10px;" src="../assets/images/logo5.JPG" alt="Theme-Logo" />
+                        <img class="img-fluid" width="170" style="margin-left: 10px;" src="../assets/images/logo6.png" alt="Theme-Logo" />
                     </a>
                     <a class="mobile-options">
                         <i class="ti-more"></i>
@@ -79,12 +79,12 @@
                         <?php
                         // var_dump($_SESSION['user']['avata']);
                             $avatar = isset($_SESSION['user']['avata']) && !empty($_SESSION['user']['avata']) 
-                            ? $_SESSION['user']['avata'] 
-                            : "https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220";
+                            ? BASE_URL . $_SESSION['user']['avata'] 
+                            : "https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg";
                         ?>
 
                             <a href="#!">
-                                <img src="<?= BASE_URL . $avatar ?>" class="img-radius" alt="User-Profile-Image">
+                                <img src="<?= $avatar ?>" class="img-radius" alt="User-Profile-Image">
                                 <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                 <i class="ti-angle-down"></i>
                             </a>
@@ -115,7 +115,7 @@
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
-                                <img class="img-40 img-radius" src="<?= BASE_URL . $avatar ?>" alt="User-Profile-Image">
+                                <img class="img-40 img-radius" src="<?=  $avatar ?>" alt="User-Profile-Image">
                                 <div class="user-details">
                                     <span><?= $_SESSION['user']['ho_ten'] ?></span>
                                     <span id="more-details">Infomation<i class="ti-angle-down"></i></span>

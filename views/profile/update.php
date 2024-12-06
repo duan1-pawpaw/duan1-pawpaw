@@ -21,7 +21,7 @@
                                             // var_dump($user);die;
                                             ?>
                                             <img src="<?= BASE_URL . $user['anh_dai_dien']; ?>" id="img" class="img-fluid rounded-circle mb-3" alt="avatar" width="300px"
-                                                onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/019/879/186/large_2x/user-icon-on-transparent-background-free-png.png'">
+                                                onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg'">
                                             <h5 class="mt-2"><strong><?= $user['ho_ten'] ?></strong></h5>
                                         </div>
                                     </div>

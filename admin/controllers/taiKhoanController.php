@@ -33,7 +33,6 @@ class UserController
             $so_dien_thoai = $_POST['so_dien_thoai'] ?? null;
             $gioi_tinh = $_POST['gioi_tinh'] ?? null;
             $dia_chi = $_POST['dia_chi'] ?? null;
-            $trang_thai = $_POST['trang_thai'] ?? '';
             // $hinh_anh = $_FILES['avata']['name'];
             // var_dump($hinh_anh);die;
             if (empty($_FILES['avata']['name'])) {
@@ -64,8 +63,7 @@ class UserController
                     $email,
                     $so_dien_thoai,
                     $gioi_tinh,
-                    $dia_chi,
-                    $trang_thai
+                    $dia_chi
                 );
                 // var_dump($update);die;
 
@@ -82,8 +80,7 @@ class UserController
                     'email' => $email,
                     'so_dien_thoai' => $so_dien_thoai,
                     'gioi_tinh' => $gioi_tinh,
-                    'dia_chi' => $dia_chi,
-                    'trang_thai' => $trang_thai,
+                    'dia_chi' => $dia_chi
                 ];
                 header('location: ' . BASE_URL_ADMIN . '?act=users-admin');
                 exit();

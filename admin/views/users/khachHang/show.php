@@ -48,7 +48,7 @@
                                         <td>
                                             <img src="<?= BASE_URL . $user['anh_dai_dien'] ?>"
                                                 style="width:80%; " alt=""
-                                                onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/019/879/186/large_2x/user-icon-on-transparent-background-free-png.png'">
+                                                onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg'">
                                         </td>
                                     </div>
                                     <div class="col-8">

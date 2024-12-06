@@ -13,36 +13,6 @@ class checkoutController
     {
         $tong_tien = $_POST['tong_gio_hang'] ?? $_SESSION['tong_tien'] ?? $_POST['tong_tien'] ?? $_GET['tong_tien'];
         // var_dump($tong_tien);die;
-        // Lấy dữ liệu giỏ hàng của người dùng
-        // var_dump($user['id']);die;
-        if (isset($_POST['san_pham']) && is_array($_POST['san_pham'])) {
-        foreach ($_POST['san_pham'] as $key => $san_pham) {
-            // Truy xuất giá trị 'id' của mỗi sản phẩm
-            $san_pham_id = $san_pham['san_pham_id'];
-            $so_luong = $san_pham['so_luong'];
-            // var_dump($san_pham_id, $so_luong); // Kiểm tra giá trị của sản phẩm
-            // die;
-            $check_soLuong = $this->checkoutModel->check_soLuongTonKho($san_pham_id);
-            // var_dump($check_soLuong);
-            if($so_luong > $check_soLuong){
-                // var_dump(123);die;
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Không Đủ Số Lượng Tồn Kho',
-                            text: 'Vui lòng kiểm tra lại số lượng bạn muốn mua.',
-                            confirmButtonText: 'OK'
-                        });
-                    });
-                </script>";
-                // die;
-                header("Refresh: 1; URL=" . BASE_URL. '?act=carts');
-                exit();
-            }
-        }
-    }
         
         // var_dump($_POST);die;
         // $check_soLuong = $this->checkoutModel->check_soLuongTonKho();    

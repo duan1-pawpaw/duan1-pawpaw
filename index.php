@@ -83,6 +83,7 @@ match ($act) {
     'thanks' => (new checkoutController()) -> handleVNPayResponse(),    
     'listOrder' => (new donHangController()) -> orderOfUser(),
     'detailOrder' => (new donHangController()) -> detailOrder(),
+    'detroyOrder' => (new donHangController()) -> detroyOrder(),
 
     'bai_viet' => (new baiVietController()) -> homeBaiViet(),
     'ct_tin' => (new baiVietController()) -> ct_tin(),
@@ -104,6 +105,7 @@ match ($act) {
     'create-cart' => (new CartController())->cartCreate(),
     'carts' => (new CartController())->cartIndex(),
     'cartDeletes' => (new CartController())->cartDelete(),
+    'updateCart' => (new CartController())->updateCart(),
     // show profile 
     'form-update-profile'   => (new ProfileController())->profileFormUpdate(),
     'update-profile'        => (new ProfileController())->profileUpdate(),

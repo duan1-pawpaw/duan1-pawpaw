@@ -11,8 +11,8 @@
 <!-- page-cart -->
 <section class="flat-spacing-11">
     <div class="container">
-        <form action="<?= BASE_URL . '?act=Fromcheckout' ?>" method="POST">
         <div class="tf-page-cart-wrap ">
+            <form action="<?= BASE_URL . '?act=updateCart' ?>" method="POST">
                 <div class="tf-page-cart-item">
                     <table class="tf-table-page-cart">
                         <thead>
@@ -29,9 +29,10 @@
                             <?php
                             $tongGioHang = 0;
                             foreach ($chiTietGioHang as $key => $sanPham) :
-                            ?>
-                            <input type="hidden" name="san_pham[<?= $key ?>][san_pham_id]" value="<?= $sanPham['san_pham_id'] ?>">
-                            <input type="hidden" name="san_pham[<?= $key ?>][so_luong]" value="<?= $sanPham['so_luong'] ?>">
+                                ?>
+                                <input type="hidden" name="san_pham[<?= $key ?>][gio_hang_id]" value="<?= $sanPham['id'] ?>">
+                                <input type="hidden" name="san_pham[<?= $key ?>][san_pham_id]" value="<?= $sanPham['san_pham_id'] ?>">
+                                <input type="hidden" name="san_pham[<?= $key ?>][so_luong_cu]" value="<?= $sanPham['so_luong'] ?>">
                                 <tr class="tf-cart-item file-delete">
                                     <td class="tf-cart-item_product">
                                         <a href="<?= BASE_URL . '?act=show-product&id=' . $sanPham['san_pham_id'] ?>" class="img-box">
@@ -62,7 +63,7 @@
                                                 <span class="btn-quantity minus-btn">
                                                     <button type="text" class="decrease" style="width: 20px; border: 0;">-</button>
                                                 </span>
-                                                <input type="text" class="quantity" name="so_luong" value="<?= $sanPham['so_luong'] ?>" >
+                                                <input type="text" class="quantity" name="san_pham[<?= $key ?>][so_luong]" value="<?= $sanPham['so_luong'] ?>">
                                                 <span class="btn-quantity plus-btn">
                                                     <button type="text" class="increase" style="width: 20px; border: 0;">+</button>
                                                 </span>
@@ -89,18 +90,24 @@
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="tf-btn w-100 btn-fill animate-hover-btn radius-3 justify-content-center p-2" type="submit">Cập Nhật</button></td>
                         </tbody>
                     </table>
                 </div>
-                <div class="tf-page-cart-footer">
-                    <div class="tf-cart-footer-inner mt-3">
-                        <div class="tf-page-cart-checkout">
-                            <div class="shipping-calculator">
-                                <summary class="accordion-shipping-header d-flex justify-content-between align-items-center collapsed" data-bs-target="#shipping" data-bs-toggle="collapse" aria-controls="shipping">
-                                    <h2 class="shipping-calculator-title">Tổng:</h2>
-                                </summary>
-                            </div>
-
+            </form>
+            <div class="tf-page-cart-footer">
+                <div class="tf-cart-footer-inner mt-3">
+                    <div class="tf-page-cart-checkout">
+                        <div class="shipping-calculator">
+                            <summary class="accordion-shipping-header d-flex justify-content-between align-items-center collapsed" data-bs-target="#shipping" data-bs-toggle="collapse" aria-controls="shipping">
+                                <h2 class="shipping-calculator-title">Tổng:</h2>
+                            </summary>
+                        </div>
+                        <form action="<?= BASE_URL . '?act=Fromcheckout' ?>" method="POST">
                             <div class="tf-cart-totals-discounts">
                                 <h3>Tạm Tính: </h3>
                                 <span class="total-value"><?= number_format($tongGioHang) ?>đ</span>
@@ -116,16 +123,14 @@
                             </div>
                             <div class=" mt-5">
                                 <button class="tf-btn w-100 btn-fill animate-hover-btn radius-3 justify-content-center">
-                                    Check out
+                                    Thanh Toán
                                 </button>
                             </div>
-
-                        </div>
-
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 <!-- page-cart -->

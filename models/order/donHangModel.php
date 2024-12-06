@@ -125,4 +125,18 @@ class donHangModel
             echo "lỗi" . $e->getMessage();
         }
     }
+
+    public function huyDonHang($id){
+        try {
+            $sql = 'UPDATE don_hangs SET trang_thai_id = 9 WHERE id = :id ';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':id' => $id
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "lỗi" . $e->getMessage();
+        }
+    }
 }

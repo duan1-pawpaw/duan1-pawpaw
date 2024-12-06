@@ -41,7 +41,7 @@ class CartController
             // var_dump($san_pham_id);die;
             // var_dump($_POST);die;
             $check_soLuong = $this->checkoutModel->check_soLuongTonKho($san_pham_id);
-            if($so_luong > $check_soLuong){
+            if ($so_luong > $check_soLuong) {
                 // var_dump(123);die;
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
                 echo "<script>
@@ -55,7 +55,7 @@ class CartController
                     });
                 </script>";
                 // die;
-                header("Refresh: 1; URL=" . BASE_URL. '?act=show-product&id='. $san_pham_id);
+                header("Refresh: 1; URL=" . BASE_URL . '?act=show-product&id=' . $san_pham_id);
                 exit();
             }
 
@@ -112,6 +112,62 @@ class CartController
         } else {
             echo "<script> alert('Xóa giỏ hàng thất bại!') </script>";
             header("Location: " . BASE_URL . '?act=carts');
+            exit();
+        }
+    }
+
+    public function updateCart()
+    {
+        $updateResults = [];
+
+        if (isset($_POST['san_pham']) && is_array($_POST['san_pham'])) {
+            foreach ($_POST['san_pham'] as $key => $san_pham) {
+                $san_pham_id = $san_pham['san_pham_id'];
+                $so_luong = $san_pham['so_luong'];
+                $so_luong_cu = $san_pham['so_luong_cu'];
+                $gio_hang_id = $san_pham['gio_hang_id'];
+
+                $check_soLuong = $this->checkoutModel->check_soLuongTonKho($san_pham_id);
+                if (($so_luong + $so_luong_cu) > $check_soLuong) {
+                    $updateResults[$san_pham_id] = 'Hết hàng';
+                } else {
+                    if ($this->cartModel->updateSoLuong($gio_hang_id, $san_pham_id, $so_luong)) {
+                        $updateResults[$san_pham_id] = 'Cập nhật thành công';
+                    } else {
+                        $updateResults[$san_pham_id] = 'Cập nhật thất bại';
+                    }
+                }
+            }
+
+            // Chuyển mảng kết quả về view hoặc frontend
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {";
+
+            foreach ($updateResults as $id => $message) {
+                if ($message === 'Cập nhật thành công') {
+                    echo "Swal.fire({
+                    icon: 'success',
+                    title: 'Cập nhật thành công',
+                    text: '$message'
+                });";
+                } else if($message === 'Hết hàng') {
+                    echo "Swal.fire({
+                    icon: 'error',
+                    title: 'Sản phẩm không dủ số lượng hàng tồn kho',
+                    text: '$message'
+                });";
+                }else{
+                    echo "Swal.fire({
+                        icon: 'error',
+                        title: 'Cập nhật thất bại',
+                        text: '$message'
+                    });"; 
+                }
+            }
+
+            echo "});</script>";
+            header('Refresh: 1; URL=' . BASE_URL . '?act=carts');
             exit();
         }
     }

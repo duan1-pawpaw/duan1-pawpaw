@@ -23,9 +23,11 @@
                         <div class="order-head">
                             <div class="content">
                                 <?php if ($sanphamDonhang['trang_thai_id'] < 7) { ?>
-                                    <div class="badge ">Đang Tiến Hành</div>
-                                <?php } else { ?>
+                                    <div class="badge bg-warning">Đang Tiến Hành</div>
+                                <?php } else if($sanphamDonhang['trang_thai_id'] == 8 || $sanphamDonhang['trang_thai_id'] == 12){ ?>
                                     <div class="badge bg-success">Đơn Hàng đã <?= $sanphamDonhang['ten_trang_thai'] ?></div>
+                                <?php } else{?>
+                                    <div class="badge bg-danger">Đơn Hàng đã <?= $sanphamDonhang['ten_trang_thai'] ?></div>
                                 <?php } ?>
                                 <h6 class="mt-8 fw-5">Mã Đơn Hàng: <?= $sanphamDonhang['ma_don_hang'] ?></h6>
                             </div>

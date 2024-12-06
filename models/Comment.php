@@ -14,7 +14,7 @@ class Comment
             $sql = 'SELECT binh_luans.*, tai_khoans.ho_ten
             FROM binh_luans
             INNER JOIN tai_khoans ON binh_luans.tai_khoan_id = tai_khoans.id
-            WHERE binh_luans.san_pham_id = :id
+            WHERE binh_luans.san_pham_id = :id AND binh_luans.trang_thai = 1
             ';
 
             $stmt = $this->conn->prepare($sql);

@@ -46,8 +46,8 @@
                             <?php } ?>
                         </ul>
                     </li>
-                    <li class="nav-wishlist"><a href="<?= BASE_URL . '?act=wishlist' ?>" class="nav-icon-item"><i class="icon icon-heart"></i><span class="count-box">0</span></a></li>
-                    <li class="nav-cart"><a href="<?= BASE_URL . '?act=carts' ?>" class="nav-icon-item"><i class="icon icon-bag"></i><span class="count-box">0</span></a></li>
+                    <li class="nav-wishlist"><a href="<?= BASE_URL . '?act=wishlist' ?>" class="nav-icon-item"><i class="icon icon-heart"></i></a></li>
+                    <li class="nav-cart"><a href="<?= BASE_URL . '?act=carts' ?>" class="nav-icon-item"><i class="icon icon-bag"></i></a></li>
                 </ul>
             </div>
         </div>

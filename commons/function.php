@@ -153,7 +153,7 @@ function sendMail($to, $subject, $content)
         $mail->Body    = $content;
 
         $mail->send();
-        // echo 'Gửi thành công';
+        echo 'Gửi thành công';
     } catch (Exception $e) {
         echo "Gửi masil thật bại. Mailer Error: {$mail->ErrorInfo}";
     }

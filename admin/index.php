@@ -2,6 +2,10 @@
 session_start();
 ob_start();
 // Require file Common
+require_once '../commons/phpmailer/Exception.php';
+require_once '../commons/phpmailer/PHPMailer.php';
+require_once '../commons/phpmailer/SMTP.php';
+
 require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
 

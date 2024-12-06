@@ -38,4 +38,49 @@ class donHangController
         $listTrangThaiDonHang = $this->donHangModel->getAllTrangThaiDonHang();
         require_once './views/order/detailDonHang.php';
     }
+
+    public function detroyOrder()
+    {
+        $order_id = $_GET['order_id'];
+        $productOfDetailOrder = $this->donHangModel->productOfDetailOrder($order_id);
+        // var_dump($productOfDetailOrder);die;
+        $content = "<table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Tổng Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                            foreach ($productOfDetailOrder as $key => $sanPham) {
+                                $content .= "
+                            <tr>
+                                <td>" . (++$key) . "</td>
+                                <td>{$sanPham['ten_san_pham']}</td>
+                                <td>{$sanPham['so_luong']}</td>
+                                <td>{$sanPham['thanh_tien']}</td>
+                            </tr>";
+                            }
+                        $content .= "</tbody></table>";
+
+        if ($this->donHangModel->huyDonHang($order_id)) {
+            $subject = 'Hủy Đơn Hàng Thành Công';
+            sendMail($_SESSION['user']['email'], $subject, $content);
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Hủy Đơn Hàng Thành Công',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            </script>";
+            // die;
+            header("Refresh: 1; URL=" . BASE_URL . '?act=listOrder');
+            exit();
+        }
+    }
 }

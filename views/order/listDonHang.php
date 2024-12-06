@@ -29,23 +29,29 @@
                                         <th class="fw-6">Ngày Đặt</th>
                                         <th class="fw-6">Trạng Thái</th>
                                         <th class="fw-6">Tổng Tiền</th>
-                                        <th class="fw-6">Xem Chi Tiết</th>
+                                        <th class="fw-6">Thao Tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($donhang as $key=>$row){ ?>
-                                    <tr class="tf-order-item">
-                                        <td><?= ++$key ?></td>
-                                        <td><?= $row['ma_don_hang'] ?></td>
-                                        <td><?= formartDate($row['ngay_dat'] )?></td>
-                                        <td><?= $row['ten_trang_thai'] ?></td>
-                                        <td><?= number_format($row['tong_tien']) ?>vnđ</td>
-                                        <td>
-                                            <a href="<?= BASE_URL . '?act=detailOrder&id_don_hang=' . $row['id'] ?>" class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
-                                                <span>Xem Chi Tiết</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($donhang as $key => $row) { ?>
+                                        <tr class="tf-order-item">
+                                            <td><?= ++$key ?></td>
+                                            <td><?= $row['ma_don_hang'] ?></td>
+                                            <td><?= formartDate($row['ngay_dat']) ?></td>
+                                            <td><?= $row['ten_trang_thai'] ?></td>
+                                            <td><?= number_format($row['tong_tien']) ?>vnđ</td>
+                                            <td>
+                                                <a href="<?= BASE_URL . '?act=detailOrder&id_don_hang=' . $row['id'] ?>" class="animate-hover-btn ">
+                                                    <button class="btn btn-info">Xem Chi Tiết</button>
+                                                </a>
+                                                <?php if ($row['trang_thai_id'] == 3) {  ?>
+                                                    <a href="<?= BASE_URL . '?act=detroyOrder&order_id=' . $row['id'] ?>" class="animate-hover-btn "><button class="btn " style="background-color:#9f9d9d;">Hủy Đơn</button></a>
+                                                <?php } else { ?>
+                                                    <a class="animate-hover-btn "><button disabled class="btn " style="background-color:#9f9d9d;">Hủy Đơn</button></a>
+                                                <?php } ?>
+                                                <?php ?>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>

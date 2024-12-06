@@ -58,11 +58,11 @@ class Cart
     public function updateSoLuong($gio_hang_id, $san_pham_id, $so_luong)
     {
         try {
-            // var_dump($id);die;
+            // var_dump($gio_hang_id, $san_pham_id, $so_luong);die;
             $sql = 'UPDATE chi_tiet_gio_hangs 
                 SET
                     so_luong = :so_luong
-                WHERE gio_hang_id = :gio_hang_id AND  san_pham_id = :san_pham_id';
+                WHERE id = :gio_hang_id AND  san_pham_id = :san_pham_id';
             // var_dump($sql);die;
 
             $stmt = $this->conn->prepare($sql);
@@ -78,6 +78,7 @@ class Cart
             return true;
         } catch (Exception $e) {
             echo "lỗi" . $e->getMessage();
+            flush();
         }
     }
     public function addDetailGioHang($gio_hang_id, $san_pham_id, $so_luong)

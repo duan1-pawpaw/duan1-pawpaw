@@ -20,7 +20,7 @@ class Product_Description_Model {
         }
     }
 
-    // Kiểm tra nếu người dùng đã mua sản phẩm
+    // Kiểm tra nếu người dùng đã mua sản phẩm hay chưa
     public function hasPurchased($user_id) {
         try {
             $sql = "SELECT COUNT(*)
@@ -70,7 +70,7 @@ class Product_Description_Model {
             return false;
         }
     }
-
+    
     // Thêm đánh giá
     public function addRating($user_id, $product_id, $rating, $comment) {
         try {
@@ -87,6 +87,7 @@ class Product_Description_Model {
             return false;
         }
     }
+    
     
 
     // Lấy đánh giá theo ID sản phẩm

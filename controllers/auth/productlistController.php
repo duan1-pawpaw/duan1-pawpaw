@@ -6,7 +6,7 @@ class ProductController {
         $this->productModel = new ProductModel();
     }
 
-    public function index() {
+    public function productlist() {
         $products = $this->productModel->getAllProducts();
         require_once('views/auth/products_list.php');
     }

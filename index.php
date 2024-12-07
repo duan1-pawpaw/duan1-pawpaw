@@ -31,28 +31,30 @@ require_once './models/bannerModel.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
-$product_id = $_GET['product_id'] ?? $_GET['id'] ?? null; // Đảm bảo biến $product_id được xác định
+$product_id = $_GET['product_id'] ?? $_GET['id'] ?? null;
 
-// mọi yêu cầu POST có thể được xử lý ngay lập tức khi handleRequest() được gọi.
 $controller = new registerController();
 $controller->handleRequest();
+
 match ($act) {
     '/' => (new homeController())->home(),
     'banners' => (new bannerController())->banners(),
 
-    'wishlist' => (new wishlistController())->index(),
-    'productlist' => (new ProductController())->index(),
+    'wishlist' => (new wishlistController())->wishlist(),
+    'productlist' => (new ProductController())->productlist(),
     'addtowishlist' => (new wishlistController())->add($product_id),
     'removefromwishlist' => (new wishlistController())->remove($product_id),
-    'product_description' => (new Product_Description_Controller())->index($product_id),
-    'addcomment' => (new Product_Description_Controller())->addComment(), 
+    'product_description' => (new Product_Description_Controller())->product_description($product_id),
+    'addComment' => (new Product_Description_Controller())->addComment(),
+    'addRating' => (new Product_Description_Controller())->addRating(),
     'search' => (new SearchController())->search(),
-    'addrating' => (new Product_Description_Controller())->addRating(), // Thêm dòng này để xử lý đánh giá
 
     'registers' => (new registerController())->registers(),
     'comfirm_registers' => (new registerController())->comfirm_registers(),
     'logins' => (new registerController())->logins(),
     'logout' => (new registerController())->logout(),
-    default => (new homeController())->home(), // Thêm xử lý mặc định
+    default => (new homeController())->home(),
 };
+
+
 ?>

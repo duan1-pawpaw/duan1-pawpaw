@@ -6,7 +6,7 @@ class wishlistController {
         $this->wishlistModel = new wishlistModel();
     }
 
-    public function index() {
+    public function wishlist() {
         if (isset($_SESSION['user']['id'])) {
             $tai_khoan_id = $_SESSION['user']['id'];
             $wishlists = $this->wishlistModel->getWistList($tai_khoan_id);
@@ -26,7 +26,7 @@ class wishlistController {
         $tai_khoan_id = $_SESSION['user']['id'];
         $this->wishlistModel->addToWishlist($tai_khoan_id, $product_id);
 
-        // Thông báo khi thêm thành công
+        // Thông báo thêm thành công
         
         // Chuyển hướng trở lại trang ban đầu
         header("Location: " . $_SERVER['HTTP_REFERER']);
@@ -43,7 +43,7 @@ class wishlistController {
         $tai_khoan_id = $_SESSION['user']['id'];
         $this->wishlistModel->removeFromWishlist($tai_khoan_id, $product_id);
         
-        // Xóa báo khi thêm thành công
+        // Thông báo xóa thành công
 
         // Chuyển hướng trở lại trang ban đầu
         header("Location: " . $_SERVER['HTTP_REFERER']);

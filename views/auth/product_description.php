@@ -9,10 +9,10 @@
 <?php require_once './views/layout/header.php' ?>
 <?php require_once './views/layout/menu.php' ?>
 <style>
-    .color-rating { 
+    .rating-stars { 
         color: gold; 
     } 
-    .color-rating .gray { 
+    .rating-stars .gray { 
         color: gray; 
     }
 </style>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Hiển thị bình luận -->
+            <!-- Bình Luận & Đánh Giá -->
             <section class="flat-spacing-17 pt_0">
                 <div class="container">
                     <div class="row">
@@ -195,103 +195,129 @@
                             <div class="widget-tabs style-has-border">
                                 <ul class="widget-menu-tab">
                                     <li class="item-title active">
-                                        <span class="inner">Bình Luận và Đánh Giá</span>
+                                        <a href="#comments" data-toggle="tab"><span class="inner">Bình Luận</span></a>
+                                    </li>
+                                    <li class="item-title">
+                                        <a href="#ratings" data-toggle="tab"><span class="inner">Đánh Giá</span></a>
                                     </li>
                                 </ul>
                                 <div class="widget-content-tab">
                                     <div class="widget-content-inner active">
                                         <!-- Hiển thị các bình luận -->
-                                        <div class="reply-comment cancel-review-wrap">
-                                            <div class="reply-comment-wrap">
-                                                <?php foreach ($comments as $comment): ?>
-                                                    <div class="reply-comment-item">
-                                                        <div class="user">
-                                                            <div class="image">
-                                                                <img src="<?= !empty($comment['anh_dai_dien']) ? htmlspecialchars($comment['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220' ; ?>" alt="">
-                                                            </div>
-                                                            <div>
-                                                                <p><?= htmlspecialchars($comment['ho_ten']); ?></p>
-                                                                <div class="day text_black-3"><?= htmlspecialchars($comment['ngay_dang']); ?></div>
-                                                            </div>
+                                        <div class="widget-content-tab">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="comments">
+                                                    <!-- Hiển thị các bình luận -->
+                                                    <div class="reply-comment cancel-review-wrap">
+                                                        <div class="reply-comment-wrap">
+                                                            <?php foreach ($comments as $comment): ?>
+                                                                <div class="reply-comment-item">
+                                                                    <div class="user">
+                                                                        <div class="image">
+                                                                            <img src="<?= !empty($comment['anh_dai_dien']) ? htmlspecialchars($comment['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220'; ?>" alt="">
+                                                                        </div>
+                                                                        <div>
+                                                                            <p><?= htmlspecialchars($comment['ho_ten']); ?></p>
+                                                                            <div class="day text_black-3"><?= htmlspecialchars($comment['ngay_dang']); ?></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="text_black-3"><?= htmlspecialchars($comment['noi_dung']); ?></p>
+                                                                </div>
+                                                            <?php endforeach; ?>
                                                         </div>
-                                                        <p class="text_black-3"><?= htmlspecialchars($comment['noi_dung']); ?></p>
                                                     </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-
-                                        <br>
-
-                                        <!-- Hiển thị các đánh giá -->
-                                        <div class="reply-comment cancel-review-wrap">
-                                            <div class="reply-comment-wrap">
-                                                <?php foreach ($ratings as $rating): ?>
-                                                    <div class="reply-comment-item">
-                                                        <div class="user">
-                                                            <div class="image">
-                                                            <img src="<?= !empty($rating['anh_dai_dien']) ? htmlspecialchars($comment['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220' ; ?>" alt="">
+                                                    <br>
+                                                    <!-- Form viết bình luận -->
+                                                    <?php if (isset($_SESSION['user']['id'])): ?>
+                                                        <form action="?act=addComment" method="POST" class="form-write-review write-review-wrap">
+                                                            <div class="form-content">
+                                                                <fieldset class="box-field">
+                                                                    <label class="label">Viết Bình Luận</label>
+                                                                    <textarea name="noi_dung" rows="4" placeholder="<?= 'Bình Luận Dưới tên ' . htmlspecialchars($_SESSION['user']['ho_ten']) ?>" tabindex="2" aria-required="true" required=""></textarea>
+                                                                    <input type="hidden" name="san_pham_id" value="<?= htmlspecialchars($product['id']); ?>">
+                                                                </fieldset>
                                                             </div>
-                                                            <div>
-                                                                <p><?= htmlspecialchars($rating['ho_ten']); ?> 
-                                                                    <span class="color-rating">
-                                                                        <?php for ($i = 0; $i < $rating['danh_gia_sao']; $i++): ?>
-                                                                            ★
-                                                                        <?php endfor; ?>
-                                                                        <?php for ($i = $rating['danh_gia_sao']; $i < 5; $i++): ?>
-                                                                            <span class="gray">☆</span>
-                                                                        <?php endfor; ?>
-                                                                    </span>
-                                                                </p>
-                                                                <div class="day text_black-3"><?= htmlspecialchars($rating['thoi_gian_danh_gia']); ?></div>
+                                                            <div class="button-submit">
+                                                                <button class="tf-btn btn-fill animate-hover-btn" type="submit">Gửi bình luận</button>
                                                             </div>
-                                                        </div>
-                                                        <p class="text_black-3"><?= htmlspecialchars($rating['binh_luan']); ?></p>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-
-                                        <br>
-
-                                        <!-- Form viết bình luận và đánh giá -->
-                                        <?php if (isset($_SESSION['user']['id'])): ?>
-                                            <form action="?act=addcomment" method="POST" class="form-write-review write-review-wrap">
-                                                <div class="form-content">
-                                                    <fieldset class="box-field">
-                                                        <label class="label">Viết Bình Luận</label>
-                                                        <textarea name="noi_dung" rows="4" placeholder="<?= 'Bình Luận Dưới tên ' . htmlspecialchars($_SESSION['user']['ho_ten']) ?>" tabindex="2" aria-required="true" required=""></textarea>
-                                                        <input type="hidden" name="san_pham_id" value="<?= htmlspecialchars($product['id']); ?>">
-                                                    </fieldset>
+                                                        </form>
+                                                    <?php else: ?>
+                                                        <p>Vui lòng <a href="?act=registers" style="color: blue;">đăng nhập</a> để bình luận.</p>
+                                                    <?php endif; ?>
                                                 </div>
 
-                                                <!-- Kiểm tra trạng thái mua hàng và hiển thị form đánh giá nếu đã mua hàng -->
-                                                <?php if ($hasPurchased): ?>
-                                                    <div class="heading">
-                                                        <h6>Đánh Giá Của Bạn</h6>
-                                                        <div class="list-rating-check">
-                                                            <input type="radio" id="star5" name="rating" value="5">
-                                                            <label for="star5" title="5 sao"></label>
-                                                            <input type="radio" id="star4" name="rating" value="4">
-                                                            <label for="star4" title="4 sao"></label>
-                                                            <input type="radio" id="star3" name="rating" value="3">
-                                                            <label for="star3" title="3 sao"></label>
-                                                            <input type="radio" id="star2" name="rating" value="2">
-                                                            <label for="star2" title="2 sao"></label>
-                                                            <input type="radio" id="star1" name="rating" value="1">
-                                                            <label for="star1" title="1 sao"></label>
+                                                <div class="tab-pane" id="ratings">
+                                                    <!-- Hiển thị các đánh giá (nếu có) -->
+                                                    <?php if (!empty($ratings)): ?>
+                                                        <div class="reply-comment cancel-review-wrap">
+                                                            <div class="reply-comment-wrap">
+                                                                <?php foreach ($ratings as $rating): ?>
+                                                                    <div class="reply-comment-item">
+                                                                        <div class="user">
+                                                                            <div class="image">
+                                                                                <img src="<?= !empty($rating['anh_dai_dien']) ? htmlspecialchars($rating['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220'; ?>" alt="">
+                                                                            </div>
+                                                                            <div>
+                                                                                <p><?= htmlspecialchars($rating['ho_ten']); ?> 
+                                                                                    <span class="rating-stars">
+                                                                                        <?php for ($i = 0; $i < $rating['danh_gia_sao']; $i++): ?>
+                                                                                            ★
+                                                                                        <?php endfor; ?>
+                                                                                        <?php for ($i = $rating['danh_gia_sao']; $i < 5; $i++): ?>
+                                                                                            <span class="gray">☆</span>
+                                                                                        <?php endfor; ?>
+                                                                                    </span>
+                                                                                </p>
+                                                                                <div class="day text_black-3"><?= htmlspecialchars($rating['thoi_gian_danh_gia']); ?></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <p class="text_black-3"><?= htmlspecialchars($rating['binh_luan']); ?></p>
+                                                                        <br>
+                                                                    </div>
+                                                                <?php endforeach; ?>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <p>Bạn cần mua sản phẩm này để có thể đánh giá.</p>
-                                                <?php endif; ?>
+                                                    <?php else: ?>
+                                                        <p>Sản Phẩm Này Chưa Có Đánh Giá.</p>
+                                                    <?php endif; ?>
 
-                                                <div class="button-submit">
-                                                    <button class="tf-btn btn-fill animate-hover-btn" type="submit">Gửi bình luận và đánh giá</button>
+                                                    <!-- Form viết đánh giá -->
+                                                    <?php if (isset($_SESSION['user']['id']) && $hasPurchased): ?>
+                                                        <form action="?act=addRating" method="POST" class="form-write-review write-review-wrap">
+                                                            <div class="form-content">
+                                                                <fieldset class="box-field">
+                                                                    <label class="label">Viết Đánh Giá</label>
+                                                                    <textarea name="binh_luan" rows="4" placeholder="<?= 'Đánh Giá Dưới tên ' . htmlspecialchars($_SESSION['user']['ho_ten']) ?>" tabindex="2" aria-required="true" required=""></textarea>
+                                                                    <input type="hidden" name="san_pham_id" value="<?= htmlspecialchars($product['id']); ?>">
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="heading">
+                                                                <h6>Đánh Giá Của Bạn</h6>
+                                                                <div class="list-rating-check">
+                                                                    <input type="radio" id="star5" name="danh_gia_sao" value="5">
+                                                                    <label for="star5" title="5 sao"></label>
+                                                                    <input type="radio" id="star4" name="danh_gia_sao" value="4">
+                                                                    <label for="star4" title="4 sao"></label>
+                                                                    <input type="radio" id="star3" name="danh_gia_sao" value="3">
+                                                                    <label for="star3" title="3 sao"></label>
+                                                                    <input type="radio" id="star2" name="danh_gia_sao" value="2">
+                                                                    <label for="star2" title="2 sao"></label>
+                                                                    <input type="radio" id="star1" name="danh_gia_sao" value="1">
+                                                                    <label for="star1" title="1 sao"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="button-submit">
+                                                                <button class="tf-btn btn-fill animate-hover-btn" type="submit">Gửi đánh giá</button>
+                                                            </div>
+                                                        </form>
+                                                        <?php elseif (isset($_SESSION['user']['id'])): ?>
+                                                            <p>Bạn cần mua sản phẩm này để có thể đánh giá.</p>
+                                                        <?php else: ?>
+                                                            <p>Vui lòng <a href="?act=registers" style="color: blue;">đăng nhập</a> để đánh giá.</p>
+                                                    <?php endif; ?>
                                                 </div>
-                                            </form>
-                                        <?php else: ?>
-                                            <p>Vui lòng <a href="?act=registers">đăng nhập</a> để bình luận và đánh giá.</p>
-                                        <?php endif; ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -299,11 +325,36 @@
                     </div>
                 </div>
             </section>
-        </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var tabLinks = document.querySelectorAll('.widget-menu-tab a');
+                    var tabContent = document.querySelectorAll('.tab-pane');
+
+                    tabLinks.forEach(function(link) {
+                        link.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            var targetId = this.getAttribute('href').substring(1);
+
+                            tabLinks.forEach(function(link) {
+                                link.parentElement.classList.remove('active');
+                            });
+                            tabContent.forEach(function(content) {
+                                content.classList.remove('active');
+                            });
+
+                            this.parentElement.classList.add('active');
+                            document.getElementById(targetId).classList.add('active');
+                    });
+                });
+            });
+            </script>
     </section>
 </body>
     <?php require_once './views/layout/footer.php' ?>
 </html>
 <style>
+
+
+
 
 

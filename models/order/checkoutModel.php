@@ -95,7 +95,7 @@ class checkoutModel
                 $so_luong_ton = $stmt_check->fetchColumn();
                 var_dump($so_luong);
                 var_dump($san_pham_id);
-                var_dump($so_luong_ton);
+                // var_dump($so_luong_ton);die;
                 if ($so_luong_ton < $so_luong) {
                     return "Sản phẩm ID $ten_san_pham không đủ số lượng trong kho.";
                 }

@@ -200,11 +200,12 @@ class checkoutController
             // die;
             if ($isVerified && $responseData['vnp_ResponseCode'] == '00') {
                 // Lưu thông tin đơn hàng sau khi thanh toán thành công
-                // var_dump(1234550);die;
+                // var_dump($_SESSION['order_data']['san_pham_list']);die;
                 if (
                     $don_hang_id = $this->checkoutModel->buy_product($_GET['vnp_TxnRef'], $_SESSION['order_data']['tai_khoan_id'], $_SESSION['order_data']['ten_nguoi_nhan'], $_SESSION['order_data']['email_nguoi_nhan'], $_SESSION['order_data']['sdt_nguoi_nhan'], $_SESSION['order_data']['dia_chi_nguoi_nhan'], $_SESSION['order_data']['tong_tien'], $_SESSION['order_data']['ghi_chu'], $_SESSION['order_data']['phuong_thuc_thanh_toan'])
                 ) {
-                    $detail = $this->checkoutModel->addDetailDonHang(
+                    // var_dump($_SESSION['order_data']['san_pham_list']);die;
+                        $this->checkoutModel->addDetailDonHang(
                         $don_hang_id['id'],
                         $_SESSION['order_data']['san_pham_list']
                     );

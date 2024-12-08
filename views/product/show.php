@@ -3,76 +3,83 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <style>
-/* Bố cục tổng thể */
-.thumbs-slider {
-    display: flex;
-    gap: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-    align-items: center;
-}
+    /* Bố cục tổng thể */
+    .thumbs-slider {
+        display: flex;
+        gap: 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+        align-items: center;
+    }
 
-/* Ảnh nhỏ (Thumbnail) - Dọc */
-#gallery-thumbs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 500px; /* Giới hạn chiều cao */
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #ddd #f0f0f0;
-}
+    /* Ảnh nhỏ (Thumbnail) - Dọc */
+    #gallery-thumbs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-height: 500px;
+        /* Giới hạn chiều cao */
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #ddd #f0f0f0;
+    }
 
-/* Thanh cuộn tuỳ chỉnh */
-#gallery-thumbs::-webkit-scrollbar {
-    width: 8px;
-}
-#gallery-thumbs::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 4px;
-}
-#gallery-thumbs::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-}
+    /* Thanh cuộn tuỳ chỉnh */
+    #gallery-thumbs::-webkit-scrollbar {
+        width: 8px;
+    }
 
-/* Ảnh nhỏ (Thumbnail) */
-#gallery-thumbs .swiper-slide {
-    width: 100px; /* Kích thước thumbnail */
-    height: 80px;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    transition: transform 0.3s, border 0.3s;
-    cursor: pointer;
-}
-#gallery-thumbs .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-}
-#gallery-thumbs .swiper-slide:hover {
-    transform: scale(1.1);
-    border-color: #007bff;
-}
-#gallery-thumbs .swiper-slide-thumb-active {
-    border-color: #007bff;
-    transform: scale(1.2);
-}
+    #gallery-thumbs::-webkit-scrollbar-thumb {
+        background-color: #ddd;
+        border-radius: 4px;
+    }
 
-/* Ảnh chính */
-#gallery-main {
-    flex: 1;
-    max-width: 700px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-#gallery-main .swiper-slide img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
+    #gallery-thumbs::-webkit-scrollbar-track {
+        background-color: #f0f0f0;
+    }
 
+    /* Ảnh nhỏ (Thumbnail) */
+    #gallery-thumbs .swiper-slide {
+        width: 100px;
+        /* Kích thước thumbnail */
+        height: 80px;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        transition: transform 0.3s, border 0.3s;
+        cursor: pointer;
+    }
+
+    #gallery-thumbs .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    #gallery-thumbs .swiper-slide:hover {
+        transform: scale(1.1);
+        border-color: #007bff;
+    }
+
+    #gallery-thumbs .swiper-slide-thumb-active {
+        border-color: #007bff;
+        transform: scale(1.2);
+    }
+
+    /* Ảnh chính */
+    #gallery-main {
+        flex: 1;
+        max-width: 700px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #gallery-main .swiper-slide img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 </style>
 <div id="header" class="header-default">
     <div class="px_15 lg-px_40">
@@ -211,7 +218,7 @@
 </section>
 <!-- /default -->
 <!-- Hiển thị bình luận -->
-<section class="flat-spacing-17 pt_0">
+<!-- <section class="flat-spacing-17 pt_0">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -254,6 +261,143 @@
                                     <button class="tf-btn btn-fill animate-hover-btn" type="submit">Bình Luận</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<section class="flat-spacing-17 pt_0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="widget-tabs style-has-border">
+                    <ul class="widget-menu-tab">
+                        <li class="item-title active">
+                            <a href="#comments" data-toggle="tab"><span class="inner">Bình Luận</span></a>
+                        </li>
+                        <li class="item-title">
+                            <a href="#ratings" data-toggle="tab"><span class="inner">Đánh Giá</span></a>
+                        </li>
+                    </ul>
+                    <div class="widget-content-tab">
+                        <div class="widget-content-inner active">
+                            <!-- Hiển thị các bình luận -->
+                            <div class="widget-content-tab">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="comments">
+                                        <!-- Hiển thị các bình luận -->
+                                        <div class="reply-comment cancel-review-wrap">
+                                            <div class="reply-comment-wrap">
+                                                <?php foreach ($comments as $comment): ?>
+                                                    <div class="reply-comment-item">
+                                                        <div class="user">
+                                                            <div class="image">
+                                                            <img src="<?= !empty($rating['anh_dai_dien']) ? htmlspecialchars($rating['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220'; ?>" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <p><?= htmlspecialchars($comment['ho_ten']); ?></p>
+                                                                <div class="day text_black-3"><?= htmlspecialchars($comment['ngay_dang']); ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text_black-3"><?= htmlspecialchars($comment['noi_dung']); ?></p>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <!-- Form viết bình luận -->
+                                        <?php if (isset($_SESSION['user']['id'])): ?>
+                                            <form action="?act=addcomment" method="POST" class="form-write-review write-review-wrap">
+                                                <div class="form-content">
+                                                    <fieldset class="box-field">
+                                                        <label class="label">Viết Bình Luận</label>
+                                                        <textarea name="noi_dung" rows="4" placeholder="<?= 'Bình Luận Dưới tên ' . htmlspecialchars($_SESSION['user']['ho_ten']) ?>" tabindex="2" aria-required="true" required=""></textarea>
+                                                        <input type="hidden" name="san_pham_id" value="<?= htmlspecialchars($product['id']); ?>">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="button-submit">
+                                                    <button class="tf-btn btn-fill animate-hover-btn" type="submit">Gửi bình luận</button>
+                                                </div>
+                                            </form>
+                                        <?php else: ?>
+                                            <p>Vui lòng <a href="?act=registers" style="color: blue;">đăng nhập</a> để bình luận.</p>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <div class="tab-pane" id="ratings">
+                                        <!-- Hiển thị các đánh giá (nếu có) -->
+                                        <?php if (!empty($ratings)): ?>
+                                            <div class="reply-comment cancel-review-wrap">
+                                                <div class="reply-comment-wrap">
+                                                    <?php foreach ($ratings as $rating): ?>
+                                                        <div class="reply-comment-item">
+                                                            <div class="user">
+                                                                <div class="image">
+                                                                    <img src="<?= !empty($rating['anh_dai_dien']) ? htmlspecialchars($rating['anh_dai_dien']) : 'https://tse4.mm.bing.net/th?id=OIP.-Zanaodp4hv0ry2WpuuPfgHaEf&pid=Api&P=0&h=220'; ?>" alt="">
+                                                                </div>
+                                                                <div>
+                                                                    <p><?= htmlspecialchars($rating['ho_ten']); ?>
+                                                                        <span class="rating-stars">
+                                                                            <?php for ($i = 0; $i < $rating['danh_gia_sao']; $i++): ?>
+                                                                                <span><i style="color: yellow;" class="fa-solid fa-star"></i></span>
+                                                                            <?php endfor; ?>
+                                                                            <?php for ($i = $rating['danh_gia_sao']; $i < 5; $i++): ?>
+                                                                                <span ><i class="fa-solid fa-star"></i></span>
+                                                                            <?php endfor; ?>
+                                                                        </span>
+                                                                    </p>
+                                                                    <div class="day text_black-3"><?= htmlspecialchars($rating['thoi_gian_danh_gia']); ?></div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="text_black-3"><?= htmlspecialchars($rating['binh_luan']); ?></p>
+                                                            <br>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php else: ?>
+                                            <p>Sản Phẩm Này Chưa Có Đánh Giá.</p>
+                                        <?php endif ?>
+
+                                        <!-- Form viết đánh giá -->
+                                        <?php if (isset($_SESSION['user']['id']) && $hasPurchased): ?>
+                                            <form action="<?= BASE_URL . '?act=addRating&id=' . $product['id'] ?>"  method="POST" class="form-write-review write-review-wrap">
+                                                <div class="form-content">
+                                                    <fieldset class="box-field">
+                                                        <label class="label">Viết Đánh Giá</label>
+                                                        <textarea name="binh_luan" rows="4" placeholder="<?= 'Đánh Giá Dưới tên ' . htmlspecialchars($_SESSION['user']['ho_ten']) ?>" tabindex="2" aria-required="true" required=""></textarea>
+                                                        <input type="hidden" name="san_pham_id" value="<?= htmlspecialchars($product['id']); ?>">
+                                                    </fieldset>
+                                                </div>
+                                                <div class="heading">
+                                                    <h6>Đánh Giá Của Bạn</h6>
+                                                    <div class="list-rating-check">
+                                                        <input type="radio" id="star5" name="danh_gia_sao" value="5">
+                                                        <label for="star5" title="5 sao"></label>
+                                                        <input type="radio" id="star4" name="danh_gia_sao" value="4">
+                                                        <label for="star4" title="4 sao"></label>
+                                                        <input type="radio" id="star3" name="danh_gia_sao" value="3">
+                                                        <label for="star3" title="3 sao"></label>
+                                                        <input type="radio" id="star2" name="danh_gia_sao" value="2">
+                                                        <label for="star2" title="2 sao"></label>
+                                                        <input type="radio" id="star1" name="danh_gia_sao" value="1">
+                                                        <label for="star1" title="1 sao"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="button-submit">
+                                                    <button class="tf-btn btn-fill animate-hover-btn" type="submit">Gửi đánh giá</button>
+                                                </div>
+                                            </form>
+                                        <?php elseif (isset($_SESSION['user']['id'])): ?>
+                                            <p>Bạn cần mua sản phẩm này để có thể đánh giá.</p>
+                                        <?php else: ?>
+                                            <p>Vui lòng <a href="?act=registers" style="color: blue;">đăng nhập</a> để đánh giá.</p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,22 +492,46 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-const galleryThumbs = new Swiper('#gallery-thumbs', {
-    direction: 'vertical', // Hiển thị ảnh con theo chiều dọc
-    spaceBetween: 10,
-    slidesPerView: 4, // Số ảnh con hiển thị cùng lúc
-    freeMode: true,
-    watchSlidesProgress: true,
-});
+    const galleryThumbs = new Swiper('#gallery-thumbs', {
+        direction: 'vertical', // Hiển thị ảnh con theo chiều dọc
+        spaceBetween: 10,
+        slidesPerView: 4, // Số ảnh con hiển thị cùng lúc
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
 
-const galleryMain = new Swiper('#gallery-main', {
-    spaceBetween: 10,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    thumbs: {
-        swiper: galleryThumbs,
-    },
-});
+    const galleryMain = new Swiper('#gallery-main', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: galleryThumbs,
+        },
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var tabLinks = document.querySelectorAll('.widget-menu-tab a');
+        var tabContent = document.querySelectorAll('.tab-pane');
+
+        tabLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                var targetId = this.getAttribute('href').substring(1);
+
+                tabLinks.forEach(function(link) {
+                    link.parentElement.classList.remove('active');
+                });
+                tabContent.forEach(function(content) {
+                    content.classList.remove('active');
+                });
+
+                this.parentElement.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    });
 </script>

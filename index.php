@@ -95,8 +95,10 @@ match ($act) {
     'productlist' => (new ProductlistController())->index(),
     'addtowishlist' => (new wishlistController())->add(),
     'removefromwishlist' => (new wishlistController())->remove(),
-    'product_description' => (new Product_Description_Controller())->index($product_id),
+    // 'product_description' => (new Product_Description_Controller())->index(),
+
     'addcomment' => (new Product_Description_Controller())->addComment(), 
+    'addRating' => (new ProductController())->addRating(),
     'search' => (new SearchController())->search(), 
 
     // chi tiết sản phẩm

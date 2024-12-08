@@ -20,6 +20,7 @@ require_once './controllers/AdminController.php';
 require_once './controllers/bannerController.php';
 require_once './controllers/tinController.php';
 require_once './controllers/lhController.php';
+require_once './controllers/bienThe.php';
 
 // Require toàn bộ file Models
 require_once './models/homeModel.php';
@@ -33,6 +34,7 @@ require_once './models/AdminModel.php';
 require_once './models/bannerModel.php';
 require_once './models/tinModel.php';
 require_once './models/lhModel.php';
+require_once './models/bienThe.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -68,6 +70,9 @@ match ($act) {
     'update-product' => (new ProductController())->productUpdate(),
     'show-product' => (new ProductController())->productShow(),
     'delete-product' => (new ProductController())->productDelete(),
+    'listBienThe' => (new bienTheController())->listBienThe(),
+    'insertVariant' => (new bienTheController())->insertVariant(),
+    'updateVariant' => (new bienTheController())->updateVariant(),
     // route bình luận
     'updateComment' => (new ProductController())->updateComment(),
     // route tài khoản khách hàng

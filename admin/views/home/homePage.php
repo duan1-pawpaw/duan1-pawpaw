@@ -138,7 +138,7 @@
           y: {
             beginAtZero: true,
             min: 0,
-            max: 600000000,
+            max: 250000000,
             ticks: {
               color: 'rgba(75, 75, 75, 1)', // Màu nhãn trục Y
               font: {

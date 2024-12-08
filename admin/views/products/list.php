@@ -12,20 +12,12 @@
     td {
         word-wrap: break-word;
         white-space: normal;
-        overflow: hidden;
         text-overflow: ellipsis;
     }
 
     td:nth-child(2),
     td:nth-child(3) {
         max-width: 200px;
-    }
-
-    td:nth-child(3) {
-        max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 </style>
 <div class="content-wrapper">
@@ -114,7 +106,11 @@
                                             <td><?= $value['so_luong'] ?></td>
                                             <td><?= $value['ten_danh_muc'] ?></td>
                                             <td>
-                                                <div class="badge <?= $checkStyleStatus ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px; width: 150px;"><?= $value['trang_thai'] == 1 ? 'Còn bán' : 'Dừng bán'; ?></div>
+                                                <?php if($value['so_luong'] === 0){ ?>
+                                                    <div class="badge badge-secondary mt-1 d-flex align-items-center justify-content-center" style="height: 25px; width: 150px;"><?= 'Hết hàng' ?></div>
+                                                <?php }else{ ?>
+                                                    <div class="badge <?= $checkStyleStatus ?> mt-1 d-flex align-items-center justify-content-center" style="height: 25px; width: 150px;"><?= $value['trang_thai'] == 1 ? 'Còn bán' : 'Dừng bán'; ?></div>
+                                                <?php } ?>
                                             </td>
                                             <td>
                                                 <div class="btn-group dropleft">
@@ -124,6 +120,7 @@
                                                     </button>
                                                     <div class="dropdown-menu dropleft" x-placement="left-start" style="position: absolute; transform: translate3d(-202px, 0px, 0px); top: 0px; left: 0px; will-change: transform; border: 1px solid black;">
                                                         <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=show-product&id=' . $value['id'] ?>"><i class="fa-regular fa-eye" style="color: #ababab;"></i><span style="margin-left: 0.5rem">Xem</span></a>
+                                                        <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=listBienThe&id=' . $value['id'] ?>"><i class="fa-regular fa-eye" style="color: #ababab;"></i><span style="margin-left: 0.5rem">Biến Thể</span></a>
                                                         <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=update-product&id=' . $value['id'] ?>"><i class="fa-regular fa-pen-to-square" style="color: #FFD43B;"></i><span style="margin-left: 0.5rem">Sửa</span></a>
                                                         <a class="dropdown-item" href="<?= BASE_URL_ADMIN . '?act=delete-product&id=' . $value['id'] ?>" onclick="return confirm('Bạn có đồng ý xóa hay không?')"><i class="fa-solid fa-trash" style="color: #f50529;"></i><span style="margin-left: 0.5rem">Xóa</span></a>
                                                     </div>

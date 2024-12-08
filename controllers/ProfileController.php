@@ -40,7 +40,6 @@ class ProfileController
             $so_dien_thoai = $_POST['so_dien_thoai'] ?? null;
             $gioi_tinh = $_POST['gioi_tinh'] ?? null;
             $dia_chi = $_POST['dia_chi'] ?? null;
-            $trang_thai = $_POST['trang_thai'] ?? '';
             // var_dump($ngay_sinh);die;
             // var_dump($_FILES['avata']['name']);die;
             if (empty($_FILES['avata']['name'])) {
@@ -87,8 +86,7 @@ class ProfileController
                     $email,
                     $so_dien_thoai,
                     $gioi_tinh,
-                    $dia_chi,
-                    $trang_thai
+                    $dia_chi
                 );
                 // var_dump($update);die;
 
@@ -105,8 +103,7 @@ class ProfileController
                     'email' => $email,
                     'so_dien_thoai' => $so_dien_thoai,
                     'gioi_tinh' => $gioi_tinh,
-                    'dia_chi' => $dia_chi,
-                    'trang_thai' => $trang_thai,
+                    'dia_chi' => $dia_chi
                 ];
                 header('location: ' . BASE_URL . '?act=form-update-profile');
                 exit();

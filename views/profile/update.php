@@ -118,20 +118,6 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-lg-3 control-label">Trạng thái tài khoản:</label>
-                                                <div class="col-lg-12">
-                                                    <div class="ui-select">
-                                                        <select id="inoutStatus" name="trang_thai" class="form-control custom-select">
-                                                            <option <?= ($_SESSION['old_data']['trang_thai'] ?? $user['trang_thai']) == 1 ? 'selected' : '' ?> value="1">Active</option>
-                                                            <option <?= ($_SESSION['old_data']['trang_thai'] ?? $user['trang_thai']) != 1 ? 'selected' : '' ?> value="2">Inactive</option>
-                                                        </select>
-                                                        <?php if (isset($_SESSION['error']['trang_thai'])) { ?>
-                                                            <p class="text-danger"><?= $_SESSION['error']['trang_thai'] ?></p>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="col-md-3 control-label"></label>
                                                 <div class="col-md-12">
                                                     <input type="submit" class="btn btn-success mt-1" value="Save Changes">
